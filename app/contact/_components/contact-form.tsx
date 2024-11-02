@@ -1,0 +1,118 @@
+'use client';
+
+import { zodResolver } from '@hookform/resolvers/zod';
+import Link from 'next/link';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { toast } from 'sonner';
+import { z } from 'zod';
+
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Textarea } from '@/components/ui/textarea';
+import { ContactFormSchema } from '@/lib/schemas';
+import { sendEmail } from '@/lib/server-actions';
+
+type ContactInputs = z.infer<typeof ContactFormSchema>;
+
+const ErrorMessage = ({ message = '' }: { message?: string }) => {
+  if (!message.trim()) {
+    return null;
+  }
+  return <p className='ml-1 mt-2 text-sm text-rose-400'>{message}</p>;
+};
+
+const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<ContactInputs>({
+    resolver: zodResolver(ContactFormSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+  });
+
+  const processForm: SubmitHandler<ContactInputs> = async (data) => {
+    const sendingEmailStatus = await sendEmail(data);
+
+    if (sendingEmailStatus?.error) {
+      toast.error('An error occurred! Please try again.');
+      return;
+    }
+
+    toast.success('Message sent successfully!');
+    reset();
+  };
+
+  return (
+    <section className='relative isolate'>
+      <div className='relative'>
+        <form
+          onSubmit={handleSubmit(processForm)}
+          className='mt-16 lg:flex-auto'
+          noValidate
+        >
+          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
+            {/* Name field */}
+            <div>
+              <Input
+                id='name'
+                type='text'
+                placeholder='Name'
+                autoComplete='given-name'
+                {...register('name')}
+              />
+
+              <ErrorMessage message={errors?.name?.message} />
+            </div>
+
+            {/* Email field */}
+            <div>
+              <Input
+                type='email'
+                id='email'
+                autoComplete='email'
+                placeholder='Email'
+                {...register('email')}
+              />
+
+              <ErrorMessage message={errors?.email?.message} />
+            </div>
+
+            {/* Message field */}
+            <div className='sm:col-span-2'>
+              <Textarea
+                rows={4}
+                placeholder='Message'
+                {...register('message')}
+              />
+              <ErrorMessage message={errors?.message?.message} />
+            </div>
+          </div>
+
+          <div className='mt-6'>
+            <Button
+              type='submit'
+              disabled={isSubmitting}
+              className='w-full disabled:opacity-50'
+            >
+              {isSubmitting ? 'Sending...' : 'Contact us'}
+            </Button>
+            <p className='mt-4 text-xs text-muted-foreground'>
+              By submitting this form, I agree to the&nbsp;
+              <Link href='/privacy' className='font-bold'>
+                privacy&nbsp;policy.
+              </Link>
+            </p>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+};
+
+export default ContactForm;
