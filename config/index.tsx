@@ -6,11 +6,10 @@ const links = {
 
 export const siteConfig = {
   name: '<Krishal />',
-  fullName: 'Krishal Shah',
   url: 'https://krishalshah.in',
   description:
     'I am a Full Stack Software Engineer dedicated to creating seamless digital experiences. With a strong foundation in JavaScript and its ecosystem — including Next.js, React, Express, and React Native for mobile development — I offer a versatile skill set to drive impactful solutions.',
-  author: 'Krishal',
+  author: 'Krishal Shah',
   links,
   socialLinks: [
     {

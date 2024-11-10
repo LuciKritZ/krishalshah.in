@@ -1,6 +1,12 @@
 import { getPosts } from '@/lib/posts';
 
 import SearchablePosts from './_components/searchable-posts';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'My posts',
+  description: 'Read my mind out with my posts.',
+};
 
 interface PostsPageParams {
   searchParams: {

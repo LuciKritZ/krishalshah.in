@@ -6,12 +6,54 @@ import { notFound } from 'next/navigation';
 import MDXContent from '@/components/mdx-content';
 import { formatDate } from '@/lib/date';
 import { getPostBySlug, getPosts } from '@/lib/posts';
+import { Metadata } from 'next';
+import { siteConfig } from '@/config';
 
-type Props = {
+type IndividualPostProps = {
   params: {
     slug: string;
   };
 };
+
+export async function generateMetadata({
+  params,
+}: IndividualPostProps): Promise<Metadata> {
+  const post = await getPostBySlug(params.slug);
+
+  if (!post || !post.metadata.title) {
+    return {};
+  }
+
+  const ogSearchParams = new URLSearchParams();
+
+  ogSearchParams.set('title', post.metadata.title);
+
+  return {
+    title: post.metadata.title,
+    description: post.metadata.summary,
+    authors: { name: siteConfig.author, url: siteConfig.url },
+    openGraph: {
+      title: post.metadata.title,
+      description: post.metadata.summary,
+      type: 'article',
+      url: params.slug,
+      images: [
+        {
+          url: `/api/og?${ogSearchParams.toString()}`,
+          width: 1200,
+          height: 630,
+          alt: post.metadata.title,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.metadata.title,
+      description: post.metadata.summary,
+      images: [`/api/og?${ogSearchParams.toString()}`],
+    },
+  };
+}
 
 export async function generateStaticParams() {
   const posts = await getPosts();
@@ -20,7 +62,7 @@ export async function generateStaticParams() {
   return slugs;
 }
 
-const IndividualPost = async ({ params: { slug } }: Props) => {
+const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
   const post = await getPostBySlug(slug);
 
   if (!post) {

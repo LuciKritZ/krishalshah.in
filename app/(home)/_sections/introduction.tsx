@@ -17,7 +17,7 @@ const Introduction = () => (
       <Image
         className='flex-1 md:rounded-lg grayscale rounded-full'
         src='/images/me.jpg'
-        alt={siteConfig.fullName}
+        alt={siteConfig.author}
         width={192}
         height={192}
         priority
