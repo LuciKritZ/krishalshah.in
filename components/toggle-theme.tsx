@@ -2,10 +2,16 @@
 
 import { useEffect, useState } from 'react';
 
-import { MoonIcon, SunIcon } from 'lucide-react';
+import { Loader, MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
 import { Button } from './ui/button';
+
+const LoaderIcon = () => (
+  <Button size='sm' variant='ghost' disabled>
+    <Loader className='size-4' />
+  </Button>
+);
 
 const ToggleTheme = () => {
   const { setTheme, resolvedTheme } = useTheme();
@@ -16,7 +22,7 @@ const ToggleTheme = () => {
   }, []);
 
   if (!mounted) {
-    return null;
+    return <LoaderIcon />;
   }
 
   return (
