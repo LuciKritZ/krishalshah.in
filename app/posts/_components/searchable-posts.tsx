@@ -4,35 +4,41 @@ import { useMemo, useState } from 'react';
 
 import { DeleteIcon } from 'lucide-react';
 
+import QueryPagination from '@/components/query-pagination';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PostMetadata } from '@/global-types';
 
 import Posts from '../../../components/posts';
 
+const POSTS_PER_PAGE = 5;
+
 interface SearchablePostsProps {
   posts: PostMetadata[];
+  currentPage: number;
 }
 
-const SearchablePosts = ({ posts }: SearchablePostsProps) => {
+const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
   const [query, setQuery] = useState<string>('');
 
-  const filteredData = useMemo(
-    () => ({
-      posts: posts.filter((post) =>
-        post.title?.toLowerCase().includes(query.toLowerCase())
-      ),
+  const filteredData = useMemo(() => {
+    const filteredPosts = posts
+      .filter((post) => post.title?.toLowerCase().includes(query.toLowerCase()))
+      .slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage);
+    return {
+      posts: filteredPosts,
       isFiltered: query.length,
-    }),
-    [posts, query]
-  );
+      totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+    };
+  }, [posts, query, currentPage]);
 
   const resetFilter = () => setQuery('');
 
   return (
-    <div>
-      <div className='mb-12 flex items-center gap-3'>
+    <div className='mb-12 flex flex-col'>
+      <div className='flex items-center gap-3 mb-8'>
         <Input
+          disabled
           type='text'
           placeholder='Search posts...'
           className='h-9 w-full sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0'
@@ -53,6 +59,11 @@ const SearchablePosts = ({ posts }: SearchablePostsProps) => {
       </div>
 
       <Posts posts={filteredData.posts} />
+
+      <QueryPagination
+        className='mt-8 flex flex-1'
+        totalPages={filteredData.totalPages}
+      />
     </div>
   );
 };
