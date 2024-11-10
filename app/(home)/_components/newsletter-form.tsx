@@ -16,6 +16,7 @@ import FormErrorMessage from '../../../components/form-error-message';
 
 type NewsLetterInput = z.infer<typeof NewsLetterFormSchema>;
 
+// TODO: Add newsletter feature for marketing
 const NewsLetterForm = () => {
   const {
     register,

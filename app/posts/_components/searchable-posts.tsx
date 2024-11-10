@@ -21,6 +21,7 @@ interface SearchablePostsProps {
 const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
   const [query, setQuery] = useState<string>('');
 
+  // TODO: Disable pagination and use infinite scrolling
   const filteredData = useMemo(() => {
     const filteredPosts = posts
       .filter((post) => post.title?.toLowerCase().includes(query.toLowerCase()))
@@ -38,6 +39,7 @@ const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
     <div className='mb-12 flex flex-col'>
       <div className='flex items-center gap-3 mb-8'>
         <Input
+          // TODO: Enable search functionality
           disabled
           type='text'
           placeholder='Search posts...'
@@ -61,7 +63,7 @@ const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
       <Posts posts={filteredData.posts} />
 
       <QueryPagination
-        className='mt-8 flex flex-1'
+        className='mt-8 justify-end'
         totalPages={filteredData.totalPages}
       />
     </div>
