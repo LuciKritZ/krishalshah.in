@@ -1,4 +1,4 @@
-import { z } from 'zod';
+import { infer } from 'zod';
 
 // TODO: Find a way to enforce the gray matter properties while writing an mdx file.
 export interface PostMetadata {
@@ -14,5 +14,3 @@ export interface Post {
   metadata: PostMetadata;
   content: string;
 }
-
-export type ContactInputs = z.infer<typeof ContactFormSchema>;

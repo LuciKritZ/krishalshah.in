@@ -12,12 +12,6 @@ export const siteConfig = {
     'I am a Full Stack Software Engineer dedicated to creating seamless digital experiences. With a strong foundation in JavaScript and its ecosystem — including Next.js, React, Express, and React Native for mobile development — I offer a versatile skill set to drive impactful solutions.',
   author: 'Krishal',
   links,
-  navigationMenuOptions: [
-    {
-      name: 'Blogs',
-      href: '/blogs',
-    },
-  ],
   socialLinks: [
     {
       link: 'https://twitter.com/lucikritz',
@@ -94,5 +88,20 @@ export const siteConfig = {
   resumeDoc:
     'https://docs.google.com/document/d/1L9vqJXg33BBBuceWqZSsKmsw-56PMOFQKDgCBfLqmz0',
 };
+
+export const NAVIGATION_OPTIONS = [
+  {
+    name: 'posts',
+    href: '/posts',
+  },
+  {
+    name: 'about',
+    href: '/about',
+  },
+  {
+    name: 'contact',
+    href: '/contact',
+  },
+];
 
 export type SiteConfig = typeof siteConfig;

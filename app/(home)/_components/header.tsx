@@ -1,7 +1,8 @@
-import Link from 'next/link';
-
 import Logo from '@/components/logo';
 import ToggleTheme from '@/components/toggle-theme';
+
+import MdNav from './nav/md-nav';
+import SmNav from './nav/sm-nav';
 
 const Header = () => {
   return (
@@ -9,22 +10,10 @@ const Header = () => {
       <nav className='container flex max-w-3xl items-center justify-between h-[40px]'>
         <Logo />
 
-        <ul className='flex items-center gap-6 text-sm font-light text-muted-foreground'>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/about'>About</Link>
-          </li>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/posts'>Posts</Link>
-          </li>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/projects'>Projects</Link>
-          </li>
-          <li className='transition-colors hover:text-foreground'>
-            <Link href='/contact'>Contact</Link>
-          </li>
-        </ul>
+        <MdNav />
 
-        <div className='w-9'>
+        <div className='flex items-center justify-end'>
+          <SmNav />
           <ToggleTheme />
         </div>
       </nav>

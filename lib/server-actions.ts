@@ -5,9 +5,10 @@ import { z } from 'zod';
 
 import ContactFormEmail from '@/components/emails/contact-form-email';
 
-import { ContactFormSchema } from './schemas';
+import { ContactFormSchema, NewsLetterFormSchema } from './schemas';
 
 type ContactInputs = z.infer<typeof ContactFormSchema>;
+type SubscribeParams = { email: string };
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -35,4 +36,15 @@ export const sendEmail = async (data: ContactInputs) => {
 
     return { success: true };
   } catch (error) {}
+};
+
+export const subscribe = async (data: SubscribeParams) => {
+  const result = NewsLetterFormSchema.safeParse(data);
+
+  if (result.error) {
+    return { error: result.error.format() };
+  }
+
+  // TODO: Implement Mailchimp integration
+  return { success: true };
 };

@@ -12,14 +12,9 @@ import { Textarea } from '@/components/ui/textarea';
 import { ContactFormSchema } from '@/lib/schemas';
 import { sendEmail } from '@/lib/server-actions';
 
-type ContactInputs = z.infer<typeof ContactFormSchema>;
+import FormErrorMessage from '../../../components/form-error-message';
 
-const ErrorMessage = ({ message = '' }: { message?: string }) => {
-  if (!message.trim()) {
-    return null;
-  }
-  return <p className='ml-1 mt-2 text-sm text-rose-400'>{message}</p>;
-};
+type ContactInputs = z.infer<typeof ContactFormSchema>;
 
 const ContactForm = () => {
   const {
@@ -67,7 +62,7 @@ const ContactForm = () => {
                 {...register('name')}
               />
 
-              <ErrorMessage message={errors?.name?.message} />
+              <FormErrorMessage message={errors?.name?.message} />
             </div>
 
             {/* Email field */}
@@ -80,7 +75,7 @@ const ContactForm = () => {
                 {...register('email')}
               />
 
-              <ErrorMessage message={errors?.email?.message} />
+              <FormErrorMessage message={errors?.email?.message} />
             </div>
 
             {/* Message field */}
@@ -90,7 +85,7 @@ const ContactForm = () => {
                 placeholder='Message'
                 {...register('message')}
               />
-              <ErrorMessage message={errors?.message?.message} />
+              <FormErrorMessage message={errors?.message?.message} />
             </div>
           </div>
 

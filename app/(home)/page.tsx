@@ -1,3 +1,4 @@
+import NewsLetterForm from './_components/newsletter-form';
 import Introduction from './_sections/introduction';
 import RecentPosts from './_sections/recent-posts';
 
@@ -8,6 +9,8 @@ export default function Home() {
         <Introduction />
 
         <RecentPosts />
+
+        <NewsLetterForm />
       </div>
     </section>
   );

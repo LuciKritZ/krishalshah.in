@@ -17,7 +17,7 @@ const Posts = ({ posts }: PostsProps) => (
         >
           <div className='max-w-lg'>
             <p className='text-lg font-semibold'>{title}</p>
-            <p className='mt-1 line-clamp-2 text-sm font-light text-muted-foreground'>
+            <p className='mt-1 line-clamp-2 text-sm font-normal text-muted-foreground'>
               {summary}
             </p>
           </div>

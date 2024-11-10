@@ -35,7 +35,7 @@ const IndividualPost = async ({ params: { slug } }: Props) => {
       <div className='container max-w-3xl'>
         <Link
           href='/posts'
-          className='mb-8 inline-flex items-center gap-2 text-sm font-light'
+          className='mb-8 inline-flex items-center gap-2 text-sm font-normal'
         >
           <ArrowLeftIcon className='h-5 w-5' />
           <span>Other Posts</span>
