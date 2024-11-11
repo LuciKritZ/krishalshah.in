@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { PostMetadata } from '@/global-types';
 
 import Posts from '../../../components/posts';
+import { getAllTags, sortTagsByCount } from '@/lib/tags';
 
 const POSTS_PER_PAGE = 5;
 
@@ -23,6 +24,7 @@ const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
 
   // TODO: Disable pagination and use infinite scrolling
   const filteredData = useMemo(() => {
+    const tags = getAllTags(posts);
     const filteredPosts = posts
       .filter((post) => post.title?.toLowerCase().includes(query.toLowerCase()))
       .slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage);
@@ -30,6 +32,8 @@ const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
       posts: filteredPosts,
       isFiltered: query.length,
       totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
+      sortedTags: sortTagsByCount(tags),
+      tags,
     };
   }, [posts, query, currentPage]);
 
@@ -37,7 +41,7 @@ const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
 
   return (
     <div className='mb-12 flex flex-col'>
-      <div className='flex items-center gap-3 mb-8'>
+      <div className='flex items-center gap-3 mb-4'>
         <Input
           // TODO: Enable search functionality
           disabled

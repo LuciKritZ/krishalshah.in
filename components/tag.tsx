@@ -19,7 +19,7 @@ const Tag = ({ tag, current, count }: TagProps) => (
     href={`/tags/${slug(tag)}`}
     onClick={(e) => e.stopPropagation()}
   >
-    {tag}
+    {tag} {count ? `(${count})` : null}
   </Link>
 );
 
