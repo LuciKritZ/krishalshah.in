@@ -8,6 +8,7 @@ import { formatDate } from '@/lib/date';
 import { getPostBySlug, getPosts } from '@/lib/posts';
 import { Metadata } from 'next';
 import { siteConfig } from '@/config';
+import Tag from '@/components/tag';
 
 type IndividualPostProps = {
   params: {
@@ -70,10 +71,10 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
   }
 
   const { metadata, content } = post;
-  const { title, image, author, publishedAt } = metadata;
+  const { title, image, author, publishedAt, tags = [] } = metadata;
 
   return (
-    <section className='pb-24 pt-32'>
+    <article className='pb-24 pt-32'>
       <div className='container max-w-3xl'>
         <Link
           href='/posts'
@@ -97,6 +98,11 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
 
         <header>
           <h1 className='title'>{title}</h1>
+          <div className='flex gap-2 my-6'>
+            {tags.map((tag) => (
+              <Tag key={tag} tag={tag} />
+            ))}
+          </div>
           <p className='mt-3 text-sx text-muted-foreground'>
             {author} / {formatDate(publishedAt ?? '')}
           </p>
@@ -106,7 +112,7 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
           <MDXContent source={content} />
         </main>
       </div>
-    </section>
+    </article>
   );
 };
 

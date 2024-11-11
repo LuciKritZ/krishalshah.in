@@ -8,6 +8,7 @@ export interface PostMetadata {
   author?: string;
   publishedAt?: string;
   slug: string;
+  tags?: Array<string>;
 }
 
 export interface Post {
