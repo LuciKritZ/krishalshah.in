@@ -1,13 +1,13 @@
 import { Fira_Code } from 'next/font/google';
-import Link from 'next/link';
+import Link, { LinkProps } from 'next/link';
 
 import { siteConfig } from '@/config';
 import { cn } from '@/lib/utils';
 
 const firaCode = Fira_Code({ subsets: ['latin'] });
 
-const Logo = () => (
-  <Link href='/' className={cn(firaCode.className)}>
+const Logo = ({ ...props }: Omit<LinkProps, 'href'>) => (
+  <Link href='/' className={cn(firaCode.className)} {...props}>
     {siteConfig.name}
   </Link>
 );

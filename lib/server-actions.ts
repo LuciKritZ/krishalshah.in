@@ -7,10 +7,12 @@ import ContactFormEmail from '@/components/emails/contact-form-email';
 
 import { ContactFormSchema, NewsLetterFormSchema } from './schemas';
 
+const RESEND_KEY = process.env.RESEND_API_KEY ?? '';
+
 type ContactInputs = z.infer<typeof ContactFormSchema>;
 type SubscribeParams = { email: string };
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+const resend = new Resend(RESEND_KEY);
 
 export const sendEmail = async (data: ContactInputs) => {
   const result = ContactFormSchema.safeParse(data);

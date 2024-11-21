@@ -2,6 +2,7 @@
 
 import { slug } from 'github-slugger';
 import Link from 'next/link';
+
 import { badgeVariants } from './ui/badge';
 
 interface TagProps {

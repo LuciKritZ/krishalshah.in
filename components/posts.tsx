@@ -1,12 +1,12 @@
 'use client';
 
-import Link from 'next/link';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { PostMetadata } from '@/global-types';
 import { formatDate } from '@/lib/date';
+
 import Tag from './tag';
-import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import { Button } from './ui/button';
 
 interface PostsProps {

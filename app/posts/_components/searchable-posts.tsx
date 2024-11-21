@@ -8,9 +8,9 @@ import QueryPagination from '@/components/query-pagination';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { PostMetadata } from '@/global-types';
+import { getAllTags, sortTagsByCount } from '@/lib/tags';
 
 import Posts from '../../../components/posts';
-import { getAllTags, sortTagsByCount } from '@/lib/tags';
 
 const POSTS_PER_PAGE = 5;
 

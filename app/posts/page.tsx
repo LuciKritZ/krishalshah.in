@@ -1,9 +1,10 @@
+import { Metadata } from 'next';
+
+import Tag from '@/components/tag';
 import { getPosts } from '@/lib/posts';
+import { getAllTags, sortTagsByCount } from '@/lib/tags';
 
 import SearchablePosts from './_components/searchable-posts';
-import { Metadata } from 'next';
-import Tag from '@/components/tag';
-import { getAllTags, sortTagsByCount } from '@/lib/tags';
 
 export const metadata: Metadata = {
   title: 'My posts',

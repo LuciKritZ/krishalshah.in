@@ -1,11 +1,13 @@
+import React from 'react';
+
+import { slug } from 'github-slugger';
+import { Metadata } from 'next';
+
 import Posts from '@/components/posts';
 import Tag from '@/components/tag';
 import { PostMetadata } from '@/global-types';
 import { getPosts } from '@/lib/posts';
 import { getAllTags, getPostsByTagSlug, sortTagsByCount } from '@/lib/tags';
-import { slug } from 'github-slugger';
-import { Metadata } from 'next';
-import React from 'react';
 
 interface IndividualTagParams {
   params: {

@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from 'next';
 
+import { siteConfig } from '@/config';
 import { sourceCodePro } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import Providers from '@/providers';
 
 import Footer from './(home)/_components/footer';
 import Header from './(home)/_components/header';
-import { siteConfig } from '@/config';
 import './globals.css';
 
 export const metadata: Metadata = {

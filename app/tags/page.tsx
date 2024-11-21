@@ -1,7 +1,8 @@
+import { Metadata } from 'next';
+
 import Tag from '@/components/tag';
 import { getPosts } from '@/lib/posts';
 import { getAllTags, sortTagsByCount } from '@/lib/tags';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Tags',

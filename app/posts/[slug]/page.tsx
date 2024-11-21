@@ -1,14 +1,14 @@
 import { ArrowLeftIcon } from 'lucide-react';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import MDXContent from '@/components/mdx-content';
+import Tag from '@/components/tag';
+import { siteConfig } from '@/config';
 import { formatDate } from '@/lib/date';
 import { getPostBySlug, getPosts } from '@/lib/posts';
-import { Metadata } from 'next';
-import { siteConfig } from '@/config';
-import Tag from '@/components/tag';
 
 type IndividualPostProps = {
   params: {

@@ -8,7 +8,12 @@ import { useRouter } from 'next/navigation';
 
 import Logo from '@/components/logo';
 import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
+import {
+  Sheet,
+  SheetContent,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet';
 import { NAVIGATION_OPTIONS, siteConfig } from '@/config';
 
 const SmNav = () => {
@@ -23,11 +28,16 @@ const SmNav = () => {
       </SheetTrigger>
 
       <SheetContent side='right'>
-        <SmLink onOpenChange={setOpen} href='/' className='flex items-center'>
-          <Logo />
-        </SmLink>
+        <SheetTitle>
+          <SmLink onOpenChange={setOpen} href='/' className='flex items-center'>
+            <Logo />
+          </SmLink>
+        </SheetTitle>
 
         <div className='flex flex-col gap-3 mt-3 capitalize'>
+          <Link href={siteConfig.resumeDoc} target='_blank'>
+            Resume
+          </Link>
           {NAVIGATION_OPTIONS.map(({ href, name }) => (
             <SmLink href={href} key={name} onOpenChange={setOpen}>
               {name}
