@@ -45,7 +45,7 @@ const IndividualTag = async ({ params }: IndividualTagParams) => {
   return (
     <section className='pb-12 pt-40'>
       <div className='container max-w-3xl'>
-        <div className='flex flex-wrap gap-2 mb-8 mt-8'>
+        <div className='flex flex-wrap gap-2 mb-8'>
           {sortedTags.map((t) => (
             <Tag tag={t} key={t} count={tags[t]} current={slug(t) === tag} />
           ))}

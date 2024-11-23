@@ -9,9 +9,7 @@ export const metadata: Metadata = {
   description: 'All the topics that I have written about',
 };
 
-type Props = {};
-
-const TagsPage = async (props: Props) => {
+const TagsPage = async () => {
   const posts = await getPosts();
   const tags = getAllTags(posts);
   const sortedTags = sortTagsByCount(tags);

@@ -10,9 +10,43 @@ import Header from './(home)/_components/header';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: siteConfig.author,
+  title: {
+    default: siteConfig.author,
+    template: `%s | ${siteConfig.author}`,
+  },
   description: siteConfig.description,
   metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
+  keywords: [
+    'Next.js',
+    'React',
+    'Tailwind CSS',
+    'Tailwind',
+    'Server Components',
+    'shadcnui',
+    'JavaScript',
+    'Typescript',
+    'JSX',
+    'TSX',
+    'JS',
+    'Node.js',
+    'Blog',
+    'Technical Blog',
+  ],
+  authors: [
+    {
+      name: 'Krishal Shah',
+      url: 'https://github.com/LuciKritZ',
+    },
+  ],
+  creator: 'Krishal Shah',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+  },
 };
 
 export const viewport: Viewport = {

@@ -42,14 +42,14 @@ const NewsLetterForm = () => {
   };
 
   return (
-    <Card className='rounded-lg border-0 dark:border'>
+    <Card className='rounded-lg border-[1px]'>
       <CardContent className='flex flex-col gap-8 pt-6 md:flex-row md:justify-between'>
         <div>
           <h2 className='md:text-2xl text-xl font-bold'>
             Subscribe to my newsletter!
           </h2>
 
-          <p className='text-muted-foreground'>
+          <p className='mt-2 text-muted-foreground'>
             Get updates on my work and projects.
           </p>
         </div>

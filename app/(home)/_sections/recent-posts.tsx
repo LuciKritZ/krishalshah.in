@@ -14,7 +14,7 @@ const RecentPosts = async () => {
 
         <Link
           href='/posts'
-          className='mt-8 inline-flex items-center gap-2 text-muted-foreground underline'
+          className='mt-8 inline-flex items-center gap-2 text-muted-foreground underline font-semibold'
         >
           <span>All posts</span>
         </Link>

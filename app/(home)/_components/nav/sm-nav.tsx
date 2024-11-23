@@ -15,8 +15,11 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { NAVIGATION_OPTIONS, siteConfig } from '@/config';
+import { cn } from '@/lib/utils';
 
-const SmNav = () => {
+import { NavProps } from '../header';
+
+const SmNav = ({ currentPath, onLinkClick }: NavProps) => {
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -30,7 +33,7 @@ const SmNav = () => {
       <SheetContent side='right'>
         <SheetTitle>
           <SmLink onOpenChange={setOpen} href='/' className='flex items-center'>
-            <Logo />
+            <Logo onClick={() => onLinkClick('/')} />
           </SmLink>
         </SheetTitle>
 
@@ -39,7 +42,14 @@ const SmNav = () => {
             Resume
           </Link>
           {NAVIGATION_OPTIONS.map(({ href, name }) => (
-            <SmLink href={href} key={name} onOpenChange={setOpen}>
+            <SmLink
+              href={href}
+              key={name}
+              onOpenChange={setOpen}
+              callBack={onLinkClick}
+              name={name}
+              className={cn(currentPath === name ? 'text-primary' : '')}
+            >
               {name}
             </SmLink>
           ))}
@@ -61,6 +71,8 @@ interface SmLinkProps extends LinkProps {
   children: ReactNode;
   onOpenChange?: (isOpen: boolean) => void;
   className?: HTMLAttributes<HTMLDivElement>['className'];
+  callBack?: NavProps['onLinkClick'];
+  name?: string;
 }
 
 const SmLink = ({
@@ -68,6 +80,8 @@ const SmLink = ({
   onOpenChange,
   children,
   className,
+  callBack,
+  name,
   ...rest
 }: SmLinkProps) => {
   const router = useRouter();
@@ -76,6 +90,7 @@ const SmLink = ({
       href={href}
       onClick={() => {
         router.push(href.toString());
+        callBack?.(name ?? '');
         onOpenChange?.(false);
       }}
       className={className}
