@@ -39,7 +39,7 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
         <SheetTitle>
           <Logo
             onClick={() => {
-              onLinkClick('/');
+              onLinkClick?.('/');
               setOpen(false);
             }}
             className='flex items-center'
@@ -56,7 +56,7 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
                   onOpenChange={setOpen}
                   callBack={onLinkClick}
                   name={name}
-                  className={cn(currentPath === name ? 'text-primary' : '')}
+                  className={cn(currentPath === href ? 'text-primary' : '')}
                 >
                   {name}
                 </SmLink>

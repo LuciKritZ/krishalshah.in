@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 
 import { NavProps } from '../header';
 
-const MdNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => (
+const MdNav = ({ currentPath, isAdmin = false }: NavProps) => (
   <ul className='hidden sm:flex items-center gap-6 text-sm font-normal text-muted-foreground'>
     {isAdmin
       ? ADMIN_NAVIGATION_OPTIONS.map(({ href, name }) => (
@@ -19,7 +19,6 @@ const MdNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => (
               'transition-colors duration-100 ease-linear hover:text-primary capitalize',
               name === currentPath ? 'text-foreground' : ''
             )}
-            onClick={() => onLinkClick(name)}
           >
             <Link href={href}>{name}</Link>
           </li>
@@ -37,9 +36,8 @@ const MdNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => (
         key={name}
         className={cn(
           'transition-colors duration-100 ease-linear hover:text-primary capitalize',
-          name === currentPath ? 'text-foreground' : ''
+          href === currentPath ? 'text-foreground' : ''
         )}
-        onClick={() => onLinkClick(name)}
       >
         <Link href={href}>{name}</Link>
       </li>
