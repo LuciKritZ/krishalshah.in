@@ -6,9 +6,16 @@ import { cn } from '@/lib/utils';
 
 const firaCode = Fira_Code({ subsets: ['latin'] });
 
-const Logo = ({ ...props }: Omit<LinkProps, 'href'>) => (
-  <Link href='/' className={cn(firaCode.className)} {...props}>
-    {siteConfig.name}
+const Logo = ({
+  className = '',
+  ...props
+}: Omit<
+  LinkProps & { className?: HTMLAnchorElement['className'] },
+  'href'
+>) => (
+  <Link href='/' className={cn(firaCode.className, className)} {...props}>
+    <span className='hidden lg:block'>{siteConfig.name}</span>
+    <span className='block lg:hidden'>{siteConfig.shortName}</span>
   </Link>
 );
 

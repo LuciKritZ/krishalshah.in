@@ -28,8 +28,9 @@ const ToggleTheme = () => {
   return (
     <Button
       size='sm'
-      variant='ghost'
+      variant='link'
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      className='p-0'
     >
       {resolvedTheme === 'dark' ? (
         <SunIcon className='size-4 text-orange-300' />

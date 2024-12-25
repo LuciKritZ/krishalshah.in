@@ -1,20 +1,22 @@
 'use server';
 
 import { Resend } from 'resend';
-import { z } from 'zod';
 
-import ContactFormEmail from '@/components/emails/contact-form-email';
+import { ContactUsEmailTemplate } from '@/components/emails/contact-form-email';
+import { addEmailForNewsletterSubscription } from '@/database/actions/subscribe';
 
-import { ContactFormSchema, NewsLetterFormSchema } from './schemas';
+import {
+  type ContactFormInput,
+  type NewsLetterFormInput,
+  ContactFormSchema,
+  NewsLetterFormSchema,
+} from './schemas';
 
 const RESEND_KEY = process.env.RESEND_API_KEY ?? '';
 
-type ContactInputs = z.infer<typeof ContactFormSchema>;
-type SubscribeParams = { email: string };
-
 const resend = new Resend(RESEND_KEY);
 
-export const sendEmail = async (data: ContactInputs) => {
+export const sendEmail = async (data: ContactFormInput) => {
   const result = ContactFormSchema.safeParse(data);
 
   if (result.error) {
@@ -29,7 +31,7 @@ export const sendEmail = async (data: ContactInputs) => {
       cc: ['hi@krishalshah.in'],
       subject: 'Thanks for reaching out to me!',
       text: `Name: ${name}\nEmail: ${email}\nMessage:${message}`,
-      react: ContactFormEmail({ name, email, message }),
+      react: ContactUsEmailTemplate({ name, email, message }),
     });
 
     if (!data || error) {
@@ -40,13 +42,14 @@ export const sendEmail = async (data: ContactInputs) => {
   } catch (error) {}
 };
 
-export const subscribe = async (data: SubscribeParams) => {
-  const result = NewsLetterFormSchema.safeParse(data);
+export const subscribe = async (data: NewsLetterFormInput) => {
+  const formatData = NewsLetterFormSchema.safeParse(data);
 
-  if (result.error) {
-    return { error: result.error.format() };
+  if (formatData.error) {
+    return { error: formatData.error.format() };
   }
 
-  // TODO: Implement Mailchimp integration
-  return { success: true };
+  const result = await addEmailForNewsletterSubscription(data);
+
+  return result;
 };

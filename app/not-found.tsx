@@ -7,17 +7,18 @@ const NotFound = () => {
       <div className='min-h-full px-4 sm:px-6 sm:py-24 md:grid md:place-items-center'>
         <div className='mx-auto container max-w-3xl'>
           <main className='sm:flex'>
-            <p className='text-3xl font-bold tracking-tight sm:text-5xl text-muted-foreground'>
+            <p className='text-8xl font-bold tracking-tight sm:text-7xl text-muted-foreground'>
               404
             </p>
             <div className='sm:ml-6'>
-              <div className='sm:border-l sm:border-gray-200 sm:pl-6'>
+              <div className='sm:border-l sm:border-gray-200 sm:pl-6 leading-3'>
                 <h1 className='text-xl font-bold tracking-tight'>
                   Congratulations, you&apos;ve unlocked the secret page!
                 </h1>
                 <p className='mt-1 text-base text-muted-foreground'>
-                  Just kidding, it doesn&apos;t exist. （っ＾▿＾）
+                  Just kidding, it doesn&apos;t exist.
                 </p>
+                <p className='leading-7'>（っ＾▿＾）</p>
               </div>
 
               <div className='mt-10 flex space-x-3 sm:border-1 sm:border-transparent'>

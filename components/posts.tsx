@@ -3,8 +3,8 @@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { PostMetadata } from '@/global-types';
 import { formatDate } from '@/lib/date';
+import { PostMetadata } from '@/types/global-types';
 
 import Tag from './tag';
 import { Button } from './ui/button';
@@ -18,7 +18,10 @@ const Posts = ({ posts }: PostsProps) => {
   return (
     <ul className='flex flex-col gap-8'>
       {posts.map(({ slug, title, summary, image, publishedAt, tags = [] }) => (
-        <li key={slug} className='pb-4 border-border border-b-[1px]'>
+        <li
+          key={slug}
+          className='pb-4 border-border border-b-[1px] group/post-card'
+        >
           <div
             onClick={() => router.push(`/posts/${slug}`)}
             className='flex flex-col md:flex-row justify-between cursor-pointer'
@@ -27,9 +30,8 @@ const Posts = ({ posts }: PostsProps) => {
               {publishedAt && (
                 <p className='text-sm font-light'>{formatDate(publishedAt)}</p>
               )}
-              <p className='text-lg font-semibold'>{title}</p>
-              <p className='line-clamp-2 text-sm font-normal text-muted-foreground text-ellipsis overflow-x-hidden max-w-fit'>
-                {summary}
+              <p className='text-lg font-semibold group-hover/post-card:underline'>
+                {title}
               </p>
               {tags.length ? (
                 <div className='text-sm py-1 space-x-2'>
@@ -38,9 +40,15 @@ const Posts = ({ posts }: PostsProps) => {
                   ))}
                 </div>
               ) : null}
+              <p className='line-clamp-2 text-sm font-normal text-muted-foreground text-ellipsis overflow-x-hidden max-w-fit'>
+                {summary}
+              </p>
               <div className='mt-4'>
-                <Button variant='link' className='m-0 p-0 text-sm h-auto'>
-                  Read more
+                <Button
+                  variant='link'
+                  className='m-0 p-0 text-sm h-auto text-muted-foreground'
+                >
+                  Read more...
                 </Button>
               </div>
             </div>

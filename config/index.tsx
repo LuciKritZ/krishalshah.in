@@ -2,10 +2,81 @@ const links = {
   twitter: 'https://x.com/lucikritz',
   github: 'https://github.com/LuciKritZ',
   website: 'https://krishalshah.in',
+  linkedin: 'https://linkedin.com/in/krishal-shah',
+  instagram: 'https://instagram.com/lucikritz',
 };
+
+export const EXPERIENCES = [
+  {
+    description: `Converted the web app of Jupiter Intelligence's CSG WebApp from react app to next with end-to-end testing using Cypress and unit testing using Jest.
+Led the development of a comprehensive Storybook component library (Material UI + TypeScript) featuring over 200 components.
+Integrated istanbul for merged code coverage of Cypress E2E and Jest, optimizing testing strategies.
+Reduced code duplication by 15% through the rewrite of over 20 components in the CSG WebApp.
+Architected the database, frontend, and backend design of "Tribe," an internal HRMS tool used by over 40 people.
+Optimized a data analytics app (Thirdeye by StarTree.ai) by reducing fetch API calls from 4 to 1.`,
+    _id: '568090f4-735a-4d17-8d0a-85be0af96037',
+    startDate: new Date('2022-11-16'),
+    companyLink: 'https://www.deuexsolutions.com',
+    isCurrent: true,
+    isRemote: true,
+    companyName: 'Deuex Solutions',
+    jobTitle: 'Software Engineer',
+    companyImage:
+      'https://cdn.sanity.io/images/kwg5n8yi/production/68c56b4b307caed8c19247d0bbc2d6a0b14510a6-796x759.svg?fit=max&auto=format',
+  },
+  {
+    description: `Enhanced the automatic center selection based on location fetching in mobile apps and decreased the fetching time from 6s to ≈1s
+Revamped homepages in mobile apps resulted in an increase in total downloads of ~10K.
+Implemented over 10 features like multiple location support, deleting accounts, and updating email notifications on every order.
+Reduced code duplication by 30% by writing sharable code between React Native and React using react-app-wired library.
+Deployed on Play Store , App Store , and web using GitHub actions & Appcenter (Codepush).`,
+    companyImage:
+      'https://cdn.sanity.io/images/kwg5n8yi/production/6db42bd9e44a987f99215296c05d63481c9ea19a-1524x288.webp?fit=max&auto=format',
+    _id: '9be28132-1051-4cd1-b638-06ecd008acdd',
+    companyLink: 'https://www.orangehealth.in/',
+    jobTitle: 'Software Engineer',
+    endDate: new Date('2022-10-31'),
+    startDate: new Date('2022-03-01'),
+    isRemote: true,
+    companyName: 'Orange Health Labs',
+    isCurrent: false,
+  },
+  {
+    endDate: new Date('2021-04-30'),
+    startDate: new Date('2019-10-01'),
+    _id: '67662c98-8ab4-473b-a4bb-4a3a50123908',
+    companyImage:
+      'https://cdn.sanity.io/images/kwg5n8yi/production/0c44782c38e7be2fb436fd5d14fc4dd758c5395e-1115x176.png?fit=max&auto=format',
+    jobTitle: 'Software Engineer E3/E2',
+    companyName: 'Crest Data Systems',
+    description: `Led the CrestHRMS team, managing weekly deliverables and designing algorithms for performance appraisal cycles.
+Mentored and trained 6 junior/intern developers in JavaScript and React.
+Reduced code duplications from 40% to 10% in HRMS, resulting in a 3s improvement in loading time.
+Crest Appreciation Award: For outstanding performance and delivering projects before time with excellent code quality (2020)`,
+    companyLink: 'https://www.crestdatasys.com',
+    isRemote: true,
+    isCurrent: false,
+  },
+  {
+    companyName: 'Cygnet InfoTech',
+    endDate: new Date('2019-09-30'),
+    companyLink: 'https://www.cygnet-digital.com/',
+    companyImage:
+      'https://cdn.sanity.io/images/kwg5n8yi/production/841cb7365706b6240266a88e031c80969faec6b4-1366x768.svg?fit=max&auto=format',
+    jobTitle: 'Associate Software Engineer / SDE Intern',
+    _id: '605dc1f0-7b06-4cd0-85fc-a0d94faa80ac',
+    startDate: new Date('2019-01-01'),
+    description: `Contributed to Cygnet GSP as a frontend platform engineer upon receiving a full-time offer after the internship.
+Wrote UI code for Cygnature app from scratch using React Native and completed all the features in 3 months.
+Architected screen designs & wire-frames for Cygnature in less than a month using Balsamiq & Figma.`,
+    isCurrent: false,
+    isRemote: false,
+  },
+];
 
 export const siteConfig = {
   name: '<Krishal />',
+  shortName: '<K />',
   url: 'https://krishalshah.in',
   description:
     'I am a Full Stack Software Engineer dedicated to creating seamless digital experiences. With a strong foundation in JavaScript and its ecosystem — including Next.js, React, Express, and React Native for mobile development — I offer a versatile skill set to drive impactful solutions.',
@@ -84,6 +155,7 @@ export const siteConfig = {
     '┌( ಠ_ಠ)┘',
     '¯_( ͡° ͜ʖ ͡°)_/¯',
   ],
+  experience: EXPERIENCES,
   resumeDoc:
     'https://docs.google.com/document/d/1L9vqJXg33BBBuceWqZSsKmsw-56PMOFQKDgCBfLqmz0',
 };
@@ -94,12 +166,19 @@ export const NAVIGATION_OPTIONS = [
     href: '/posts',
   },
   {
-    name: 'about',
-    href: '/about',
+    name: 'categories',
+    href: '/tags',
   },
   {
     name: 'contact',
     href: '/contact',
+  },
+];
+
+export const ADMIN_NAVIGATION_OPTIONS = [
+  {
+    name: 'Admin',
+    href: '/admin',
   },
 ];
 

@@ -1,6 +1,6 @@
 import { slug } from 'github-slugger';
 
-import { PostMetadata } from '@/global-types';
+import { PostMetadata } from '@/types/global-types';
 
 export const getAllTags = (posts: PostMetadata[]): Record<string, number> => {
   const tags: Record<string, number> = {};

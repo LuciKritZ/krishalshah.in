@@ -11,15 +11,20 @@ import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
+  SheetDescription,
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet';
-import { NAVIGATION_OPTIONS, siteConfig } from '@/config';
+import {
+  ADMIN_NAVIGATION_OPTIONS,
+  NAVIGATION_OPTIONS,
+  siteConfig,
+} from '@/config';
 import { cn } from '@/lib/utils';
 
 import { NavProps } from '../header';
 
-const SmNav = ({ currentPath, onLinkClick }: NavProps) => {
+const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
   const [open, setOpen] = useState(false);
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -32,15 +37,36 @@ const SmNav = ({ currentPath, onLinkClick }: NavProps) => {
 
       <SheetContent side='right'>
         <SheetTitle>
-          <SmLink onOpenChange={setOpen} href='/' className='flex items-center'>
-            <Logo onClick={() => onLinkClick('/')} />
-          </SmLink>
+          <Logo
+            onClick={() => {
+              onLinkClick('/');
+              setOpen(false);
+            }}
+            className='flex items-center'
+          />
         </SheetTitle>
+        <SheetDescription>{siteConfig.loadingTexts[0]}</SheetDescription>
 
         <div className='flex flex-col gap-3 mt-3 capitalize'>
+          {isAdmin
+            ? ADMIN_NAVIGATION_OPTIONS.map(({ href, name }) => (
+                <SmLink
+                  href={href}
+                  key={name}
+                  onOpenChange={setOpen}
+                  callBack={onLinkClick}
+                  name={name}
+                  className={cn(currentPath === name ? 'text-primary' : '')}
+                >
+                  {name}
+                </SmLink>
+              ))
+            : null}
+
           <Link href={siteConfig.resumeDoc} target='_blank'>
             Resume
           </Link>
+
           {NAVIGATION_OPTIONS.map(({ href, name }) => (
             <SmLink
               href={href}
@@ -59,6 +85,12 @@ const SmNav = ({ currentPath, onLinkClick }: NavProps) => {
               {title}
             </SmLink>
           ))}
+
+          <Link href='/rss' target='_blank'>
+            RSS
+          </Link>
+
+          {/* Show login and logout buttons in future */}
         </div>
       </SheetContent>
     </Sheet>

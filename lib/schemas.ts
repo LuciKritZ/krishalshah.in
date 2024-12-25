@@ -12,6 +12,33 @@ export const ContactFormSchema = z.object({
   message: z.string().min(1, { message: 'Message is required.' }),
 });
 
+export type ContactFormInput = z.infer<typeof ContactFormSchema>;
+
 export const NewsLetterFormSchema = z.object({
   email: z.string().email('Invalid email.'),
 });
+
+export type NewsLetterFormInput = z.infer<typeof NewsLetterFormSchema>;
+
+export const LoginFormSchema = z.object({
+  email: z.string().email('Invalid email.'),
+  password: z
+    .string()
+    .min(8, { message: 'Password should have minimum 8 characters' })
+    .max(16, { message: 'Password can not exceed more than 16 characters.' }),
+});
+
+export type LoginFormInput = z.infer<typeof LoginFormSchema>;
+
+export const RegisterFormSchema = z.object({
+  email: z.string().email('Invalid email.'),
+  password: z
+    .string()
+    .min(8, { message: 'Password should have minimum 8 characters' })
+    .max(16, { message: 'Password can not exceed more than 16 characters.' }),
+  name: z
+    .string()
+    .min(3, { message: 'Name should be of minimum 3 characters' }),
+});
+
+export type RegisterFormInput = z.infer<typeof RegisterFormSchema>;

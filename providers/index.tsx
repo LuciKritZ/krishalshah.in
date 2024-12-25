@@ -3,6 +3,7 @@
 import { ReactNode } from 'react';
 
 import { ThemeProvider, useTheme } from 'next-themes';
+
 import { Toaster } from '@/components/ui/sonner';
 
 const ToasterProvider = () => {

@@ -7,8 +7,8 @@ import { DeleteIcon } from 'lucide-react';
 import QueryPagination from '@/components/query-pagination';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { PostMetadata } from '@/global-types';
 import { getAllTags, sortTagsByCount } from '@/lib/tags';
+import { PostMetadata } from '@/types/global-types';
 
 import Posts from '../../../components/posts';
 

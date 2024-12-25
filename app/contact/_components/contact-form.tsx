@@ -4,17 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { ContactFormSchema } from '@/lib/schemas';
+import { ContactFormInput, ContactFormSchema } from '@/lib/schemas';
 import { sendEmail } from '@/lib/server-actions';
 
 import FormErrorMessage from '../../../components/form-error-message';
-
-type ContactInputs = z.infer<typeof ContactFormSchema>;
 
 const ContactForm = () => {
   const {
@@ -22,7 +19,7 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<ContactInputs>({
+  } = useForm<ContactFormInput>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
       name: '',
@@ -31,7 +28,7 @@ const ContactForm = () => {
     },
   });
 
-  const processForm: SubmitHandler<ContactInputs> = async (data) => {
+  const processForm: SubmitHandler<ContactFormInput> = async (data) => {
     const sendingEmailStatus = await sendEmail(data);
 
     if (sendingEmailStatus?.error) {

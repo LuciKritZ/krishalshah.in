@@ -3,7 +3,7 @@ import path from 'path';
 
 import matter from 'gray-matter';
 
-import { Post, PostMetadata } from '@/global-types';
+import { Post, PostMetadata } from '@/types/global-types';
 
 const ROOT_CONTENT_DIRECTORY = path.join(process.cwd(), 'content', 'posts');
 

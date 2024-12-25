@@ -4,17 +4,14 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
-import { z } from 'zod';
 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
-import { NewsLetterFormSchema } from '@/lib/schemas';
+import { NewsLetterFormInput, NewsLetterFormSchema } from '@/lib/schemas';
 import { subscribe } from '@/lib/server-actions';
 
 import FormErrorMessage from '../../../components/form-error-message';
-
-type NewsLetterInput = z.infer<typeof NewsLetterFormSchema>;
 
 // TODO: Add newsletter feature for marketing
 const NewsLetterForm = () => {
@@ -23,18 +20,23 @@ const NewsLetterForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
-  } = useForm<NewsLetterInput>({
+  } = useForm<NewsLetterFormInput>({
     resolver: zodResolver(NewsLetterFormSchema),
     defaultValues: {
       email: '',
     },
   });
 
-  const processForm: SubmitHandler<NewsLetterInput> = async (data) => {
-    const result = await subscribe(data);
+  const processForm: SubmitHandler<NewsLetterFormInput> = async (data) => {
+    const result = await subscribe(data)
+      .catch((res) => res)
+      .finally(() => {
+        reset();
+      });
 
     if (result?.error) {
-      toast.error('An error occured! Please try again!');
+      toast.error(result.error);
+      return;
     }
 
     toast.success('Subscribed successfully!');
