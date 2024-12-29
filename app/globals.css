@@ -116,4 +116,12 @@ body {
   .prose code span {
     @apply font-medium;
   }
+
+  .post-container {
+    min-height: calc(100vh - 160px - 44px - 36px);
+  }
+
+  .post-list-container {
+    min-height: calc(100vh - 160px - 344px - 36px);
+  }
 }

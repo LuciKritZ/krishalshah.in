@@ -8,7 +8,7 @@ import { useTheme } from 'next-themes';
 import { Button } from './ui/button';
 
 const LoaderIcon = () => (
-  <Button size='sm' variant='ghost' disabled>
+  <Button size='sm' variant='link' disabled className='p-0'>
     <Loader className='size-4' />
   </Button>
 );

@@ -1,10 +1,10 @@
 import Link from 'next/link';
 
 import Posts from '@/components/posts';
-import { getPosts } from '@/lib/posts';
+import { getAllPosts } from '@/rest';
 
 const RecentPosts = async () => {
-  const posts = await getPosts(4);
+  const { posts } = await getAllPosts({});
 
   return (
     <section className='py-24'>

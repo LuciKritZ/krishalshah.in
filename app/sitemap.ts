@@ -1,11 +1,11 @@
 import { NAVIGATION_OPTIONS, siteConfig } from '@/config';
-import { getPosts } from '@/lib/posts';
-import { getAllTags } from '@/lib/tags';
+import { getAllPosts, getAllTags } from '@/rest';
 
 const currentDate = new Date().toISOString().split('T')[0];
 
 export default async function sitemap() {
-  const allPosts = await getPosts();
+  const { posts: allPosts } = await getAllPosts({});
+
   let posts = allPosts.map((post) => ({
     url: `${siteConfig.url}/posts/${post.slug}`,
     lastModified: post.publishedAt
@@ -13,10 +13,10 @@ export default async function sitemap() {
       : currentDate,
   }));
 
-  let allTags = getAllTags(allPosts);
+  let allTags = await getAllTags();
 
   let tags = Object.keys(allTags).map((tag) => ({
-    url: `${siteConfig.url}/tags/${tag}`,
+    url: `${siteConfig.url}/posts?selectedTags=${tag}`,
     lastModified: currentDate,
   }));
 

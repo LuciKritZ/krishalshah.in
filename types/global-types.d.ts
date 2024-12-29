@@ -11,6 +11,8 @@ export interface PostMetadata {
   tags?: Array<string>;
 }
 
+export type Tags = Record<string, number>;
+
 export interface Post {
   metadata: PostMetadata;
   content: string;

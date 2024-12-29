@@ -1,74 +1,125 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 
 import { DeleteIcon } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter, useSearchParams } from 'next/navigation';
 
+import Posts from '@/components/posts';
 import QueryPagination from '@/components/query-pagination';
-import { Button } from '@/components/ui/button';
+import Tag from '@/components/tag';
+import { buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { getAllTags, sortTagsByCount } from '@/lib/tags';
-import { PostMetadata } from '@/types/global-types';
+import { usePosts } from '@/providers/posts-provider';
 
-import Posts from '../../../components/posts';
+const SearchablePosts = () => {
+  const {
+    resetFiltersLink,
+    createPaginationLink,
+    isLoading,
+    posts,
+    sortedTags,
+    tags,
+    page,
+    selectedTags,
+    totalPages,
+    createSearchLink,
+    createSelectedTagsLink,
+    shouldShowReset,
+  } = usePosts();
+  const searchParams = useSearchParams();
+  const router = useRouter();
 
-const POSTS_PER_PAGE = 5;
-
-interface SearchablePostsProps {
-  posts: PostMetadata[];
-  currentPage: number;
-}
-
-const SearchablePosts = ({ posts, currentPage }: SearchablePostsProps) => {
-  const [query, setQuery] = useState<string>('');
-
-  // TODO: Disable pagination and use infinite scrolling
-  const filteredData = useMemo(() => {
-    const tags = getAllTags(posts);
-    const filteredPosts = posts
-      .filter((post) => post.title?.toLowerCase().includes(query.toLowerCase()))
-      .slice(POSTS_PER_PAGE * (currentPage - 1), POSTS_PER_PAGE * currentPage);
-    return {
-      posts: filteredPosts,
-      isFiltered: query.length,
-      totalPages: Math.ceil(posts.length / POSTS_PER_PAGE),
-      sortedTags: sortTagsByCount(tags),
-      tags,
-    };
-  }, [posts, query, currentPage]);
-
-  const resetFilter = () => setQuery('');
+  const [query, setQuery] = useState<string>(
+    searchParams.get('searchQuery') ?? ''
+  );
 
   return (
     <div className='mb-12 flex flex-col'>
       <div className='flex items-center gap-3 mb-4'>
         <Input
-          // TODO: Enable search functionality
-          disabled
           type='text'
           placeholder='Search posts...'
           className='h-9 w-full sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0'
           value={query}
-          onChange={(e) => setQuery(e.target.value)}
+          onChange={(e) => {
+            setQuery(e.target.value);
+          }}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              router.push(createSearchLink(query));
+            }
+          }}
         />
 
-        {filteredData.isFiltered ? (
-          <Button
-            size='sm'
-            variant='secondary'
-            onClick={resetFilter}
-            className='h-8 px-2 lg:px-3'
+        {query.length ? (
+          <Link
+            href={createSearchLink(query)}
+            className={buttonVariants({
+              size: 'sm',
+              variant: 'secondary',
+              className: 'h-8 px-2 lg:px-3',
+            })}
+          >
+            Submit
+          </Link>
+        ) : null}
+
+        {shouldShowReset ? (
+          <Link
+            href={resetFiltersLink()}
+            onClick={() => {
+              setQuery('');
+            }}
+            className={buttonVariants({
+              size: 'sm',
+              variant: 'secondary',
+              className: 'h-8 px-2 lg:px-3',
+            })}
           >
             Reset <DeleteIcon className='ml-2 h-4 w-4' />
-          </Button>
+          </Link>
         ) : null}
       </div>
 
-      <Posts posts={filteredData.posts} />
+      {!!sortedTags.length || !isLoading ? (
+        <div className='flex flex-wrap gap-2 mb-8 items-center'>
+          {sortedTags.map((tag) => (
+            <Tag
+              tag={tag}
+              key={tag}
+              count={tags[tag]}
+              isSelected={selectedTags.includes(tag)}
+              onClick={() => {
+                const link = createSelectedTagsLink(tag);
+                router.push(link);
+              }}
+              disableLink
+            />
+          ))}
+          <Link
+            className={buttonVariants({
+              variant: 'link',
+              size: 'sm',
+              className:
+                'no-underline rounded-lg text-xs font-semibold py-0.5 px-2.5 h-6',
+            })}
+            href='/tags'
+          >
+            View all
+          </Link>
+        </div>
+      ) : null}
+
+      <Posts posts={posts} />
 
       <QueryPagination
+        currentPage={page}
         className='mt-8 justify-end'
-        totalPages={filteredData.totalPages}
+        createPaginationLink={createPaginationLink}
+        isLoading={isLoading}
+        totalPages={totalPages}
       />
     </div>
   );

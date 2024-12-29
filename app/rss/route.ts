@@ -1,10 +1,10 @@
 import { siteConfig } from '@/config';
-import { getPosts } from '@/lib/posts';
+import { getAllPosts } from '@/rest';
 
 export async function GET() {
-  let allBlogs = await getPosts();
+  let { posts } = await getAllPosts({});
 
-  const itemsXml = allBlogs
+  const itemsXml = posts
     .sort((a, b) => {
       if (!a.publishedAt || !b.publishedAt) {
         return 0;

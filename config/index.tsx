@@ -166,10 +166,6 @@ export const NAVIGATION_OPTIONS = [
     href: '/posts',
   },
   {
-    name: 'categories',
-    href: '/tags',
-  },
-  {
     name: 'contact',
     href: '/contact',
   },

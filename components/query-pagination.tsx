@@ -1,7 +1,3 @@
-'use client';
-
-import { usePathname, useSearchParams } from 'next/navigation';
-
 import {
   Pagination,
   PaginationContent,
@@ -12,32 +8,33 @@ import {
 } from './ui/pagination';
 
 interface QueryPaginationProps {
-  totalPages: number;
   className?: string;
+  createPaginationLink: (pageNumber: string | number) => string;
+  totalPages: number;
+  isLoading: boolean;
+  currentPage: number;
 }
 
-const QueryPagination = ({ totalPages, className }: QueryPaginationProps) => {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  const currentPage = Number(searchParams.get('page')) || 1;
-
+const QueryPagination = ({
+  className,
+  isLoading,
+  totalPages,
+  createPaginationLink,
+  currentPage,
+}: QueryPaginationProps) => {
   const prevPage = currentPage - 1;
   const nextPage = currentPage + 1;
 
-  const createPageURL = (pageNumber: number | string) => {
-    const params = new URLSearchParams(searchParams);
-    params.set('page', pageNumber.toString());
-
-    return `${pathname}?${params.toString()}`;
-  };
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <Pagination className={className}>
       <PaginationContent>
         {prevPage >= 1 ? (
           <PaginationItem>
-            <PaginationPrevious href={createPageURL(prevPage)} />
+            <PaginationPrevious href={createPaginationLink(prevPage)} />
           </PaginationItem>
         ) : null}
 
@@ -50,7 +47,7 @@ const QueryPagination = ({ totalPages, className }: QueryPaginationProps) => {
             >
               <PaginationLink
                 isActive={currentPage === index + 1}
-                href={createPageURL(index + 1)}
+                href={createPaginationLink(index + 1)}
               >
                 {index + 1}
               </PaginationLink>
@@ -59,7 +56,7 @@ const QueryPagination = ({ totalPages, className }: QueryPaginationProps) => {
 
         {nextPage <= totalPages ? (
           <PaginationItem>
-            <PaginationNext href={createPageURL(nextPage)} />
+            <PaginationNext href={createPaginationLink(nextPage)} />
           </PaginationItem>
         ) : null}
       </PaginationContent>
