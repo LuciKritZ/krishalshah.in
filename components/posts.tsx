@@ -35,7 +35,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
         posts.map(({ slug, title, summary, image, publishedAt, tags = [] }) => (
           <li
             key={slug}
-            className='p-4 border-border border-[1px] group/post-card hover:bg-card rounded-sm'
+            className='p-4 border-border border-[1px] group/post-card hover:bg-border rounded-sm overflow-hidden transition-colors ease-linear duration-100'
           >
             <div
               onClick={() => router.push(`/posts/${slug}`)}
@@ -43,7 +43,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
             >
               <div className='flex-1 md:mr-10 space-y-2'>
                 {publishedAt && (
-                  <p className='text-sm font-light'>
+                  <p className='text-sm font-light italic'>
                     {formatDate(publishedAt)}
                   </p>
                 )}
@@ -71,7 +71,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
               </div>
               <div className='hidden md:flex justify-center items-center'>
                 {image && (
-                  <div className='relative mb-6 w-36 h-36 overflow-hidden rounded-lg'>
+                  <div className='relative w-36 h-36 overflow-hidden rounded-lg my-auto mx-0'>
                     <Image
                       src={image}
                       alt={title ?? ''}
