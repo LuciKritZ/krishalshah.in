@@ -35,7 +35,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
         posts.map(({ slug, title, summary, image, publishedAt, tags = [] }) => (
           <li
             key={slug}
-            className='p-4 border-border border-[1px] group/post-card hover:bg-border rounded-sm overflow-hidden transition-colors ease-linear duration-100'
+            className='p-4 border-border border-[1px] group/post-card hover:bg-border rounded-sm overflow-hidden transition-colors ease-linear duration-200'
           >
             <div
               onClick={() => router.push(`/posts/${slug}`)}

@@ -28,7 +28,8 @@ const Tag = ({
     <Link
       className={badgeVariants({
         variant: current ? 'default' : 'secondary',
-        className: 'no-underline rounded-lg h-6',
+        className:
+          'no-underline rounded-lg h-6 transition-colors duration-200 ease-linear',
       })}
       href={`/posts/?selectedTags=${slug(tag)}`}
       onClick={(e) => e.stopPropagation()}
@@ -40,7 +41,7 @@ const Tag = ({
       className={badgeVariants({
         variant: current || isSelected ? 'default' : 'secondary',
         className:
-          'no-underline rounded-lg text-xs font-semibold py-0.5 px-2.5 h-6',
+          'no-underline rounded-lg text-xs font-semibold py-0.5 px-2.5 h-6 transition-colors duration-200 ease-linear',
       })}
       onClick={(e) => {
         e.stopPropagation();
