@@ -1,8 +1,8 @@
 import { siteConfig } from '@/config';
-import { getAllPosts } from '@/rest';
+import { getPosts } from '@/lib/posts';
 
 export async function GET() {
-  let { posts } = await getAllPosts();
+  let posts = await getPosts();
 
   const itemsXml = posts
     .sort((a, b) => {

@@ -1,10 +1,11 @@
 import { NAVIGATION_OPTIONS, siteConfig } from '@/config';
-import { getAllPosts, getAllTags } from '@/rest';
+import { getPosts } from '@/lib/posts';
+import { getAllTags } from '@/rest';
 
 const currentDate = new Date().toISOString().split('T')[0];
 
 export default async function sitemap() {
-  const { posts: allPosts } = await getAllPosts();
+  const allPosts = await getPosts();
 
   let posts = allPosts.map((post) => ({
     url: `${siteConfig.url}/posts/${post.slug}`,
