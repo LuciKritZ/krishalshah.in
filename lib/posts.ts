@@ -25,6 +25,7 @@ export const getPosts = async (): Promise<PostMetadata[]> => {
 
   const posts = files
     .map((file) => getPostMetadata(file))
+    .filter((file) => !!file.title)
     .sort((a, b) => {
       if (new Date(a?.publishedAt ?? '') < new Date(b?.publishedAt ?? '')) {
         return 1;
