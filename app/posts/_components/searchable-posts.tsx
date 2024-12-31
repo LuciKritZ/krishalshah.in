@@ -11,6 +11,7 @@ import QueryPagination from '@/components/query-pagination';
 import Tag from '@/components/tag';
 import { buttonVariants } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { cn } from '@/lib/utils';
 import { usePosts } from '@/providers/posts-provider';
 
 const SearchablePosts = () => {
@@ -99,12 +100,15 @@ const SearchablePosts = () => {
             />
           ))}
           <Link
-            className={buttonVariants({
-              variant: 'link',
-              size: 'sm',
-              className:
-                'no-underline rounded-lg text-xs font-semibold py-0.5 px-2.5 h-6',
-            })}
+            className={cn(
+              buttonVariants({
+                variant: 'link',
+                size: 'sm',
+                className:
+                  'no-underline rounded-lg text-xs font-semibold py-0.5 px-2.5 m-0 h-auto',
+              }),
+              'text-muted-foreground'
+            )}
             href='/tags'
           >
             View all
