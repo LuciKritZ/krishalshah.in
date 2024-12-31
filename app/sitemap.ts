@@ -4,7 +4,7 @@ import { getAllPosts, getAllTags } from '@/rest';
 const currentDate = new Date().toISOString().split('T')[0];
 
 export default async function sitemap() {
-  const { posts: allPosts } = await getAllPosts({});
+  const { posts: allPosts } = await getAllPosts();
 
   let posts = allPosts.map((post) => ({
     url: `${siteConfig.url}/posts/${post.slug}`,

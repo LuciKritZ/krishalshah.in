@@ -86,7 +86,7 @@ const SearchablePosts = () => {
         ) : null}
       </div>
 
-      {!!sortedTags.length || !isLoading ? (
+      {!!sortedTags.length && !isLoading ? (
         <div className='flex flex-wrap gap-2 mb-8 items-center'>
           {sortedTags.map((tag) => (
             <Tag

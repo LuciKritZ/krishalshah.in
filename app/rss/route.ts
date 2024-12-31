@@ -2,7 +2,7 @@ import { siteConfig } from '@/config';
 import { getAllPosts } from '@/rest';
 
 export async function GET() {
-  let { posts } = await getAllPosts({});
+  let { posts } = await getAllPosts();
 
   const itemsXml = posts
     .sort((a, b) => {

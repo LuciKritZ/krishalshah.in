@@ -2,12 +2,14 @@ import { PostMetadata, Tags } from '@/types/global-types';
 
 const BASE_URL = process.env.NEXT_PUBLIC_APP_URL;
 
-type GetAllPostsReq = {
-  searchQuery?: string;
-  selectedTags?: string[];
-  page?: number;
-  limit?: number;
-};
+type GetAllPostsReq =
+  | undefined
+  | {
+      searchQuery?: string;
+      selectedTags?: string[];
+      page?: number;
+      limit?: number;
+    };
 
 type GetAllPostsRes = {
   readonly posts: PostMetadata[];
@@ -21,26 +23,25 @@ type GetAllTagsRequest =
       initialTags?: string[];
     };
 
-export const getAllPosts = async ({
-  searchQuery = '',
-  selectedTags = [],
-  page = 1,
-  limit = 5,
-}: GetAllPostsReq): Promise<GetAllPostsRes> => {
+export const getAllPosts = async (
+  req?: GetAllPostsReq
+): Promise<GetAllPostsRes> => {
   const params = new URLSearchParams();
 
-  if (searchQuery) {
-    params.append('searchQuery', searchQuery);
+  if (req?.searchQuery) {
+    params.append('searchQuery', req.searchQuery);
   }
 
-  if (selectedTags && !!selectedTags.length) {
-    params.append('selectedTags', selectedTags.sort().join(','));
+  if (req?.selectedTags && !!req?.selectedTags.length) {
+    params.append('selectedTags', req.selectedTags.sort().join(','));
   }
 
-  params.append('page', page.toString());
-  params.append('limit', limit.toString());
+  params.append('page', (req?.page ?? 1).toString());
+  params.append('limit', (req?.limit ?? 5).toString());
 
-  const res = await fetch(`${BASE_URL}/api/posts?${params.toString()}`);
+  const res = await fetch(`${BASE_URL}/api/posts?${params.toString()}`, {
+    cache: 'no-cache',
+  });
 
   const resJson = (await res.json()) as { data: GetAllPostsRes };
   return resJson.data;

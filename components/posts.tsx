@@ -87,7 +87,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
           </li>
         ))
       ) : (
-        <div className='justify-center items-center my-auto mx-0 text-center'>
+        <div className='flex justify-center items-center my-auto mx-0 text-center post-list-container'>
           No posts found!
         </div>
       )}

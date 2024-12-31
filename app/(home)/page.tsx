@@ -5,22 +5,22 @@ import NewsLetterForm from './_components/newsletter-form';
 import Introduction from './_sections/introduction';
 import RecentPosts from './_sections/recent-posts';
 
-export default function Home() {
-  return (
-    <section className='py-24'>
-      <div className='container max-w-3xl'>
-        <Introduction />
+const Home = async () => (
+  <section className='py-24'>
+    <div className='container max-w-3xl'>
+      <Introduction />
 
-        <div className='flex mt-12 space-x-6 justify-center'>
-          {siteConfig.socialLinks.map((socialLinkProps) => (
-            <SocialLink key={socialLinkProps._id} {...socialLinkProps} />
-          ))}
-        </div>
-
-        <RecentPosts />
-
-        <NewsLetterForm />
+      <div className='flex mt-12 space-x-6 justify-center'>
+        {siteConfig.socialLinks.map((socialLinkProps) => (
+          <SocialLink key={socialLinkProps._id} {...socialLinkProps} />
+        ))}
       </div>
-    </section>
-  );
-}
+
+      <RecentPosts />
+
+      <NewsLetterForm />
+    </div>
+  </section>
+);
+
+export default Home;
