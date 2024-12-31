@@ -1,9 +1,9 @@
-import SearchablePosts from './_components/searchable-posts';
+import dynamic from 'next/dynamic';
 
-/**
- * @see https://github.com/vercel/next.js/discussions/58936#discussioncomment-7701179
- */
-export const dynamic = 'force-dynamic';
+const SearchablePosts = dynamic(
+  () => import('./_components/searchable-posts'),
+  { ssr: false }
+);
 
 const PostsPage = () => (
   <section className='pb-12 pt-40'>

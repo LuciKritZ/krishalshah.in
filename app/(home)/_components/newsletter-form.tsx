@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { NewsLetterFormInput, NewsLetterFormSchema } from '@/lib/schemas';
-import { subscribe } from '@/lib/server-actions';
+import { subscribe } from '@/lib/server/resend';
 
 import FormErrorMessage from '../../../components/form-error-message';
 

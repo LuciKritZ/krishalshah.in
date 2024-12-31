@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
 
 import RedirectToPosts from '@/components/redirect-to-posts';
-import { sortTagsByCount } from '@/lib/posts';
-import { getAllTags } from '@/rest';
+import { sortTagsByCount } from '@/lib/posts-client';
+import { getTags } from '@/lib/server/posts';
 
 import SearchableTags from './_components/searchable-tags';
 
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 };
 
 const TagsPage = async () => {
-  const tags = await getAllTags();
+  const tags = await getTags();
   const sortedTags = sortTagsByCount(tags);
 
   return (

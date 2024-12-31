@@ -12,8 +12,11 @@ import {
 
 import { usePathname, useSearchParams } from 'next/navigation';
 
-import { sortTagsByCount, updateTagsToSortedTagsString } from '@/lib/posts';
-import { getAllPosts, getAllTags } from '@/rest';
+import {
+  sortTagsByCount,
+  updateTagsToSortedTagsString,
+} from '@/lib/posts-client';
+import { getPosts, getTags } from '@/lib/server/posts';
 import { PostMetadata, Tags } from '@/types/global-types';
 
 type PostsProviderProps = {
@@ -119,7 +122,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
     setError(null);
 
     try {
-      const { posts, totalPages } = await getAllPosts({
+      const { posts, totalPages } = await getPosts({
         searchQuery: query,
         selectedTags,
         page,
@@ -139,7 +142,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
     setError(null);
 
     try {
-      const tags = await getAllTags({ limit: 10, initialTags: selectedTags });
+      const tags = await getTags({ limit: 10, initialTags: selectedTags });
       setTags(tags);
     } catch (error: any) {
       setError(error?.message);

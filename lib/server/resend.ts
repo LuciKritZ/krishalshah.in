@@ -10,7 +10,7 @@ import {
   type NewsLetterFormInput,
   ContactFormSchema,
   NewsLetterFormSchema,
-} from './schemas';
+} from '../schemas';
 
 const RESEND_KEY = process.env.RESEND_API_KEY ?? '';
 

@@ -3,11 +3,11 @@ import Link from 'next/link';
 
 import Posts from '@/components/posts';
 import { buttonVariants } from '@/components/ui/button';
+import { getPosts } from '@/lib/server/posts';
 import { cn } from '@/lib/utils';
-import { getAllPosts } from '@/rest';
 
 const RecentPosts = async () => {
-  const { posts } = await getAllPosts();
+  const { posts } = await getPosts();
 
   return (
     <section className='py-24'>

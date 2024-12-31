@@ -5,11 +5,6 @@ import NewsLetterForm from './_components/newsletter-form';
 import Introduction from './_sections/introduction';
 import RecentPosts from './_sections/recent-posts';
 
-/**
- * @see https://github.com/vercel/next.js/discussions/58936#discussioncomment-7701179
- */
-export const dynamic = 'force-dynamic';
-
 const Home = async () => (
   <section className='py-24'>
     <div className='container max-w-3xl'>

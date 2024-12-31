@@ -36,5 +36,26 @@ export interface ExperienceSchema {
   endDate?: Date;
 }
 
+export type GetPostsRequest =
+  | undefined
+  | {
+      searchQuery?: string;
+      selectedTags?: string[];
+      page?: number;
+      limit?: number;
+    };
+
+export type GetPostsResponse = {
+  readonly posts: PostMetadata[];
+  readonly totalPages: number;
+};
+
+type GetTagsRequest =
+  | undefined
+  | {
+      limit?: number;
+      initialTags?: string[];
+    };
+
 // TODO: Remove this
 export type EditStringAPICall = (updatedString: string) => Promise<void> | void;

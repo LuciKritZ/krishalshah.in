@@ -7,7 +7,7 @@ import RedirectToPosts from '@/components/redirect-to-posts';
 import Tag from '@/components/tag';
 import { siteConfig } from '@/config';
 import { formatDate } from '@/lib/date';
-import { getPostBySlug, getPosts } from '@/lib/posts';
+import { getPostBySlug, getPosts } from '@/lib/server/posts';
 
 type IndividualPostProps = {
   params: {
@@ -61,7 +61,7 @@ export async function generateMetadata({
 }
 
 export async function generateStaticParams() {
-  const posts = await getPosts();
+  const { posts } = await getPosts();
   const slugs = posts.map((post) => ({ slug: post.slug }));
 
   return slugs;

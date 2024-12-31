@@ -26,7 +26,7 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
       <div className='flex items-center gap-3 mb-4'>
         <Input
           type='text'
-          placeholder='Search posts...'
+          placeholder='Search tags...'
           className='h-9 w-full sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0'
           value={query}
           onChange={(e) => {

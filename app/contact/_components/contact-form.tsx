@@ -9,7 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ContactFormInput, ContactFormSchema } from '@/lib/schemas';
-import { sendEmail } from '@/lib/server-actions';
+import { sendEmail } from '@/lib/server/resend';
 
 import FormErrorMessage from '../../../components/form-error-message';
 

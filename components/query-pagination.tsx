@@ -11,7 +11,7 @@ interface QueryPaginationProps {
   className?: string;
   createPaginationLink: (pageNumber: string | number) => string;
   totalPages: number;
-  isLoading: boolean;
+  isLoading?: boolean;
   currentPage: number;
 }
 

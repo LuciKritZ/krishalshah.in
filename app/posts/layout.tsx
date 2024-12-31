@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { ReactNode, Suspense } from 'react';
 
 import { Metadata } from 'next';
 
@@ -14,7 +14,11 @@ const PostsLayout = ({
 }: Readonly<{
   children: ReactNode;
 }>) => {
-  return <PostsProvider>{children}</PostsProvider>;
+  return (
+    <Suspense>
+      <PostsProvider>{children}</PostsProvider>;
+    </Suspense>
+  );
 };
 
 export default PostsLayout;

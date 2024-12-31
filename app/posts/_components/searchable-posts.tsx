@@ -18,7 +18,6 @@ const SearchablePosts = () => {
   const {
     resetFiltersLink,
     createPaginationLink,
-    isLoading,
     posts,
     sortedTags,
     tags,
@@ -86,7 +85,7 @@ const SearchablePosts = () => {
         ) : null}
       </div>
 
-      {!!sortedTags.length && !isLoading ? (
+      {!!sortedTags.length ? (
         <div className='flex flex-wrap gap-2 mb-8 items-center'>
           {sortedTags.map((tag) => (
             <Tag
@@ -124,7 +123,6 @@ const SearchablePosts = () => {
         currentPage={page}
         className='mt-8 justify-end'
         createPaginationLink={createPaginationLink}
-        isLoading={isLoading}
         totalPages={totalPages}
       />
     </div>
