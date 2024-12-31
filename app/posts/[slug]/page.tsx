@@ -15,11 +15,6 @@ type IndividualPostProps = {
   };
 };
 
-/**
- * @see https://github.com/vercel/next.js/discussions/58936#discussioncomment-7701179
- */
-export const dynamic = 'force-dynamic';
-
 export async function generateMetadata({
   params,
 }: IndividualPostProps): Promise<Metadata> {

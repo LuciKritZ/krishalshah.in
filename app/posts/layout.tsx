@@ -16,7 +16,7 @@ const PostsLayout = ({
 }>) => {
   return (
     <Suspense>
-      <PostsProvider>{children}</PostsProvider>;
+      <PostsProvider>{children}</PostsProvider>
     </Suspense>
   );
 };
