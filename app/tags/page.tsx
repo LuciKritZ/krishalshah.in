@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 
+import RedirectToPosts from '@/components/redirect-to-posts';
 import { sortTagsByCount } from '@/lib/posts';
 import { getAllTags } from '@/rest';
 
@@ -17,6 +18,8 @@ const TagsPage = async () => {
   return (
     <section className='pb-12 pt-40'>
       <div className='container max-w-3xl'>
+        <RedirectToPosts linkText='Go to posts' />
+
         <h1 className='title mb-12'>Tags</h1>
 
         <SearchableTags tags={tags} sortedTags={sortedTags} />

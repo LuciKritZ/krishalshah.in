@@ -1,10 +1,9 @@
-import { ArrowLeftIcon } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
 import MDXContent from '@/components/mdx-content';
+import RedirectToPosts from '@/components/redirect-to-posts';
 import Tag from '@/components/tag';
 import { siteConfig } from '@/config';
 import { formatDate } from '@/lib/date';
@@ -81,13 +80,7 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
   return (
     <article className='pb-24 pt-32'>
       <div className='container max-w-3xl'>
-        <Link
-          href='/posts'
-          className='mb-8 inline-flex items-center gap-2 text-sm font-normal'
-        >
-          <ArrowLeftIcon className='h-5 w-5' />
-          <span>Other Posts</span>
-        </Link>
+        <RedirectToPosts />
 
         {image && (
           <div className='relative mb-6 h-96 w-full overflow-hidden rounded-lg'>

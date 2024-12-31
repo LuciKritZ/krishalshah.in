@@ -48,6 +48,7 @@ const QueryPagination = ({
               <PaginationLink
                 isActive={currentPage === index + 1}
                 href={createPaginationLink(index + 1)}
+                shallow={true}
               >
                 {index + 1}
               </PaginationLink>
