@@ -49,7 +49,7 @@ const SearchablePosts = () => {
           }}
           onKeyDown={(e) => {
             if (e.key === 'Enter') {
-              router.push(createSearchLink(query));
+              router.push(createSearchLink(query), { scroll: false });
             }
           }}
         />
@@ -62,6 +62,7 @@ const SearchablePosts = () => {
               variant: 'secondary',
               className: 'h-8 px-2 lg:px-3',
             })}
+            shallow
           >
             Submit
           </Link>
@@ -78,6 +79,7 @@ const SearchablePosts = () => {
               variant: 'secondary',
               className: 'h-8 px-2 lg:px-3',
             })}
+            shallow={true}
           >
             Reset <DeleteIcon className='ml-2 h-4 w-4' />
           </Link>
@@ -94,7 +96,7 @@ const SearchablePosts = () => {
               isSelected={selectedTags.includes(tag)}
               onClick={() => {
                 const link = createSelectedTagsLink(tag);
-                router.push(link);
+                router.push(link, { scroll: false });
               }}
               disableLink
             />
