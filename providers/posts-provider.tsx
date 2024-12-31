@@ -139,13 +139,15 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
     setError(null);
 
     try {
-      const tags = await getAllTags(10);
+      const tags = await getAllTags({ limit: 10, initialTags: selectedTags });
       setTags(tags);
     } catch (error: any) {
       setError(error?.message);
     } finally {
       setLoading(false);
     }
+    // Why? Because we don't want to call the API every time selectedTags are changed, we only want to call it once.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const resetFiltersLink = (): string => {

@@ -14,6 +14,13 @@ type GetAllPostsRes = {
   readonly totalPages: number;
 };
 
+type GetAllTagsRequest =
+  | undefined
+  | {
+      limit?: number;
+      initialTags?: string[];
+    };
+
 export const getAllPosts = async ({
   searchQuery = '',
   selectedTags = [],
@@ -39,11 +46,15 @@ export const getAllPosts = async ({
   return resJson.data;
 };
 
-export const getAllTags = async (limit?: number): Promise<Tags> => {
+export const getAllTags = async (req?: GetAllTagsRequest): Promise<Tags> => {
   const params = new URLSearchParams();
 
-  if (limit) {
-    params.append('limit', limit.toString());
+  if (req?.limit) {
+    params.append('limit', req?.limit.toString());
+  }
+
+  if (!!req?.initialTags?.length) {
+    params.append('initialTags', req.initialTags.sort().join(','));
   }
 
   const res = await fetch(`${BASE_URL}/api/tags?${params.toString()}`);
