@@ -48,7 +48,7 @@ const QueryPagination = ({
               <PaginationLink
                 isActive={currentPage === index + 1}
                 href={createPaginationLink(index + 1)}
-                className='hover:bg-border hover:text-inherit transition-colors duration-200 ease-linear'
+                className='hover:bg-border/50 hover:text-inherit transition-colors duration-200 ease-linear'
                 shallow={true}
               >
                 {index + 1}

@@ -14,8 +14,7 @@ const Logo = ({
   'href'
 >) => (
   <Link href='/' className={cn(firaCode.className, className)} {...props}>
-    <span className='hidden lg:block'>{siteConfig.name}</span>
-    <span className='block lg:hidden'>{siteConfig.shortName}</span>
+    <span>{siteConfig.name}</span>
   </Link>
 );
 
