@@ -120,4 +120,8 @@
   .post-list-container {
     min-height: calc(100vh - 160px - 344px - 36px);
   }
+
+  .header-bg {
+    @apply backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-background/75;
+  }
 }
