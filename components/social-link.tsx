@@ -1,13 +1,17 @@
 'use client';
 
-import Link from 'next/link';
-
 import { siteConfig } from '@/config';
+
+import EventLink from './event-link';
 
 type SocialLinkProps = (typeof siteConfig.socialLinks)[0];
 
 const SocialLink = ({ link, icon, title }: SocialLinkProps) => (
-  <Link
+  <EventLink
+    eventName='Clicked on Social Link'
+    eventProps={{
+      'Social Link': title,
+    }}
     href={link}
     target='_blank'
     referrerPolicy='no-referrer'
@@ -15,7 +19,7 @@ const SocialLink = ({ link, icon, title }: SocialLinkProps) => (
   >
     <span className='sr-only'>{title}</span>
     {icon}
-  </Link>
+  </EventLink>
 );
 
 export default SocialLink;

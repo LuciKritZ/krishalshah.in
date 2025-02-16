@@ -97,6 +97,10 @@
     @apply font-serif text-3xl underline decoration-border/75 decoration-2 underline-offset-8;
   }
 
+  .title-sm {
+    @apply text-xl underline decoration-border/75 decoration-2 underline-offset-8 mt-6;
+  }
+
   .prose pre {
     @apply overflow-x-auto rounded-lg bg-transparent border-border border-[1px] px-5 py-4 text-sm;
   }

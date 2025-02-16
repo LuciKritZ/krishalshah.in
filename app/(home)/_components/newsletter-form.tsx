@@ -1,11 +1,11 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { Button } from '@/components/ui/button';
+import EventButton from '@/components/event-button';
+import EventLink from '@/components/event-link';
 import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { NewsLetterFormInput, NewsLetterFormSchema } from '@/lib/schemas';
@@ -20,12 +20,15 @@ const NewsLetterForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
+    watch,
   } = useForm<NewsLetterFormInput>({
     resolver: zodResolver(NewsLetterFormSchema),
     defaultValues: {
       email: '',
     },
   });
+
+  const email = watch('email');
 
   const processForm: SubmitHandler<NewsLetterFormInput> = async (data) => {
     const result = await subscribe(data)
@@ -74,21 +77,29 @@ const NewsLetterForm = () => {
           </div>
 
           <div className='w-full'>
-            <Button
+            <EventButton
+              eventName='Clicked on Submit button - NewsLetter'
+              eventProperties={{
+                input: email,
+              }}
               type='submit'
               disabled={isSubmitting}
               className='w-full disabled:opacity-50'
             >
               {isSubmitting ? 'Submitting...' : 'Subscribe'}
-            </Button>
+            </EventButton>
           </div>
 
           <div>
             <p className='text-xs text-muted-foreground'>
               We care about your data. Read our{' '}
-              <Link href='/privacy' className='font-bold'>
+              <EventLink
+                eventName='Clicked on privacy policy'
+                href='/privacy'
+                className='font-bold'
+              >
                 privacy&nbsp;policy.
-              </Link>
+              </EventLink>
             </p>
           </div>
         </form>

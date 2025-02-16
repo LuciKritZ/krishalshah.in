@@ -1,6 +1,6 @@
 import { ArrowRight } from 'lucide-react';
-import Link from 'next/link';
 
+import EventLink from '@/components/event-link';
 import Posts from '@/components/posts';
 import { buttonVariants } from '@/components/ui/button';
 import { getPosts } from '@/lib/server/posts';
@@ -17,7 +17,11 @@ const RecentPosts = async () => {
           <>
             <Posts posts={posts} />
 
-            <Link
+            <EventLink
+              eventName='Clicked on All Posts'
+              eventProps={{
+                from: 'All posts',
+              }}
               href='/posts'
               className={cn(
                 buttonVariants({
@@ -30,7 +34,7 @@ const RecentPosts = async () => {
             >
               <span>All posts</span>
               <ArrowRight className='size-5' />
-            </Link>
+            </EventLink>
           </>
         ) : (
           <span className='text-muted-foreground text-balance'>

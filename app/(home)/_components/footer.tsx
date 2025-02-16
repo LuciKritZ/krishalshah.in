@@ -1,5 +1,4 @@
-import Link from 'next/link';
-
+import EventLink from '@/components/event-link';
 import SocialLink from '@/components/social-link';
 import { siteConfig } from '@/config';
 
@@ -15,13 +14,14 @@ const Footer = () => (
       <div className='mt-4 md:mt-0 md:order-1 flex items-center'>
         <p className='text-center text-md leading-5 text-muted-foreground text-sm'>
           Made with ♥️ by{' '}
-          <Link
+          <EventLink
             href={siteConfig.links.github}
             target='_blank'
             className='tracking-tighter underline decoration-wavy hover:decoration-primary-foreground transition-colors duration-100 ease-linear'
+            eventName='GitHub link clicked from footer'
           >
             Krishal Shah
-          </Link>
+          </EventLink>
         </p>
       </div>
     </div>

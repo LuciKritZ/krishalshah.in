@@ -1,5 +1,4 @@
-import Link from 'next/link';
-
+import EventLink from '@/components/event-link';
 import {
   ADMIN_NAVIGATION_OPTIONS,
   NAVIGATION_OPTIONS,
@@ -20,15 +19,27 @@ const MdNav = ({ currentPath, isAdmin = false }: NavProps) => (
               name === currentPath ? 'text-foreground' : ''
             )}
           >
-            <Link href={href}>{name}</Link>
+            <EventLink
+              href={href}
+              eventName={`Clicked on ${name} option from Navbar - Admin Options`}
+            >
+              {name}
+            </EventLink>
           </li>
         ))
       : null}
 
     <li>
-      <Link href={siteConfig.resumeDoc} target='_blank'>
+      <EventLink
+        href={siteConfig.resumeDoc}
+        target='_blank'
+        eventName='Clicked on Resume Link from Navbar'
+        eventProps={{
+          'Resume Link': siteConfig.resumeDoc,
+        }}
+      >
         Resume
-      </Link>
+      </EventLink>
     </li>
 
     {NAVIGATION_OPTIONS.map(({ href, name }) => (
@@ -39,7 +50,12 @@ const MdNav = ({ currentPath, isAdmin = false }: NavProps) => (
           href === currentPath ? 'text-foreground' : ''
         )}
       >
-        <Link href={href}>{name}</Link>
+        <EventLink
+          eventName={`Clicked on ${name} option from Navbar`}
+          href={href}
+        >
+          {name}
+        </EventLink>
       </li>
     ))}
   </ul>

@@ -4,8 +4,8 @@ import { useMemo, useState } from 'react';
 
 import { DeleteIcon } from 'lucide-react';
 
+import EventButton from '@/components/event-button';
 import Tag from '@/components/tag';
-import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Tags } from '@/types/global-types';
 
@@ -35,7 +35,8 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
         />
 
         {!!query.length ? (
-          <Button
+          <EventButton
+            eventName='Clicked on Reset Button - Searchable Tags'
             onClick={() => {
               setQuery('');
             }}
@@ -44,7 +45,7 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
             className='h-8 px-2 lg:px-3'
           >
             Reset <DeleteIcon className='ml-2 h-4 w-4' />
-          </Button>
+          </EventButton>
         ) : null}
       </div>
 

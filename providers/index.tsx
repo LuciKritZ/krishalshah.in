@@ -1,10 +1,11 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 
 import { ThemeProvider, useTheme } from 'next-themes';
 
 import { Toaster } from '@/components/ui/sonner';
+import { initAnalytics } from '@/lib/analytics';
 
 const ToasterProvider = () => {
   const { resolvedTheme } = useTheme();
@@ -19,6 +20,11 @@ const ToasterProvider = () => {
 };
 
 const Providers = ({ children }: { children: ReactNode }) => {
+  useEffect(() => {
+    // Initial Analytics
+    initAnalytics();
+  }, []);
+
   return (
     <ThemeProvider
       enableSystem

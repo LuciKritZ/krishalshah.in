@@ -91,12 +91,7 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
 
         <header>
           <h1 className='title'>{title}</h1>
-          <div className='flex gap-2 my-6'>
-            {tags.map((tag) => (
-              <Tag key={tag} tag={tag} />
-            ))}
-          </div>
-          <p className='mt-3 text-sx text-muted-foreground'>
+          <p className='mt-6 text-sx text-muted-foreground'>
             {author} / {formatDate(publishedAt ?? '')}
           </p>
         </header>
@@ -104,6 +99,15 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
         <main className='prose mt-16 dark:prose-invert'>
           <MDXContent source={content} />
         </main>
+
+        <div className='flex gap-2 my-6 flex-col'>
+          <p className='title-sm'>Related Tags</p>
+          <div className='flex flex-wrap gap-2 my-6'>
+            {tags.map((tag) => (
+              <Tag key={tag} tag={tag} />
+            ))}
+          </div>
+        </div>
       </div>
     </article>
   );

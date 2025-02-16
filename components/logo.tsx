@@ -1,8 +1,10 @@
 import { Fira_Code } from 'next/font/google';
-import Link, { LinkProps } from 'next/link';
+import { LinkProps } from 'next/link';
 
 import { siteConfig } from '@/config';
 import { cn } from '@/lib/utils';
+
+import EventLink from './event-link';
 
 const firaCode = Fira_Code({ subsets: ['latin'] });
 
@@ -13,9 +15,14 @@ const Logo = ({
   LinkProps & { className?: HTMLAnchorElement['className'] },
   'href'
 >) => (
-  <Link href='/' className={cn(firaCode.className, className)} {...props}>
+  <EventLink
+    eventName='Clicked on Logo'
+    href='/'
+    className={cn(firaCode.className, className)}
+    {...props}
+  >
     <span>{siteConfig.name}</span>
-  </Link>
+  </EventLink>
 );
 
 export default Logo;
