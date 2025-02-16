@@ -1,11 +1,11 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { Button } from '@/components/ui/button';
+import EventButton from '@/components/event-button';
+import EventLink from '@/components/event-link';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ContactFormInput, ContactFormSchema } from '@/lib/schemas';
@@ -19,6 +19,7 @@ const ContactForm = () => {
     handleSubmit,
     reset,
     formState: { errors, isSubmitting },
+    watch,
   } = useForm<ContactFormInput>({
     resolver: zodResolver(ContactFormSchema),
     defaultValues: {
@@ -27,6 +28,10 @@ const ContactForm = () => {
       message: '',
     },
   });
+
+  const name = watch('name');
+  const email = watch('email');
+  const message = watch('message');
 
   const processForm: SubmitHandler<ContactFormInput> = async (data) => {
     const sendingEmailStatus = await sendEmail(data);
@@ -87,18 +92,28 @@ const ContactForm = () => {
           </div>
 
           <div className='mt-6'>
-            <Button
+            <EventButton
+              eventName='Clicked on Contact us button - Contact Form'
+              eventProperties={{
+                name,
+                email,
+                message,
+              }}
               type='submit'
               disabled={isSubmitting}
               className='w-full disabled:opacity-50'
             >
               {isSubmitting ? 'Sending...' : 'Contact us'}
-            </Button>
+            </EventButton>
             <p className='mt-4 text-xs text-muted-foreground'>
               By submitting this form, I agree to the&nbsp;
-              <Link href='/privacy' className='font-bold'>
+              <EventLink
+                eventName='Clicked on privacy policy from Contact Form'
+                href='/privacy'
+                className='font-bold'
+              >
                 privacy&nbsp;policy.
-              </Link>
+              </EventLink>
             </p>
           </div>
         </form>

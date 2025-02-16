@@ -1,6 +1,6 @@
 import { CalendarDays, MapPinHouse } from 'lucide-react';
-import Link from 'next/link';
 
+import EventLink from '@/components/event-link';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { siteConfig } from '@/config';
@@ -47,13 +47,14 @@ export const IndividualExperience = ({
       <CardHeader>
         <div className='flex md:flex-row flex-col justify-between md:space-x-2 space-x-0'>
           {/* Company Name */}
-          <Link
+          <EventLink
+            eventName={`Clicked on ${companyName} link from experience section`}
             href={companyLink}
             target='_blank'
             className='p-0 text-base text-muted-foreground font-bold text-pretty text-start flex-1 justify-start underline'
           >
             {jobTitle}, {companyName}
-          </Link>
+          </EventLink>
 
           {/* Duration */}
           <div className='flex items-center text-destructive text-base'>

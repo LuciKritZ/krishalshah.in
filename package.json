@@ -24,6 +24,7 @@
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.454.0",
+    "mixpanel-browser": "^2.60.0",
     "mongodb": "^6.10.0",
     "mongoose": "^8.8.2",
     "next": "14.2.16",
@@ -43,6 +44,7 @@
   "devDependencies": {
     "@hookform/resolvers": "^3.9.1",
     "@tailwindcss/typography": "^0.5.15",
+    "@types/mixpanel-browser": "^2.51.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

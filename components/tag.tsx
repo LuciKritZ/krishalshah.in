@@ -2,8 +2,9 @@
 
 import { slug } from 'github-slugger';
 import { Delete } from 'lucide-react';
-import Link from 'next/link';
 
+import EventButton from './event-button';
+import EventLink from './event-link';
 import { badgeVariants } from './ui/badge';
 import { Button } from './ui/button';
 
@@ -25,19 +26,20 @@ const Tag = ({
   isSelected = false,
 }: TagProps) =>
   !disableLink ? (
-    <Link
+    <EventLink
       className={badgeVariants({
         variant: current ? 'default' : 'secondary',
         className:
-          'no-underline rounded-lg h-6 transition-colors duration-200 ease-linear',
+          'no-underline rounded-lg h-6 transition-colors duration-200 ease-linear my-1',
       })}
       href={`/posts/?selectedTags=${slug(tag)}`}
       onClick={(e) => e.stopPropagation()}
+      eventName={`Clicked on Tag - ${tag}`}
     >
       {tag} {count ? `(${count})` : null}
-    </Link>
+    </EventLink>
   ) : (
-    <Button
+    <EventButton
       className={badgeVariants({
         variant: current || isSelected ? 'default' : 'secondary',
         className:
@@ -47,10 +49,11 @@ const Tag = ({
         e.stopPropagation();
         onClick?.();
       }}
+      eventName={`Clicked on Tag - ${tag}`}
     >
       {tag} {count ? `(${count})` : null}
       {isSelected ? <Delete className='size-5' /> : null}
-    </Button>
+    </EventButton>
   );
 
 export default Tag;

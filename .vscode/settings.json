@@ -7,4 +7,5 @@
     ],
     "ClassName.*=\\s*[\"'`]([^\"'`]*)[\"'`]"
   ],
+  "mdx-preview.preview.previewOnChange": true
 }

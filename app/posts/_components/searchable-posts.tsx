@@ -3,9 +3,9 @@
 import { useState } from 'react';
 
 import { DeleteIcon } from 'lucide-react';
-import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 
+import EventLink from '@/components/event-link';
 import Posts from '@/components/posts';
 import QueryPagination from '@/components/query-pagination';
 import Tag from '@/components/tag';
@@ -54,7 +54,11 @@ const SearchablePosts = () => {
         />
 
         {query.length ? (
-          <Link
+          <EventLink
+            eventName='Clicked on Input Search Submit button - Posts'
+            eventProps={{
+              input: query,
+            }}
             href={createSearchLink(query)}
             className={buttonVariants({
               size: 'sm',
@@ -64,11 +68,12 @@ const SearchablePosts = () => {
             shallow
           >
             Submit
-          </Link>
+          </EventLink>
         ) : null}
 
         {shouldShowReset ? (
-          <Link
+          <EventLink
+            eventName='Clicked on Input Reset button - Posts'
             href={resetFiltersLink()}
             onClick={() => {
               setQuery('');
@@ -81,7 +86,7 @@ const SearchablePosts = () => {
             shallow={true}
           >
             Reset <DeleteIcon className='ml-2 h-4 w-4' />
-          </Link>
+          </EventLink>
         ) : null}
       </div>
 
@@ -100,7 +105,8 @@ const SearchablePosts = () => {
               disableLink
             />
           ))}
-          <Link
+          <EventLink
+            eventName='Clicked on View all [Tags] - Posts'
             className={cn(
               buttonVariants({
                 variant: 'link',
@@ -113,18 +119,20 @@ const SearchablePosts = () => {
             href='/tags'
           >
             View all
-          </Link>
+          </EventLink>
         </div>
       ) : null}
 
       <Posts posts={posts} />
 
-      <QueryPagination
-        currentPage={page}
-        className='mt-8 justify-end'
-        createPaginationLink={createPaginationLink}
-        totalPages={totalPages}
-      />
+      {totalPages > 1 ? (
+        <QueryPagination
+          currentPage={page}
+          className='mt-8 justify-end'
+          createPaginationLink={createPaginationLink}
+          totalPages={totalPages}
+        />
+      ) : null}
     </div>
   );
 };

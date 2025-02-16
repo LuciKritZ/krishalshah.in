@@ -3,11 +3,12 @@
 import { HTMLAttributes, ReactNode, useState } from 'react';
 
 import { MenuIcon } from 'lucide-react';
-import Link, { LinkProps } from 'next/link';
+import { LinkProps } from 'next/link';
 import { useRouter } from 'next/navigation';
 
+import EventButton from '@/components/event-button';
+import EventLink from '@/components/event-link';
 import Logo from '@/components/logo';
-import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetContent,
@@ -29,10 +30,14 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
   return (
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetTrigger asChild>
-        <Button variant='outline' className='w-10 px-0 sm:hidden'>
+        <EventButton
+          eventName='Clicked on Menu - Sidebar'
+          variant='outline'
+          className='w-10 px-0 sm:hidden'
+        >
           <MenuIcon className='size-4' />
-          <span className='sr-only'>Toggle Theme</span>
-        </Button>
+          <span className='sr-only'>Menu Icon for Sidebar</span>
+        </EventButton>
       </SheetTrigger>
 
       <SheetContent side='right'>
@@ -63,9 +68,16 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
               ))
             : null}
 
-          <Link href={siteConfig.resumeDoc} target='_blank'>
+          <EventLink
+            eventName='Clicked on Resume Link from Sidebar'
+            eventProps={{
+              'Resume Link': siteConfig.resumeDoc,
+            }}
+            href={siteConfig.resumeDoc}
+            target='_blank'
+          >
             Resume
-          </Link>
+          </EventLink>
 
           {NAVIGATION_OPTIONS.map(({ href, name }) => (
             <SmLink
@@ -86,9 +98,13 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
             </SmLink>
           ))}
 
-          <Link href='/rss' target='_blank'>
+          <EventLink
+            eventName='Clicked on RSS link from Sidebar'
+            href='/rss'
+            target='_blank'
+          >
             RSS
-          </Link>
+          </EventLink>
 
           {/* Show login and logout buttons in future */}
         </div>
@@ -118,7 +134,8 @@ const SmLink = ({
 }: SmLinkProps) => {
   const router = useRouter();
   return (
-    <Link
+    <EventLink
+      eventName={`Clicked on ${name} option from Sidebar`}
       href={href}
       onClick={() => {
         router.push(href.toString());
@@ -129,6 +146,6 @@ const SmLink = ({
       {...rest}
     >
       {children}
-    </Link>
+    </EventLink>
   );
 };

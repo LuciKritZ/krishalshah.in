@@ -1,5 +1,6 @@
 import { ArrowLeftIcon } from 'lucide-react';
-import Link from 'next/link';
+
+import EventLink from '@/components/event-link';
 
 const NotFound = () => {
   return (
@@ -22,13 +23,14 @@ const NotFound = () => {
               </div>
 
               <div className='mt-10 flex space-x-3 sm:border-1 sm:border-transparent'>
-                <Link
+                <EventLink
                   href='/'
                   className='inline-flex items-center gap-3 text-muted-foreground'
+                  eventName='Go back home - Page Not Found'
                 >
                   <ArrowLeftIcon className='h-5 w-5' />
                   <span>Go back home</span>
-                </Link>
+                </EventLink>
               </div>
             </div>
           </main>

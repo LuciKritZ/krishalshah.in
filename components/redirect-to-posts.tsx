@@ -1,10 +1,10 @@
 import { HTMLAttributes } from 'react';
 
 import { ArrowLeftIcon } from 'lucide-react';
-import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
 
+import EventLink from './event-link';
 import { buttonVariants } from './ui/button';
 
 interface RedirectToPostsProps {
@@ -17,7 +17,8 @@ const RedirectToPosts = ({
   className = '',
 }: RedirectToPostsProps) => {
   return (
-    <Link
+    <EventLink
+      eventName={`Clicked on ${linkText} - Redirect to posts`}
       href='/posts'
       className={cn(
         buttonVariants({ variant: 'link', size: 'sm', className: '' }),
@@ -27,7 +28,7 @@ const RedirectToPosts = ({
     >
       <ArrowLeftIcon className='h-5 w-5' />
       <span>{linkText}</span>
-    </Link>
+    </EventLink>
   );
 };
 

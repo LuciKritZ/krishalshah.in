@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { Loader, MoonIcon, SunIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 
+import EventButton from './event-button';
 import { Button } from './ui/button';
 
 const LoaderIcon = () => (
@@ -26,11 +27,12 @@ const ToggleTheme = () => {
   }
 
   return (
-    <Button
+    <EventButton
       size='sm'
       variant='link'
       onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
       className='p-0'
+      eventName={`Clicked on Toggle Theme - ${resolvedTheme === 'dark' ? 'light' : 'dark'}`}
     >
       {resolvedTheme === 'dark' ? (
         <SunIcon className='size-4 text-orange-300' />
@@ -39,7 +41,7 @@ const ToggleTheme = () => {
       )}
 
       <span className='sr-only'>Toggle theme</span>
-    </Button>
+    </EventButton>
   );
 };
 
