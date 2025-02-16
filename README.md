@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<p align="center">
+  <a href="https://github.com/LuciKritZ/krishalshah.in">
+    &lt;Krishal /&gt;
+  </a>
+</p>
 
-## Getting Started
+# krishalshah.in
 
-First, run the development server:
+This website is a showcase of who I am as a developer—my skills, experiences, and the projects I've worked on. It’s a place where you can learn about my journey as a Full Stack Software Engineer, dive into the technologies I use, and see some of the work I've done. Whether you’re interested in my approach to building web apps, optimizing performance, or my contributions to team projects, you’ll find a bit of everything here. It’s also a way for me to share my passion for coding and tech, while connecting with other developers and teams.
+
+## Installation
 
 ```bash
+
+git clone https://github.com/LuciKritZ/krishalshah.in.git
+
+cd krishalshah.in
+
+npm install
+
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Running locally
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+To run the project locally, create a `.env.local` file and add the required API credentials there. Reference [`.env.example`](https://github.com/manuarora700/portfolio-website/blob/master/.env.example) from the source for the list of API keys required.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Built Using
 
-## Learn More
+- [Next.js](https://nextjs.org)
+- [Tailwindcss](https://tailwindcss.com)
+- [MDX](https://github.com/mdx-js/mdx)
+- [Vercel](https://vercel.com)
+- [MongoDB](https://www.mongodb.com/)
 
-To learn more about Next.js, take a look at the following resources:
+# Inspiration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Special thanks to [Hamed Barham](https://www.hamedbahram.io/) for an amazing tutorial on Next.JS + MDX.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Support
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<a href="https://www.buymeacoffee.com/lucikritz" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
