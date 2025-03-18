@@ -42,6 +42,9 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
               slug: slug ?? '',
             },
           };
+          // Only show 3 tags when rendering posts
+          const renderedTags = tags.slice(0, 3);
+          const additionalTags = tags.length - renderedTags.length;
           return (
             <li
               key={slug}
@@ -65,9 +68,12 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
                   </p>
                   {tags.length ? (
                     <div className='text-sm py-1 space-x-2 overflow-hidden h-[36px]'>
-                      {tags.map((tag) => (
+                      {renderedTags.map((tag) => (
                         <Tag key={tag} tag={tag} />
                       ))}
+                      <span className='text-xs font-light'>
+                        {!!additionalTags ? `+${additionalTags} more` : null}
+                      </span>
                     </div>
                   ) : null}
                   <p className='line-clamp-2 text-sm font-normal text-muted-foreground text-ellipsis overflow-x-hidden max-w-fit'>
