@@ -6,7 +6,6 @@ import { Delete } from 'lucide-react';
 import EventButton from './event-button';
 import EventLink from './event-link';
 import { badgeVariants } from './ui/badge';
-import { Button } from './ui/button';
 
 interface TagProps {
   tag: string;
@@ -32,7 +31,7 @@ const Tag = ({
         className:
           'no-underline rounded-lg h-6 transition-colors duration-200 ease-linear my-1',
       })}
-      href={`/posts/?selectedTags=${slug(tag)}`}
+      href={`/posts/?selectedTags=${tag.trim()}`}
       onClick={(e) => e.stopPropagation()}
       eventName={`Clicked on Tag - ${tag}`}
     >

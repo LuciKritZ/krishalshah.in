@@ -78,11 +78,11 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
         <RedirectToPosts />
 
         {image && (
-          <div className='relative mb-6 h-96 w-full overflow-hidden rounded-lg'>
+          <div className='relative mb-6 h-96 w-full overflow-hidden rounded-lg border-border border-2 dark:border-none'>
             <Image
               src={image}
               alt={title ?? ''}
-              className='object-cover'
+              className='object-contain'
               fill
               priority
             />
@@ -101,7 +101,7 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
         </main>
 
         <div className='flex gap-2 my-6 flex-col'>
-          <p className='title-sm'>Related Tags</p>
+          <p className='title-sm'>Tags</p>
           <div className='flex flex-wrap gap-2 my-6'>
             {tags.map((tag) => (
               <Tag key={tag} tag={tag} />
