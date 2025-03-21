@@ -1,18 +1,12 @@
 import { JSX } from 'react';
 
 import { MDXRemote, type MDXRemoteProps } from 'next-mdx-remote/rsc';
-import { highlight } from 'sugar-high';
 
 import Callout from './callout';
+import Code from './code';
 import Counter from './counter';
 
 type MDXContentProps = JSX.IntrinsicAttributes & MDXRemoteProps;
-
-// TODO: Fix any type
-const Code = ({ children, ...props }: any) => {
-  let codeHTML = highlight(children);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
-};
 
 const customComponents = {
   code: Code,
