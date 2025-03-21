@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 import { MinusIcon, PlusIcon } from 'lucide-react';
 
-import { Button } from './ui/button';
+import { Button } from '../ui/button';
 
 const Counter = () => {
   const [count, setCount] = useState(0);

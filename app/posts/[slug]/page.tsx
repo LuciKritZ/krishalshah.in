@@ -1,13 +1,15 @@
+import { Hourglass } from 'lucide-react';
 import { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-import MDXContent from '@/components/mdx-content';
+import MDXContent from '@/components/mdx/mdx-content';
 import RedirectToPosts from '@/components/redirect-to-posts';
 import Tag from '@/components/tag';
 import { siteConfig } from '@/config';
 import { formatDate } from '@/lib/date';
 import { getPostBySlug, getPosts } from '@/lib/server/posts';
+import { calculateReadTime } from '@/lib/utils';
 
 type IndividualPostProps = {
   params: {
@@ -72,6 +74,8 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
   const { metadata, content } = post;
   const { title, image, author, publishedAt, tags = [] } = metadata;
 
+  const readTime = calculateReadTime(content);
+
   return (
     <article className='pb-24 pt-32'>
       <div className='container max-w-3xl'>
@@ -91,9 +95,15 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
 
         <header>
           <h1 className='title'>{title}</h1>
-          <p className='mt-6 text-sx text-muted-foreground'>
-            {author} / {formatDate(publishedAt ?? '')}
-          </p>
+          <div className='flex flex-col justify-between md:flex-row'>
+            <p className='mt-6 text-sx text-muted-foreground'>
+              {author} / {formatDate(publishedAt ?? '')}
+            </p>
+            <p className='flex mt-4 text-sm text-muted-foreground md:mt-6'>
+              <Hourglass className='size-4 flex mt-[0.2rem] mr-1' /> {readTime}{' '}
+              min read
+            </p>
+          </div>
         </header>
 
         <main className='prose mt-16 dark:prose-invert'>
