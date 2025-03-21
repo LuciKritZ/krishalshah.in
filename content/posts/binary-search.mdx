@@ -80,46 +80,46 @@ _Only 8 steps!_ That's right, even with twice as many items, you only need one e
 </Callout>
 
 ```
-  const list = [1,5,7,8,9];
+const list = [1,5,7,8,9];
 
-  function binarySearch(arrayOfItems, item) {
-    // Low and high
-    // are supposed to keep a track of
-    // part of the list that will be searched.
-    let low = 0;
-    let high = arrayOfItems.length - 1;
+function binarySearch(arrayOfItems, item) {
+  // Low and high
+  // are supposed to keep a track of
+  // part of the list that will be searched.
+  let low = 0;
+  let high = arrayOfItems.length - 1;
 
-    // Unless the list hasn't been narrowed down to 1 element,
-    // keep on going in the loop
-    while (low <= high) {
-      // Checking the middle element
-      // Rounding down if low + high is not an even number
-      const mid = Math.floor((low + high) / 2);
-      const midElement = arrayOfItems[mid]; // The middle element
+  // Unless the list hasn't been narrowed down to 1 element,
+  // keep on going in the loop
+  while (low <= high) {
+    // Checking the middle element
+    // Rounding down if low + high is not an even number
+    const mid = Math.floor((low + high) / 2);
+    const midElement = arrayOfItems[mid]; // The middle element
 
-      // If the middle element is found, return it.
-      if (midElement === item) {
-        return midElement;
-      }
-      // If the middle element is greater than the item,
-      // update the high to middle element - 1
-      // in order to eliminate all the greater elements.
-      else if (midElement > item) {
-        high = mid - 1; // midElement was too high
-      }
-      // If the middle element is lesser than the item,
-      // update the low to middle element + 1
-      // in order to eliminate all the lower elements.
-      else {
-        low = mid + 1; // midElement was too low
-      }
+    // If the middle element is found, return it.
+    if (midElement === item) {
+      return midElement;
     }
-
-    return null
+    // If the middle element is greater than the item,
+    // update the high to middle element - 1
+    // in order to eliminate all the greater elements.
+    else if (midElement > item) {
+      high = mid - 1; // midElement was too high
+    }
+    // If the middle element is lesser than the item,
+    // update the low to middle element + 1
+    // in order to eliminate all the lower elements.
+    else {
+      low = mid + 1; // midElement was too low
+    }
   }
 
-  console.log(binarySearch(list, 9)); // 4 [index starts with 0]
-  console.log(binarySearch(list, 3)); // null [Not found]
+  return null
+}
+
+console.log(binarySearch(list, 9)); // 4 [index starts with 0]
+console.log(binarySearch(list, 3)); // null [Not found]
 ```
 
 <Callout type="warning">
