@@ -7,7 +7,7 @@ type CodeProps = {
 
 const Code = ({ children, className = '', ...props }: CodeProps) => {
   let codeHTML = highlight(children as string);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} />;
+  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 };
 
 export default Code;
