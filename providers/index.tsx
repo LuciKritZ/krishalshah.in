@@ -21,7 +21,7 @@ const ToasterProvider = () => {
 
 const Providers = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
-    // Initial Analytics
+    // Initialize Analytics
     initAnalytics();
   }, []);
 

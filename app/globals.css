@@ -97,7 +97,7 @@
     @apply font-serif text-3xl underline decoration-border/75 decoration-2 underline-offset-8;
   }
 
-  .title-sm {
+  .title-xl {
     @apply text-xl underline decoration-border/75 decoration-2 underline-offset-8 mt-6;
   }
 
@@ -107,6 +107,14 @@
 
   .prose code {
     @apply rounded-lg px-1 py-0.5;
+  }
+
+  .prose pre .code-language {
+    @apply text-foreground/50;
+  }
+
+  .prose pre .code-icon {
+    @apply size-4 transition-all duration-300 ease-linear;
   }
 
   .prose pre code {

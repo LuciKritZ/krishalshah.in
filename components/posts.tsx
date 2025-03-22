@@ -92,7 +92,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
                 </div>
                 <div className='hidden md:flex justify-center items-center'>
                   {image && (
-                    <div className='relative w-36 h-36 overflow-hidden rounded-lg my-auto mx-0'>
+                    <div className='relative w-36 h-36 overflow-hidden rounded-lg my-auto mx-0 border-border border-2 dark:border-none'>
                       <Image
                         src={image}
                         alt={title ?? ''}
