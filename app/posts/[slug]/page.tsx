@@ -111,7 +111,7 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
         </main>
 
         <div className='flex gap-2 my-6 flex-col'>
-          <p className='title-sm'>Tags</p>
+          <p className='title-xl'>Tags</p>
           <div className='flex flex-wrap gap-2 my-6'>
             {tags.map((tag) => (
               <Tag key={tag} tag={tag} />
