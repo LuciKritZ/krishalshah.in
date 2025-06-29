@@ -22,8 +22,8 @@ export const sortTagsByCount = (tags: Tags) => {
 
 const convertTagsToSortedTagsString = (tagParams: string[]) =>
   tagParams
-    .filter((tag) => !!tag.trim())
-    .map((tag) => tag.trim())
+    .filter(tag => !!tag.trim())
+    .map(tag => tag.trim())
     .sort()
     .join(',');
 
@@ -34,7 +34,7 @@ export const updateTagsToSortedTagsString = (
   let tags = allTags.split(',');
   if (tags.includes(tag.trim())) {
     return convertTagsToSortedTagsString(
-      tags.filter((currentTag) => currentTag !== tag)
+      tags.filter(currentTag => currentTag !== tag)
     );
   }
   return convertTagsToSortedTagsString([...tags, tag]);

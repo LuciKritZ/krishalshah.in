@@ -32,7 +32,7 @@ const Tag = ({
           'no-underline rounded-lg h-6 transition-colors duration-200 ease-linear my-1',
       })}
       href={`/posts/?selectedTags=${tag.trim()}`}
-      onClick={(e) => e.stopPropagation()}
+      onClick={e => e.stopPropagation()}
       eventName={`Clicked on Tag - ${tag}`}
     >
       {tag} {count ? `(${count})` : null}
@@ -44,7 +44,7 @@ const Tag = ({
         className:
           'no-underline rounded-lg text-xs font-semibold py-0.5 px-2.5 h-6 transition-colors duration-200 ease-linear',
       })}
-      onClick={(e) => {
+      onClick={e => {
         e.stopPropagation();
         onClick?.();
       }}

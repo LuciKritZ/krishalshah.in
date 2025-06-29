@@ -2,8 +2,10 @@
   "extends": [
     "next/core-web-vitals",
     "plugin:import/recommended",
-    "plugin:import/typescript"
+    "plugin:import/typescript",
+    "prettier"
   ],
+  "plugins": ["prettier"],
   "settings": {
     "import/resolver": {
       "typescript": true,
@@ -11,14 +13,11 @@
     }
   },
   "rules": {
+    "prettier/prettier": "error",
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "internal"
-        ],
+        "groups": ["builtin", "external", "internal"],
         "pathGroups": [
           {
             "pattern": "react",
@@ -26,10 +25,7 @@
             "position": "before"
           }
         ],
-        "pathGroupsExcludedImportTypes": [
-          "react",
-          "next"
-        ],
+        "pathGroupsExcludedImportTypes": ["react", "next"],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",

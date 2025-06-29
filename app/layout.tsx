@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 
+import AnalyticsConsentModal from '@/components/analytics-consent';
 import { siteConfig } from '@/config';
 import { sourceCodePro } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
@@ -74,6 +75,7 @@ export default function RootLayout({
           <Header />
           <main className='grow'>{children}</main>
           <Footer />
+          <AnalyticsConsentModal />
         </Providers>
       </body>
     </html>

@@ -68,7 +68,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
                   </p>
                   {tags.length ? (
                     <div className='text-sm py-1 space-x-2 overflow-hidden h-[36px]'>
-                      {renderedTags.map((tag) => (
+                      {renderedTags.map(tag => (
                         <Tag key={tag} tag={tag} />
                       ))}
                       <span className='text-xs font-light'>

@@ -18,7 +18,7 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
   const [query, setQuery] = useState<string>('');
 
   const filteredSortedTags = useMemo(() => {
-    return sortedTags.filter((tag) => tag.includes(query.trim()));
+    return sortedTags.filter(tag => tag.includes(query.trim()));
   }, [query, sortedTags]);
 
   return (
@@ -29,7 +29,7 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
           placeholder='Search tags...'
           className='h-9 w-full sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0'
           value={query}
-          onChange={(e) => {
+          onChange={e => {
             setQuery(e.target.value);
           }}
         />
@@ -50,7 +50,7 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
       </div>
 
       <div className='flex flex-wrap gap-2'>
-        {filteredSortedTags.map((tag) => (
+        {filteredSortedTags.map(tag => (
           <Tag key={tag} tag={tag} count={tags[tag]} />
         ))}
       </div>

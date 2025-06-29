@@ -6,7 +6,12 @@
 
 # krishalshah.in
 
-This website is a showcase of who I am as a developer—my skills, experiences, and the projects I've worked on. It’s a place where you can learn about my journey as a Full Stack Software Engineer, dive into the technologies I use, and see some of the work I've done. Whether you’re interested in my approach to building web apps, optimizing performance, or my contributions to team projects, you’ll find a bit of everything here. It’s also a way for me to share my passion for coding and tech, while connecting with other developers and teams.
+This website is a showcase of who I am as a developer—my skills, experiences, and the projects I've
+worked on. It’s a place where you can learn about my journey as a Full Stack Software Engineer, dive
+into the technologies I use, and see some of the work I've done. Whether you’re interested in my
+approach to building web apps, optimizing performance, or my contributions to team projects, you’ll
+find a bit of everything here. It’s also a way for me to share my passion for coding and tech, while
+connecting with other developers and teams.
 
 ## Installation
 
@@ -24,7 +29,10 @@ npm run dev
 
 ### Running locally
 
-To run the project locally, create a `.env.local` file and add the required API credentials there. Reference [`.env.example`](https://github.com/manuarora700/portfolio-website/blob/master/.env.example) from the source for the list of API keys required.
+To run the project locally, create a `.env.local` file and add the required API credentials there.
+Reference
+[`.env.example`](https://github.com/manuarora700/portfolio-website/blob/master/.env.example) from
+the source for the list of API keys required.
 
 ## Built Using
 
@@ -36,7 +44,8 @@ To run the project locally, create a `.env.local` file and add the required API 
 
 # Inspiration
 
-Special thanks to [Hamed Barham](https://www.hamedbahram.io/) for an amazing tutorial on Next.JS + MDX.
+Special thanks to [Hamed Barham](https://www.hamedbahram.io/) for an amazing tutorial on Next.JS +
+MDX.
 
 # Support
 

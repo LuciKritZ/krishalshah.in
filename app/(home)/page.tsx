@@ -11,7 +11,7 @@ const Home = async () => (
       <Introduction />
 
       <div className='flex mt-12 space-x-6 justify-center'>
-        {siteConfig.socialLinks.map((socialLinkProps) => (
+        {siteConfig.socialLinks.map(socialLinkProps => (
           <SocialLink key={socialLinkProps._id} {...socialLinkProps} />
         ))}
       </div>

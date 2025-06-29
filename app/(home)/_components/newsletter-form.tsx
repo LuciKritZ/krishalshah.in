@@ -30,9 +30,9 @@ const NewsLetterForm = () => {
 
   const email = watch('email');
 
-  const processForm: SubmitHandler<NewsLetterFormInput> = async (data) => {
+  const processForm: SubmitHandler<NewsLetterFormInput> = async data => {
     const result = await subscribe(data)
-      .catch((res) => res)
+      .catch(res => res)
       .finally(() => {
         reset();
       });

@@ -1,22 +1,53 @@
-import mixPanel from "mixpanel-browser";
+import mixPanel from 'mixpanel-browser';
 
 const MIXPANEL_TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
 
 let isInitialized = false;
 
+export const shouldShowAnalyticsPermission = () => {
+  if (typeof window === 'undefined') return false;
+
+  const analyticsConsent = localStorage.getItem('analytics-consent');
+
+  if (analyticsConsent === null) {
+    return true;
+  }
+
+  return false;
+};
+
+export const giveAnalyticsConsent = (optIn: boolean): void => {
+  if (typeof window === 'undefined') return;
+
+  localStorage.setItem('analytics-consent', optIn.toString());
+};
+
 export const initAnalytics = () => {
+  if (typeof window === 'undefined') return;
+
   if (!MIXPANEL_TOKEN) {
-    console.warn("Mixpanel token is missing! Check your .env file.");
+    console.warn('Mixpanel token is missing! Check your .env file.');
     return;
   }
+
+  if (isInitialized) return;
 
   mixPanel.init(MIXPANEL_TOKEN, {
     debug: true,
     track_pageview: true,
-    persistence: "cookie",
+    persistence: 'cookie',
   });
 
   isInitialized = true;
+
+  const hasAnalyticsConsent =
+    localStorage.getItem('analytics-consent') === 'true';
+
+  if (hasAnalyticsConsent) {
+    mixPanel.opt_in_tracking();
+  } else {
+    mixPanel.opt_out_tracking();
+  }
 };
 
 export const trackEvent = (
@@ -24,13 +55,13 @@ export const trackEvent = (
   properties: Record<string, string> = {}
 ) => {
   if (!MIXPANEL_TOKEN) {
-    console.warn("Mixpanel token is missing! Check your .env file.");
+    console.warn('Mixpanel token is missing! Check your .env file.');
     return;
   }
 
   if (typeof window === undefined || !isInitialized) return;
 
-  if (mixPanel && "track" in mixPanel) {
+  if (mixPanel && 'track' in mixPanel) {
     mixPanel.track(eventName, { ...properties });
   }
 
