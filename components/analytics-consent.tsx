@@ -2,8 +2,11 @@
 
 import { useEffect, useState } from 'react';
 
+import { usePathname } from 'next/navigation';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
+import { siteConfig } from '@/config';
 import {
   initAnalytics,
   giveAnalyticsConsent,
@@ -12,12 +15,25 @@ import {
 
 export default function AnalyticsBanner() {
   const [visible, setVisible] = useState(false);
+  const pathname = usePathname();
+
+  console.log(document.title);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && shouldShowAnalyticsPermission()) {
+    const isSocialRedirect = Object.keys(siteConfig.links).some(
+      platform => pathname === `/${platform}`
+    );
+    const isNotFoundPage = !!document.querySelector('[data-not-found-page]');
+
+    if (
+      typeof window !== 'undefined' &&
+      shouldShowAnalyticsPermission() &&
+      !isSocialRedirect &&
+      !isNotFoundPage
+    ) {
       setVisible(true);
     }
-  }, []);
+  }, [pathname]);
 
   const handleAccept = () => {
     giveAnalyticsConsent(true);
