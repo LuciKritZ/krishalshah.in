@@ -21,7 +21,7 @@ const EditExperience = () => {
   ) => {
     if (!selectedExperienceId) return null;
 
-    setExperiences((prevExperiences) => [
+    setExperiences(prevExperiences => [
       ...prevExperiences.map((exp, index) => {
         if (exp._id === selectedExperienceId) {
           return {
@@ -48,7 +48,7 @@ const EditExperience = () => {
         <div className='w-full max-w-6xl mx-auto'>
           <div className='flex flex-col justify-center divide-y divide-slate-200'>
             <div className='w-full max-w-3xl mx-auto space-y-8'>
-              {siteConfig.experience.map((experience) => (
+              {siteConfig.experience.map(experience => (
                 <IndividualExperience
                   key={experience._id.toString()}
                   {...experience}

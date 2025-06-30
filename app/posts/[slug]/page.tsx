@@ -59,7 +59,7 @@ export async function generateMetadata({
 
 export async function generateStaticParams() {
   const { posts } = await getPosts();
-  const slugs = posts.map((post) => ({ slug: post.slug }));
+  const slugs = posts.map(post => ({ slug: post.slug }));
 
   return slugs;
 }
@@ -113,7 +113,7 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
         <div className='flex gap-2 my-6 flex-col'>
           <p className='title-xl'>Tags</p>
           <div className='flex flex-wrap gap-2 my-6'>
-            {tags.map((tag) => (
+            {tags.map(tag => (
               <Tag key={tag} tag={tag} />
             ))}
           </div>

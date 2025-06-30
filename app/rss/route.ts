@@ -15,7 +15,7 @@ export async function GET() {
       return 1;
     })
     .map(
-      (post) => `<item>
+      post => `<item>
         <title>${post.title}</title>
         <link>${siteConfig.url}/posts/${post.slug}</link>
         <description>${post.summary ?? ''}</description>

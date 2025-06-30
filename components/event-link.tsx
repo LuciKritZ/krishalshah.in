@@ -26,7 +26,7 @@ const EventLink = ({
 }: LinkProps) => {
   return (
     <NextLink
-      onClick={(e) => {
+      onClick={e => {
         eventName && trackEvent(eventName, eventProps);
         onClick?.(e);
       }}

@@ -7,7 +7,7 @@ export const runtime = 'edge';
 
 const getFiraCode = fetch(
   new URL('../../../assets/fonts/FiraCode-Regular.ttf', import.meta.url)
-).then((res) => res.arrayBuffer());
+).then(res => res.arrayBuffer());
 
 export const GET = async (req: NextRequest) => {
   try {

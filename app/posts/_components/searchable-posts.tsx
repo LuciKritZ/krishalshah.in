@@ -43,10 +43,10 @@ const SearchablePosts = () => {
           placeholder='Search posts...'
           className='h-9 w-full sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0'
           value={query}
-          onChange={(e) => {
+          onChange={e => {
             setQuery(e.target.value);
           }}
-          onKeyDown={(e) => {
+          onKeyDown={e => {
             if (e.key === 'Enter') {
               router.push(createSearchLink(query), { scroll: false });
             }
@@ -92,7 +92,7 @@ const SearchablePosts = () => {
 
       {!!sortedTags.length ? (
         <div className='flex flex-wrap gap-2 mb-8 items-center'>
-          {sortedTags.map((tag) => (
+          {sortedTags.map(tag => (
             <Tag
               tag={tag}
               key={tag}

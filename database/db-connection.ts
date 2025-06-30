@@ -27,7 +27,7 @@ export async function dbConnection() {
 
       cached.promise = mongoose
         .connect(MONGO_URI, options)
-        .then((mongoose) => mongoose);
+        .then(mongoose => mongoose);
     }
 
     cached.connection = await cached.promise;

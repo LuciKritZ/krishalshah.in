@@ -25,8 +25,8 @@ export const getPosts = async (
   const files = readdirSync(ROOT_CONTENT_DIRECTORY);
 
   let posts = files
-    .map((file) => getPostMetadata(file))
-    .filter((file) => !!file.title)
+    .map(file => getPostMetadata(file))
+    .filter(file => !!file.title)
     .sort((a, b) => {
       if (new Date(a?.publishedAt ?? '') < new Date(b?.publishedAt ?? '')) {
         return 1;
@@ -35,18 +35,18 @@ export const getPosts = async (
     });
 
   if (req?.searchQuery && req?.searchQuery?.trim()) {
-    posts = posts.filter((post) =>
+    posts = posts.filter(post =>
       post.title?.toLowerCase().includes(req?.searchQuery?.toLowerCase() ?? '')
     );
   }
 
   if (req?.selectedTags) {
     const tags = req.selectedTags
-      .map((str) => str.trim())
+      .map(str => str.trim())
       .sort()
       .join(',');
 
-    posts = posts.filter((post) => post.tags?.sort().join(',').includes(tags));
+    posts = posts.filter(post => post.tags?.sort().join(',').includes(tags));
   }
 
   const totalPosts = [...posts];
@@ -83,22 +83,22 @@ export const getTags = async (req?: GetTagsRequest): Promise<Tags> => {
   const tags: Record<string, number> = {};
   const { posts: allPosts } = await getPosts();
 
-  allPosts.forEach((post) => {
-    post.tags?.forEach((tag) => {
+  allPosts.forEach(post => {
+    post.tags?.forEach(tag => {
       tags[tag] = (tags[tag] ?? 0) + 1;
     });
   });
 
-  const selectedTags = req?.initialTags?.filter((tag) => !!tags[tag]);
+  const selectedTags = req?.initialTags?.filter(tag => !!tags[tag]);
 
   const entries = Object.entries(tags);
 
   if (req?.limit && req?.limit !== 0 && entries.length > req?.limit) {
     const filteredEntries = entries.slice(req?.limit);
     const tagsNotInFilteredEntries = selectedTags?.filter(
-      (tag) => !Object.keys(filteredEntries).includes(tag)
+      tag => !Object.keys(filteredEntries).includes(tag)
     );
-    tagsNotInFilteredEntries?.forEach((tag) => {
+    tagsNotInFilteredEntries?.forEach(tag => {
       filteredEntries.push([tag, tags[tag]]);
     });
 

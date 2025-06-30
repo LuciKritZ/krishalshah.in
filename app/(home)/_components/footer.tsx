@@ -6,7 +6,7 @@ const Footer = () => (
   <footer className='py-8'>
     <div className='container max-w-3xl flex items-center justify-between h-auto flex-col md:flex-row'>
       <div className='flex space-x-6 justify-center'>
-        {siteConfig.socialLinks.map((socialLinkProps) => (
+        {siteConfig.socialLinks.map(socialLinkProps => (
           <SocialLink key={socialLinkProps._id} {...socialLinkProps} />
         ))}
       </div>

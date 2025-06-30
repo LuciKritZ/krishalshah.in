@@ -33,7 +33,7 @@ const ContactForm = () => {
   const email = watch('email');
   const message = watch('message');
 
-  const processForm: SubmitHandler<ContactFormInput> = async (data) => {
+  const processForm: SubmitHandler<ContactFormInput> = async data => {
     const sendingEmailStatus = await sendEmail(data);
 
     if (sendingEmailStatus?.error) {

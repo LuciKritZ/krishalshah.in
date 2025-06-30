@@ -15,7 +15,7 @@ const EventButton = ({
 }: EventButtonProps) => {
   return (
     <Button
-      onClick={(e) => {
+      onClick={e => {
         eventName && trackEvent(eventName, eventProperties);
         onClick?.(e);
       }}
