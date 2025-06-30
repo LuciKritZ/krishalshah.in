@@ -16,10 +16,43 @@ export const shouldShowAnalyticsPermission = () => {
   return false;
 };
 
+export const getAnalyticsConsent = () => {
+  if (typeof window === 'undefined') return;
+
+  const analyticsConsent = localStorage.getItem('analytics-consent');
+
+  if (analyticsConsent === null || analyticsConsent === 'false') {
+    return false;
+  }
+
+  return true;
+};
+
+export const resetAnalytics = () => {
+  if (typeof window === 'undefined') return;
+
+  if (isInitialized) {
+    mixPanel.reset();
+    localStorage.removeItem('analytics-consent');
+    window.location.reload();
+  }
+};
+
 export const giveAnalyticsConsent = (optIn: boolean): void => {
   if (typeof window === 'undefined') return;
 
   localStorage.setItem('analytics-consent', optIn.toString());
+};
+
+const setTrackingStatus = () => {
+  const hasAnalyticsConsent =
+    localStorage.getItem('analytics-consent') === 'true';
+
+  if (hasAnalyticsConsent) {
+    mixPanel.opt_in_tracking();
+  } else {
+    mixPanel.opt_out_tracking();
+  }
 };
 
 export const initAnalytics = () => {
@@ -30,7 +63,10 @@ export const initAnalytics = () => {
     return;
   }
 
-  if (isInitialized) return;
+  if (isInitialized) {
+    setTrackingStatus();
+    return;
+  }
 
   mixPanel.init(MIXPANEL_TOKEN, {
     debug: true,
@@ -39,15 +75,7 @@ export const initAnalytics = () => {
   });
 
   isInitialized = true;
-
-  const hasAnalyticsConsent =
-    localStorage.getItem('analytics-consent') === 'true';
-
-  if (hasAnalyticsConsent) {
-    mixPanel.opt_in_tracking();
-  } else {
-    mixPanel.opt_out_tracking();
-  }
+  setTrackingStatus();
 };
 
 export const trackEvent = (
