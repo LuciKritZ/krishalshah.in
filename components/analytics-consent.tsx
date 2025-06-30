@@ -17,8 +17,6 @@ export default function AnalyticsBanner() {
   const [visible, setVisible] = useState(false);
   const pathname = usePathname();
 
-  console.log(document.title);
-
   useEffect(() => {
     const isSocialRedirect = Object.keys(siteConfig.links).some(
       platform => pathname === `/${platform}`
