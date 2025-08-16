@@ -1,3 +1,5 @@
+/* eslint-disable import/no-named-as-default-member */
+// Why suppress these warnings? Because there are errors for mixPanel methods.
 import mixPanel from 'mixpanel-browser';
 
 const MIXPANEL_TOKEN = process.env.NEXT_PUBLIC_MIXPANEL_TOKEN;
@@ -16,16 +18,10 @@ export const shouldShowAnalyticsPermission = () => {
   return false;
 };
 
-export const getAnalyticsConsent = () => {
+export const getAnalyticsConsent = (): string | undefined => {
   if (typeof window === 'undefined') return;
 
-  const analyticsConsent = localStorage.getItem('analytics-consent');
-
-  if (analyticsConsent === null || analyticsConsent === 'false') {
-    return false;
-  }
-
-  return true;
+  return localStorage.getItem('analytics-consent')?.toString();
 };
 
 export const resetAnalytics = () => {
@@ -59,6 +55,7 @@ export const initAnalytics = () => {
   if (typeof window === 'undefined') return;
 
   if (!MIXPANEL_TOKEN) {
+    // eslint-disable-next-line no-console
     console.warn('Mixpanel token is missing! Check your .env file.');
     return;
   }
@@ -70,8 +67,8 @@ export const initAnalytics = () => {
 
   mixPanel.init(MIXPANEL_TOKEN, {
     debug: true,
-    track_pageview: true,
     persistence: 'cookie',
+    track_pageview: true,
   });
 
   isInitialized = true;
@@ -83,6 +80,7 @@ export const trackEvent = (
   properties: Record<string, string> = {}
 ) => {
   if (!MIXPANEL_TOKEN) {
+    // eslint-disable-next-line no-console
     console.warn('Mixpanel token is missing! Check your .env file.');
     return;
   }

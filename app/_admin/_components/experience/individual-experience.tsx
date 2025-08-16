@@ -31,8 +31,8 @@ export const IndividualExperience = ({
         <div className='flex md:flex-row flex-col justify-between md:space-x-2 space-x-0'>
           {/* Company Name */}
           <Link
-            href={companyLink}
             className='p-0 text-base text-muted-foreground font-bold text-pretty text-start flex-1 justify-start underline'
+            href={companyLink}
           >
             {jobTitle}, {companyName}
           </Link>

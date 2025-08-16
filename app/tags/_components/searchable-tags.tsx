@@ -10,8 +10,8 @@ import { Input } from '@/components/ui/input';
 import { Tags } from '@/types/global-types';
 
 interface SearchableTagsProps {
-  tags: Tags;
   sortedTags: string[];
+  tags: Tags;
 }
 
 const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
@@ -25,24 +25,24 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
     <div className='mb-12 flex flex-col'>
       <div className='flex items-center gap-3 mb-4'>
         <Input
-          type='text'
-          placeholder='Search tags...'
           className='h-9 w-full sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0'
-          value={query}
           onChange={e => {
             setQuery(e.target.value);
           }}
+          placeholder='Search tags...'
+          type='text'
+          value={query}
         />
 
         {!!query.length ? (
           <EventButton
+            className='h-8 px-2 lg:px-3'
             eventName='Clicked on Reset Button - Searchable Tags'
             onClick={() => {
               setQuery('');
             }}
-            variant='secondary'
             size='sm'
-            className='h-8 px-2 lg:px-3'
+            variant='secondary'
           >
             Reset <DeleteIcon className='ml-2 h-4 w-4' />
           </EventButton>
@@ -51,7 +51,7 @@ const SearchableTags = ({ tags, sortedTags }: SearchableTagsProps) => {
 
       <div className='flex flex-wrap gap-2'>
         {filteredSortedTags.map(tag => (
-          <Tag key={tag} tag={tag} count={tags[tag]} />
+          <Tag count={tags[tag]} key={tag} tag={tag} />
         ))}
       </div>
     </div>

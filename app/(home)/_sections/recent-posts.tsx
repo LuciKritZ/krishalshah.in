@@ -18,19 +18,19 @@ const RecentPosts = async () => {
             <Posts posts={posts} />
 
             <EventLink
+              className={cn(
+                buttonVariants({
+                  className: 'p-0',
+                  size: 'sm',
+                  variant: 'link',
+                }),
+                'no-underline mt-8 inline-flex items-center gap-2 text-muted-foreground font-semibold'
+              )}
               eventName='Clicked on All Posts'
               eventProps={{
                 from: 'All posts',
               }}
               href='/posts'
-              className={cn(
-                buttonVariants({
-                  variant: 'link',
-                  size: 'sm',
-                  className: 'p-0',
-                }),
-                'no-underline mt-8 inline-flex items-center gap-2 text-muted-foreground font-semibold'
-              )}
             >
               <span>All posts</span>
               <ArrowRight className='size-5' />

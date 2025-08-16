@@ -18,9 +18,9 @@ import {
 import { siteConfig } from '@/config';
 
 interface ContactUsEmailTemplateProps {
-  name: string;
   email: string;
   message: string;
+  name: string;
 }
 
 const baseUrl = process.env.APP_URL ?? '';
@@ -72,52 +72,52 @@ export const ContactUsEmailTemplate = ({
                   {/* Github */}
                   <Column>
                     <Link
-                      style={socialMediaIcon}
                       href={siteConfig.links.github}
+                      style={socialMediaIcon}
                     >
                       <Img
+                        height={20}
                         src={`${baseUrl}/images/github.png`}
                         width={20}
-                        height={20}
                       />
                     </Link>
                   </Column>
                   <Column>
                     {/* Linkedin */}
                     <Link
-                      style={socialMediaIcon}
                       href={siteConfig.links.linkedin}
+                      style={socialMediaIcon}
                     >
                       <Img
+                        height={20}
                         src={`${baseUrl}/images/linked-in.png`}
                         width={20}
-                        height={20}
                       />
                     </Link>
                   </Column>
                   {/* Twitter */}
                   <Column>
                     <Link
-                      style={socialMediaIcon}
                       href={siteConfig.links.twitter}
+                      style={socialMediaIcon}
                     >
                       <Img
+                        height={20}
                         src={`${baseUrl}/images/twitter.png`}
                         width={20}
-                        height={20}
                       />
                     </Link>
                   </Column>
                   {/* Instagram */}
                   <Column>
                     <Link
-                      style={socialMediaIcon}
                       href={siteConfig.links.instagram}
+                      style={socialMediaIcon}
                     >
                       <Img
+                        height={20}
                         src={`${baseUrl}/images/instagram.png`}
                         width={20}
-                        height={20}
                       />
                     </Link>
                   </Column>
@@ -141,11 +141,11 @@ export const ContactUsEmailTemplate = ({
 export default ContactUsEmailTemplate;
 
 const footerText = {
-  fontSize: '12px',
   color: '#b7b7b7',
+  fontSize: '12px',
   lineHeight: '15px',
-  textAlign: 'center' as const,
   marginBottom: '50px',
+  textAlign: 'center' as const,
 };
 
 const footerLogos = {
@@ -155,19 +155,19 @@ const footerLogos = {
 };
 
 const socialMediaIcon = {
-  display: 'flex',
   alignItems: 'center',
+  display: 'flex',
+  fill: 'white',
+  height: 32,
   justifyContent: 'center',
   width: 32,
-  height: 32,
-  fill: 'white',
 };
 
 const main = {
   backgroundColor: '#ffffff',
-  margin: '0 auto',
   fontFamily:
     "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif",
+  margin: '0 auto',
 };
 
 const container = {
@@ -183,18 +183,18 @@ const h1 = {
   color: '#1d1c1d',
   fontSize: '36px',
   fontWeight: '700',
+  lineHeight: '42px',
   margin: '30px 0',
   padding: '0',
-  lineHeight: '42px',
 };
 
 const h2 = {
   color: '#1d1c1d',
   fontSize: '20px',
   fontWeight: '700',
+  lineHeight: '42px',
   margin: '30px 0',
   padding: '0',
-  lineHeight: '42px',
 };
 
 const heroText = {

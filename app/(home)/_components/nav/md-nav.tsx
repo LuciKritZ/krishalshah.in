@@ -13,15 +13,15 @@ const MdNav = ({ currentPath, isAdmin = false }: NavProps) => (
     {isAdmin
       ? ADMIN_NAVIGATION_OPTIONS.map(({ href, name }) => (
           <li
-            key={name}
             className={cn(
               'transition-colors duration-100 ease-linear hover:text-primary capitalize',
               name === currentPath ? 'text-foreground' : ''
             )}
+            key={name}
           >
             <EventLink
-              href={href}
               eventName={`Clicked on ${name} option from Navbar - Admin Options`}
+              href={href}
             >
               {name}
             </EventLink>
@@ -31,12 +31,12 @@ const MdNav = ({ currentPath, isAdmin = false }: NavProps) => (
 
     <li>
       <EventLink
-        href={siteConfig.resumeDoc}
-        target='_blank'
         eventName='Clicked on Resume Link from Navbar'
         eventProps={{
           'Resume Link': siteConfig.resumeDoc,
         }}
+        href={siteConfig.resumeDoc}
+        target='_blank'
       >
         Resume
       </EventLink>
@@ -44,11 +44,11 @@ const MdNav = ({ currentPath, isAdmin = false }: NavProps) => (
 
     {NAVIGATION_OPTIONS.map(({ href, name }) => (
       <li
-        key={name}
         className={cn(
           'transition-colors duration-100 ease-linear hover:text-primary capitalize',
           href === currentPath ? 'text-foreground' : ''
         )}
+        key={name}
       >
         <EventLink
           eventName={`Clicked on ${name} option from Navbar`}

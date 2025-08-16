@@ -22,10 +22,10 @@ const NewsLetterForm = () => {
     formState: { errors, isSubmitting },
     watch,
   } = useForm<NewsLetterFormInput>({
-    resolver: zodResolver(NewsLetterFormSchema),
     defaultValues: {
       email: '',
     },
+    resolver: zodResolver(NewsLetterFormSchema),
   });
 
   const email = watch('email');
@@ -60,16 +60,16 @@ const NewsLetterForm = () => {
         </div>
 
         <form
-          onSubmit={handleSubmit(processForm)}
           className='flex flex-col items-center gap-3'
+          onSubmit={handleSubmit(processForm)}
         >
           <div className='w-full'>
             <Input
-              type='email'
-              id='email'
               autoComplete='email'
-              placeholder='Email'
               className='w-full'
+              id='email'
+              placeholder='Email'
+              type='email'
               {...register('email')}
             />
 
@@ -78,13 +78,13 @@ const NewsLetterForm = () => {
 
           <div className='w-full'>
             <EventButton
+              className='w-full disabled:opacity-50'
+              disabled={isSubmitting}
               eventName='Clicked on Submit button - NewsLetter'
               eventProperties={{
                 input: email,
               }}
               type='submit'
-              disabled={isSubmitting}
-              className='w-full disabled:opacity-50'
             >
               {isSubmitting ? 'Submitting...' : 'Subscribe'}
             </EventButton>
@@ -94,9 +94,9 @@ const NewsLetterForm = () => {
             <p className='text-xs text-muted-foreground'>
               We care about your data. Read our{' '}
               <EventLink
+                className='font-bold'
                 eventName='Clicked on privacy policy'
                 href='/privacy'
-                className='font-bold'
               >
                 privacy&nbsp;policy.
               </EventLink>

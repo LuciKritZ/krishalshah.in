@@ -41,10 +41,10 @@ const Code = ({
         </div>
 
         <Button
-          variant='ghost'
-          disabled={copied}
           className='p-0 m-0 h-auto hover:bg-inherit hover:text-inherit disabled:opacity-100 transition-all duration-300'
+          disabled={copied}
           onClick={() => handleCopy(children)}
+          variant='ghost'
         >
           {copied ? (
             <>

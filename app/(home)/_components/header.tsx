@@ -13,8 +13,8 @@ import SmNav from './nav/sm-nav';
 
 export interface NavProps {
   currentPath: string;
-  onLinkClick?: Dispatch<SetStateAction<string>>;
   isAdmin?: boolean;
+  onLinkClick?: Dispatch<SetStateAction<string>>;
 }
 
 const Header = () => {

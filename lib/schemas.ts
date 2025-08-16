@@ -1,15 +1,15 @@
 import { z } from 'zod';
 
 export const ContactFormSchema = z.object({
-  name: z
-    .string()
-    .min(1, { message: 'Name is required.' })
-    .min(2, { message: 'Name must be at least 2 characters.' }),
   email: z
     .string()
     .min(1, { message: 'Email is required.' })
     .email('Invalid email.'),
   message: z.string().min(1, { message: 'Message is required.' }),
+  name: z
+    .string()
+    .min(1, { message: 'Name is required.' })
+    .min(2, { message: 'Name must be at least 2 characters.' }),
 });
 
 export type ContactFormInput = z.infer<typeof ContactFormSchema>;
@@ -32,13 +32,13 @@ export type LoginFormInput = z.infer<typeof LoginFormSchema>;
 
 export const RegisterFormSchema = z.object({
   email: z.string().email('Invalid email.'),
+  name: z
+    .string()
+    .min(3, { message: 'Name should be of minimum 3 characters' }),
   password: z
     .string()
     .min(8, { message: 'Password should have minimum 8 characters' })
     .max(16, { message: 'Password can not exceed more than 16 characters.' }),
-  name: z
-    .string()
-    .min(3, { message: 'Name should be of minimum 3 characters' }),
 });
 
 export type RegisterFormInput = z.infer<typeof RegisterFormSchema>;

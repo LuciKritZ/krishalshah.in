@@ -7,8 +7,8 @@ import Skills from './_sections/skills';
 import Introduction from '../(home)/_sections/introduction';
 
 export const metadata: Metadata = {
-  title: 'About',
   description: siteConfig.description,
+  title: 'About',
 };
 
 const About = async () => {

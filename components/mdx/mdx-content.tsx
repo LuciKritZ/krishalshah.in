@@ -9,9 +9,9 @@ import Counter from './counter';
 type MDXContentProps = JSX.IntrinsicAttributes & MDXRemoteProps;
 
 const customComponents = {
-  code: Code,
   Callout,
   Counter,
+  code: Code,
 };
 
 const MDXContent = ({ components, ...restProps }: MDXContentProps) => (

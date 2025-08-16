@@ -28,12 +28,12 @@ import { NavProps } from '../header';
 const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
   const [open, setOpen] = useState(false);
   return (
-    <Sheet open={open} onOpenChange={setOpen}>
+    <Sheet onOpenChange={setOpen} open={open}>
       <SheetTrigger asChild>
         <EventButton
+          className='w-10 px-0 sm:hidden'
           eventName='Clicked on Menu - Sidebar'
           variant='outline'
-          className='w-10 px-0 sm:hidden'
         >
           <MenuIcon className='size-4' />
           <span className='sr-only'>Menu Icon for Sidebar</span>
@@ -43,11 +43,11 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
       <SheetContent side='right'>
         <SheetTitle>
           <Logo
+            className='flex items-center'
             onClick={() => {
               onLinkClick?.('/');
               setOpen(false);
             }}
-            className='flex items-center'
           />
         </SheetTitle>
         <SheetDescription>{siteConfig.loadingTexts[0]}</SheetDescription>
@@ -56,12 +56,12 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
           {isAdmin
             ? ADMIN_NAVIGATION_OPTIONS.map(({ href, name }) => (
                 <SmLink
+                  callBack={onLinkClick}
+                  className={cn(currentPath === href ? 'text-primary' : '')}
                   href={href}
                   key={name}
-                  onOpenChange={setOpen}
-                  callBack={onLinkClick}
                   name={name}
-                  className={cn(currentPath === href ? 'text-primary' : '')}
+                  onOpenChange={setOpen}
                 >
                   {name}
                 </SmLink>
@@ -81,12 +81,12 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
 
           {NAVIGATION_OPTIONS.map(({ href, name }) => (
             <SmLink
+              callBack={onLinkClick}
+              className={cn(currentPath === name ? 'text-primary' : '')}
               href={href}
               key={name}
-              onOpenChange={setOpen}
-              callBack={onLinkClick}
               name={name}
-              className={cn(currentPath === name ? 'text-primary' : '')}
+              onOpenChange={setOpen}
             >
               {name}
             </SmLink>
@@ -116,11 +116,11 @@ const SmNav = ({ currentPath, onLinkClick, isAdmin = false }: NavProps) => {
 export default SmNav;
 
 interface SmLinkProps extends LinkProps {
-  children: ReactNode;
-  onOpenChange?: (isOpen: boolean) => void;
-  className?: HTMLAttributes<HTMLDivElement>['className'];
   callBack?: NavProps['onLinkClick'];
+  children: ReactNode;
+  className?: HTMLAttributes<HTMLDivElement>['className'];
   name?: string;
+  onOpenChange?: (isOpen: boolean) => void;
 }
 
 const SmLink = ({
@@ -135,6 +135,7 @@ const SmLink = ({
   const router = useRouter();
   return (
     <EventLink
+      className={className}
       eventName={`Clicked on ${name} option from Sidebar`}
       href={href}
       onClick={() => {
@@ -142,7 +143,6 @@ const SmLink = ({
         callBack?.(name ?? '');
         onOpenChange?.(false);
       }}
-      className={className}
       {...rest}
     >
       {children}

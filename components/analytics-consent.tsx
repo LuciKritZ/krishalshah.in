@@ -56,17 +56,17 @@ export default function AnalyticsBanner() {
           </div>
           <div className='flex gap-2 items-center justify-end shrink-0'>
             <Button
-              size='sm'
               className='text-xs sm:text-sm border-[1px] border-primary-foreground'
               onClick={handleDecline}
+              size='sm'
               variant='ghost'
             >
               No, thanks!
             </Button>
             <Button
-              size='sm'
               className='text-xs sm:text-sm'
               onClick={handleAccept}
+              size='sm'
             >
               Yes
             </Button>

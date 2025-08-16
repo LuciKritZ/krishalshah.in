@@ -16,9 +16,9 @@ const Logo = ({
   'href'
 >) => (
   <EventLink
+    className={cn(firaCode.className, className)}
     eventName='Clicked on Logo'
     href='/'
-    className={cn(firaCode.className, className)}
     {...props}
   >
     <span>{siteConfig.name}</span>

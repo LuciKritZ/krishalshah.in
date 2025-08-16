@@ -5,7 +5,11 @@
     "plugin:import/typescript",
     "prettier"
   ],
-  "plugins": ["prettier"],
+  "plugins": [
+    "prettier",
+    "sort-keys-fix",
+    "typescript-sort-keys"
+  ],
   "settings": {
     "import/resolver": {
       "typescript": true,
@@ -14,10 +18,35 @@
   },
   "rules": {
     "prettier/prettier": "error",
+    "react/jsx-sort-props": "error",
+    "no-console": "error",
+    "typescript-sort-keys/interface": "error",
+    "typescript-sort-keys/string-enum": "error",
+    "react/sort-prop-types": [
+      "error",
+      {
+        "ignoreCase": true,
+        "callbacksLast": false,
+        "requiredFirst": false,
+        "sortShapeProp": true
+      }
+    ],
+    "sort-keys-fix/sort-keys-fix": [
+      "error",
+      "asc",
+      {
+        "caseSensitive": true,
+        "natural": false
+      }
+    ],
     "import/order": [
       "error",
       {
-        "groups": ["builtin", "external", "internal"],
+        "groups": [
+          "builtin",
+          "external",
+          "internal"
+        ],
         "pathGroups": [
           {
             "pattern": "react",
@@ -25,7 +54,10 @@
             "position": "before"
           }
         ],
-        "pathGroupsExcludedImportTypes": ["react", "next"],
+        "pathGroupsExcludedImportTypes": [
+          "react",
+          "next"
+        ],
         "newlines-between": "always",
         "alphabetize": {
           "order": "asc",

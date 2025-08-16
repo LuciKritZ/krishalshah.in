@@ -3,8 +3,8 @@ import { Metadata } from 'next';
 import ContactForm from './_components/contact-form';
 
 export const metadata: Metadata = {
-  title: 'Contact',
   description: 'Send me a message!',
+  title: 'Contact',
 };
 
 const Contact = async () => {

@@ -2,21 +2,21 @@ import { Model, model, models, Schema } from 'mongoose';
 
 export interface SubscriptionsSchema {
   _id: string;
-  email: string;
   createdAt: Date;
+  email: string;
   updatedAt: Date;
 }
 
 const subscriptionSchema = new Schema<SubscriptionsSchema>(
   {
     email: {
-      type: String,
-      required: [true, 'Please provide an email.'],
-      unique: true,
       match: [
         /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
         'Email is invalid',
       ],
+      required: [true, 'Please provide an email.'],
+      type: String,
+      unique: true,
     },
   },
   {

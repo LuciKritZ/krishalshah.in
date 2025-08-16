@@ -9,7 +9,7 @@ import EventButton from './event-button';
 import { Button } from './ui/button';
 
 const LoaderIcon = () => (
-  <Button size='sm' variant='link' disabled className='p-0'>
+  <Button className='p-0' disabled size='sm' variant='link'>
     <Loader className='size-4' />
   </Button>
 );
@@ -28,11 +28,11 @@ const ToggleTheme = () => {
 
   return (
     <EventButton
-      size='sm'
-      variant='link'
-      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
       className='p-0'
       eventName={`Clicked on Toggle Theme - ${resolvedTheme === 'dark' ? 'light' : 'dark'}`}
+      onClick={() => setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')}
+      size='sm'
+      variant='link'
     >
       {resolvedTheme === 'dark' ? (
         <SunIcon className='size-4 text-orange-300' />

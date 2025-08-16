@@ -8,23 +8,29 @@ import { getAnalyticsConsent, resetAnalytics } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 const ResetAnalytics = () => {
-  const [analyticsConsent, setAnalyticsConsent] = useState(false);
+  const [analyticsConsent, setAnalyticsConsent] = useState<undefined | string>(
+    ''
+  );
 
   useEffect(() => {
-    setAnalyticsConsent(getAnalyticsConsent() ?? false);
+    setAnalyticsConsent(getAnalyticsConsent());
   }, []);
 
   const isDev = process.env.NODE_ENV === 'development';
+
+  if (!isDev) {
+    return null;
+  }
 
   return (
     <div
       className={cn(
         'fixed bottom-4 right-4 z-50 px-0 w-auto text-xl cursor-pointer',
-        !analyticsConsent && isDev ? 'hidden' : ''
+        !analyticsConsent?.trim() ? 'hidden' : ''
       )}
       onClick={resetAnalytics}
     >
-      <RotateCcw size={20} className='size-10 text-muted-foreground' />
+      <RotateCcw className='size-10 text-muted-foreground' size={20} />
     </div>
   );
 };
