@@ -6,9 +6,9 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import { StarterKit } from '@tiptap/starter-kit';
 
 interface TiptapEditorProps {
+  className?: HTMLAttributes<HTMLDivElement>['className'];
   content?: string;
   onChange: (content: string) => void;
-  className?: HTMLAttributes<HTMLDivElement>['className'];
 }
 
 const TiptapEditor: React.FC<TiptapEditorProps> = ({
@@ -17,8 +17,8 @@ const TiptapEditor: React.FC<TiptapEditorProps> = ({
   className = '',
 }) => {
   const editor = useEditor({
-    extensions: [StarterKit],
     content,
+    extensions: [StarterKit],
     onUpdate: ({ editor }) => {
       onChange(editor.getHTML());
     },

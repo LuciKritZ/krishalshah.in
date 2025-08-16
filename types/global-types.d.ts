@@ -2,47 +2,47 @@ import { infer } from 'zod';
 
 // TODO: Find a way to enforce the gray matter properties while writing an mdx file.
 export interface PostMetadata {
-  title?: string;
-  summary?: string;
-  image?: string;
   author?: string;
+  image?: string;
   publishedAt?: string;
   slug: string;
+  summary?: string;
   tags?: Array<string>;
+  title?: string;
 }
 
 export type Tags = Record<string, number>;
 
 export interface Post {
-  metadata: PostMetadata;
   content: string;
+  metadata: PostMetadata;
 }
 
 export interface ServerError {
-  name: string;
   message: string;
+  name: string;
 }
 
 export interface ExperienceSchema {
-  description: string;
   _id: string;
-  startDate: Date;
+  companyImage: string;
   companyLink: string;
+  companyName: string;
+  description: string;
+  endDate?: Date;
   isCurrent: boolean;
   isRemote: boolean;
-  companyName: string;
   jobTitle: string;
-  companyImage: string;
-  endDate?: Date;
+  startDate: Date;
 }
 
 export type GetPostsRequest =
   | undefined
   | {
+      limit?: number;
+      page?: number;
       searchQuery?: string;
       selectedTags?: string[];
-      page?: number;
-      limit?: number;
     };
 
 export type GetPostsResponse = {
@@ -53,8 +53,8 @@ export type GetPostsResponse = {
 type GetTagsRequest =
   | undefined
   | {
-      limit?: number;
       initialTags?: string[];
+      limit?: number;
     };
 
 // TODO: Remove this

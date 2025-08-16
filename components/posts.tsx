@@ -15,8 +15,8 @@ import EventButton from './event-button';
 import Tag from './tag';
 
 interface PostsProps {
-  posts: PostMetadata[] | undefined;
   className?: HTMLAttributes<HTMLUListElement>['className'];
+  posts: PostMetadata[] | undefined;
 }
 
 const Posts = ({ posts, className = '' }: PostsProps) => {
@@ -37,9 +37,9 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
           const { eventName, eventProps } = {
             eventName: `Clicked on the post - ${title}`,
             eventProps: {
-              title: title ?? '',
-              summary: summary ?? '',
               slug: slug ?? '',
+              summary: summary ?? '',
+              title: title ?? '',
             },
           };
           // Only show 3 tags when rendering posts
@@ -47,15 +47,15 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
           const additionalTags = tags.length - renderedTags.length;
           return (
             <li
-              key={slug}
               className='p-4 border-border border-[1px] group/post-card hover:bg-border/50 rounded-sm overflow-hidden transition-colors ease-linear duration-200'
+              key={slug}
             >
               <div
+                className='flex flex-col md:flex-row justify-between cursor-pointer'
                 onClick={() => {
                   trackEvent(eventName, eventProps);
                   router.push(`/posts/${slug}`);
                 }}
-                className='flex flex-col md:flex-row justify-between cursor-pointer'
               >
                 <div className='flex-1 md:mr-10 space-y-2'>
                   {publishedAt && (
@@ -81,10 +81,10 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
                   </p>
                   <div className='mt-4'>
                     <EventButton
+                      className='m-0 p-0 text-sm h-auto text-muted-foreground'
                       eventName={`Clicked on Read more for the post ${title}`}
                       eventProperties={eventProps}
                       variant='link'
-                      className='m-0 p-0 text-sm h-auto text-muted-foreground'
                     >
                       Read more...
                     </EventButton>
@@ -94,12 +94,12 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
                   {image && (
                     <div className='relative w-36 h-36 overflow-hidden rounded-lg my-auto mx-0 border-border border-2 dark:border-none'>
                       <Image
-                        src={image}
                         alt={title ?? ''}
                         className='object-cover'
                         fill
                         priority
                         sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                        src={image}
                       />
                     </div>
                   )}

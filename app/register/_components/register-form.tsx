@@ -20,11 +20,11 @@ const RegisterForm = () => {
     formState: { errors, isSubmitting },
     reset,
   } = useForm<RegisterFormInput>({
-    resolver: zodResolver(RegisterFormSchema),
     defaultValues: {
       email: '',
       password: '',
     },
+    resolver: zodResolver(RegisterFormSchema),
   });
 
   const router = useRouter();
@@ -46,8 +46,8 @@ const RegisterForm = () => {
 
     const registerResponse = {
       error: 'Unexpected Error!',
-      success: undefined,
       name: undefined,
+      success: undefined,
     };
 
     if (registerResponse?.success && registerResponse?.name) {
@@ -66,17 +66,17 @@ const RegisterForm = () => {
       <div className='relative'>
         <form
           className='mt-16 lg:flex-auto'
-          onSubmit={handleSubmit(processForm)}
           noValidate
+          onSubmit={handleSubmit(processForm)}
         >
           <div className='flex flex-col gap-6 w-full'>
             {/* Name field */}
             <div className=''>
               <Input
-                type='name'
-                id='name'
                 autoComplete='name'
+                id='name'
                 placeholder='Name'
+                type='name'
                 {...register('name')}
               />
 
@@ -86,10 +86,10 @@ const RegisterForm = () => {
             {/* Email field */}
             <div className=''>
               <Input
-                type='email'
-                id='email'
                 autoComplete='email'
+                id='email'
                 placeholder='Email'
+                type='email'
                 {...register('email')}
               />
 
@@ -99,10 +99,10 @@ const RegisterForm = () => {
             {/* Password field */}
             <div className='sm:col-span-2'>
               <Input
-                type='password'
-                id='password'
                 autoComplete='current-password'
+                id='password'
                 placeholder='Password'
+                type='password'
                 {...register('password')}
               />
               <FormErrorMessage message={errors?.password?.message} />
@@ -111,17 +111,17 @@ const RegisterForm = () => {
 
           <div className='my-6'>
             <Button
-              type='submit'
-              disabled={isSubmitting}
               className='w-full disabled:opacity-50'
+              disabled={isSubmitting}
+              type='submit'
             >
               {isSubmitting ? 'Sending...' : 'Register'}
             </Button>
           </div>
 
           <Link
-            href='/login'
             className='text-sm text-[#888] transition duration-150 ease hover:text-primary underline'
+            href='/login'
           >
             I already have an account.
           </Link>

@@ -26,12 +26,12 @@ export const sendEmail = async (data: ContactFormInput) => {
   try {
     const { name, email, message } = result.data;
     const { data, error } = await resend.emails.send({
-      from: 'hi@krishalshah.in',
-      to: [email],
       cc: ['hi@krishalshah.in'],
+      from: 'hi@krishalshah.in',
+      react: ContactUsEmailTemplate({ email, message, name }),
       subject: 'Thanks for reaching out to me!',
       text: `Name: ${name}\nEmail: ${email}\nMessage:${message}`,
-      react: ContactUsEmailTemplate({ name, email, message }),
+      to: [email],
     });
 
     if (!data || error) {

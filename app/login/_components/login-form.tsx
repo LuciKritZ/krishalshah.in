@@ -17,11 +17,11 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormInput>({
-    resolver: zodResolver(LoginFormSchema),
     defaultValues: {
       email: '',
       password: '',
     },
+    resolver: zodResolver(LoginFormSchema),
   });
 
   const router = useRouter();
@@ -56,17 +56,17 @@ const LoginForm = () => {
       <div className='relative'>
         <form
           className='mt-16 lg:flex-auto'
-          onSubmit={handleSubmit(processForm)}
           noValidate
+          onSubmit={handleSubmit(processForm)}
         >
           <div className='flex flex-col gap-6 w-full'>
             {/* Email field */}
             <div className=''>
               <Input
-                type='email'
-                id='email'
                 autoComplete='email'
+                id='email'
                 placeholder='Email'
+                type='email'
                 {...register('email')}
               />
 
@@ -76,10 +76,10 @@ const LoginForm = () => {
             {/* Password field */}
             <div className='sm:col-span-2'>
               <Input
-                type='password'
-                id='password'
                 autoComplete='current-password'
+                id='password'
                 placeholder='Password'
+                type='password'
                 {...register('password')}
               />
               <FormErrorMessage message={errors?.password?.message} />
@@ -88,17 +88,17 @@ const LoginForm = () => {
 
           <div className='my-6'>
             <Button
-              type='submit'
-              disabled={isSubmitting}
               className='w-full disabled:opacity-50'
+              disabled={isSubmitting}
+              type='submit'
             >
               {isSubmitting ? 'Sending...' : 'Sign In'}
             </Button>
           </div>
 
           <Link
-            href='/register'
             className='text-sm text-[#888] transition duration-150 ease hover:text-primary underline'
+            href='/register'
           >
             Do not have an account?
           </Link>

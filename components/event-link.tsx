@@ -9,13 +9,13 @@ import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import { trackEvent } from '@/lib/analytics';
 
 type LinkProps = NextLinkProps & {
+  children?: React.ReactNode;
+  className?: string;
   eventName?: string;
   eventProps?: Record<string, string>;
-  children?: React.ReactNode;
   href: UrlObject | string;
-  target?: HTMLAttributeAnchorTarget | undefined;
-  className?: string;
   referrerPolicy?: HTMLAttributeReferrerPolicy | undefined;
+  target?: HTMLAttributeAnchorTarget | undefined;
 };
 
 const EventLink = ({

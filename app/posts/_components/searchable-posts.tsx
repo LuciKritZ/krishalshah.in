@@ -39,10 +39,7 @@ const SearchablePosts = () => {
     <div className='mb-12 flex flex-col'>
       <div className='flex items-center gap-3 mb-4'>
         <Input
-          type='text'
-          placeholder='Search posts...'
           className='h-9 w-full sm:w-1/2 focus-visible:ring-offset-0 focus-visible:ring-0'
-          value={query}
           onChange={e => {
             setQuery(e.target.value);
           }}
@@ -51,20 +48,23 @@ const SearchablePosts = () => {
               router.push(createSearchLink(query), { scroll: false });
             }
           }}
+          placeholder='Search posts...'
+          type='text'
+          value={query}
         />
 
         {query.length ? (
           <EventLink
+            className={buttonVariants({
+              className: 'h-8 px-2 lg:px-3',
+              size: 'sm',
+              variant: 'secondary',
+            })}
             eventName='Clicked on Input Search Submit button - Posts'
             eventProps={{
               input: query,
             }}
             href={createSearchLink(query)}
-            className={buttonVariants({
-              size: 'sm',
-              variant: 'secondary',
-              className: 'h-8 px-2 lg:px-3',
-            })}
             shallow
           >
             Submit
@@ -73,16 +73,16 @@ const SearchablePosts = () => {
 
         {shouldShowReset ? (
           <EventLink
+            className={buttonVariants({
+              className: 'h-8 px-2 lg:px-3',
+              size: 'sm',
+              variant: 'secondary',
+            })}
             eventName='Clicked on Input Reset button - Posts'
             href={resetFiltersLink()}
             onClick={() => {
               setQuery('');
             }}
-            className={buttonVariants({
-              size: 'sm',
-              variant: 'secondary',
-              className: 'h-8 px-2 lg:px-3',
-            })}
             shallow={true}
           >
             Reset <DeleteIcon className='ml-2 h-4 w-4' />
@@ -94,28 +94,28 @@ const SearchablePosts = () => {
         <div className='flex flex-wrap gap-2 mb-8 items-center'>
           {sortedTags.map(tag => (
             <Tag
-              tag={tag}
-              key={tag}
               count={tags[tag]}
+              disableLink
               isSelected={selectedTags.includes(tag)}
+              key={tag}
               onClick={() => {
                 const link = createSelectedTagsLink(tag);
                 router.push(link, { scroll: false });
               }}
-              disableLink
+              tag={tag}
             />
           ))}
           <EventLink
-            eventName='Clicked on View all [Tags] - Posts'
             className={cn(
               buttonVariants({
-                variant: 'link',
-                size: 'sm',
                 className:
                   'no-underline rounded-lg text-xs font-semibold py-0.5 px-2.5 m-0 h-auto',
+                size: 'sm',
+                variant: 'link',
               }),
               'text-muted-foreground'
             )}
+            eventName='Clicked on View all [Tags] - Posts'
             href='/tags'
           >
             View all
@@ -127,9 +127,9 @@ const SearchablePosts = () => {
 
       {totalPages > 1 ? (
         <QueryPagination
-          currentPage={page}
           className='mt-8 justify-end'
           createPaginationLink={createPaginationLink}
+          currentPage={page}
           totalPages={totalPages}
         />
       ) : null}

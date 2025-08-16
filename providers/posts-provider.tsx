@@ -24,35 +24,35 @@ type PostsProviderProps = {
 };
 
 interface PostsContextProps {
-  posts: undefined | PostMetadata[];
-  tags: Tags;
-  sortedTags: string[];
-  isLoading: boolean;
-  page: number;
-  error: string | null;
-  selectedTags: string[];
-  totalPages: number;
-  resetFiltersLink: () => string;
   createPaginationLink: (pageNumber: number | string) => string;
   createSearchLink: (searchQuery: string) => string;
   createSelectedTagsLink: (selectedTag: string) => string;
+  error: string | null;
+  isLoading: boolean;
+  page: number;
+  posts: undefined | PostMetadata[];
+  resetFiltersLink: () => string;
+  selectedTags: string[];
   shouldShowReset: boolean;
+  sortedTags: string[];
+  tags: Tags;
+  totalPages: number;
 }
 
 const DEFAULT_CONTEXT_PROPS: PostsContextProps = {
-  posts: undefined,
-  tags: {},
-  sortedTags: [],
-  isLoading: false,
-  page: 1,
-  error: null,
-  selectedTags: [],
-  totalPages: 1,
-  resetFiltersLink: () => '',
   createPaginationLink: () => '',
   createSearchLink: () => '',
   createSelectedTagsLink: () => '',
+  error: null,
+  isLoading: false,
+  page: 1,
+  posts: undefined,
+  resetFiltersLink: () => '',
+  selectedTags: [],
   shouldShowReset: false,
+  sortedTags: [],
+  tags: {},
+  totalPages: 1,
 };
 
 const PostsProvider = ({ children }: PostsProviderProps) => {
@@ -123,9 +123,9 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
 
     try {
       const { posts, totalPages } = await getPosts({
+        page,
         searchQuery: query,
         selectedTags,
-        page,
       });
 
       setPosts(posts);
@@ -142,7 +142,7 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
     setError(null);
 
     try {
-      const tags = await getTags({ limit: 10, initialTags: selectedTags });
+      const tags = await getTags({ initialTags: selectedTags, limit: 10 });
       setTags(tags);
     } catch (error: any) {
       setError(error?.message);
@@ -171,19 +171,19 @@ const PostsProvider = ({ children }: PostsProviderProps) => {
   }, [query, page, selectedTags, fetchPostData]);
 
   const postsProviderContext: PostsContextProps = {
-    posts,
-    tags,
-    sortedTags,
-    isLoading,
-    page,
-    error,
     createPaginationLink,
-    selectedTags,
-    totalPages,
-    resetFiltersLink,
     createSearchLink,
     createSelectedTagsLink,
+    error,
+    isLoading,
+    page,
+    posts,
+    resetFiltersLink,
+    selectedTags,
     shouldShowReset,
+    sortedTags,
+    tags,
+    totalPages,
   };
 
   return (

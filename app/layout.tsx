@@ -13,12 +13,14 @@ import Header from './(home)/_components/header';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: {
-    default: siteConfig.author,
-    template: `%s | ${siteConfig.author}`,
-  },
+  authors: [
+    {
+      name: 'Krishal Shah',
+      url: 'https://github.com/LuciKritZ',
+    },
+  ],
+  creator: 'Krishal Shah',
   description: siteConfig.description,
-  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
   keywords: [
     'Next.js',
     'React',
@@ -35,27 +37,25 @@ export const metadata: Metadata = {
     'Blog',
     'Technical Blog',
   ],
-  authors: [
-    {
-      name: 'Krishal Shah',
-      url: 'https://github.com/LuciKritZ',
-    },
-  ],
-  creator: 'Krishal Shah',
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? siteConfig.url),
   openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: siteConfig.url,
-    title: siteConfig.name,
     description: siteConfig.description,
+    locale: 'en_US',
     siteName: siteConfig.name,
+    title: siteConfig.name,
+    type: 'website',
+    url: siteConfig.url,
+  },
+  title: {
+    default: siteConfig.author,
+    template: `%s | ${siteConfig.author}`,
   },
 };
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: 'white' },
-    { media: '(prefers-color-scheme: dark)', color: 'black' },
+    { color: 'white', media: '(prefers-color-scheme: light)' },
+    { color: 'black', media: '(prefers-color-scheme: dark)' },
   ],
 };
 

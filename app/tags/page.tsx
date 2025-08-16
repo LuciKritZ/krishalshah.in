@@ -7,8 +7,8 @@ import { getTags } from '@/lib/server/posts';
 import SearchableTags from './_components/searchable-tags';
 
 export const metadata: Metadata = {
-  title: 'Tags',
   description: 'All the topics that I have written about',
+  title: 'Tags',
 };
 
 const TagsPage = async () => {
@@ -22,7 +22,7 @@ const TagsPage = async () => {
 
         <h1 className='title mb-12'>Tags</h1>
 
-        <SearchableTags tags={tags} sortedTags={sortedTags} />
+        <SearchableTags sortedTags={sortedTags} tags={tags} />
       </div>
     </section>
   );

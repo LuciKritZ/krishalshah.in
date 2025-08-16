@@ -1,7 +1,10 @@
 {
   // https://stackoverflow.com/questions/66614875/how-can-i-enable-tailwind-intellisense-outside-of-classname
   "tailwindCSS.experimental.classRegex": [
-    ["(ClassName.*=\\s*\\{(?:[^{}]*|\\{[^{}]*\\})*\\})", "[\"'`]([^\"'`]*)[\"'`]"],
+    [
+      "(ClassName.*=\\s*\\{(?:[^{}]*|\\{[^{}]*\\})*\\})",
+      "[\"'`]([^\"'`]*)[\"'`]"
+    ],
     "ClassName.*=\\s*[\"'`]([^\"'`]*)[\"'`]"
   ],
   "mdx-preview.preview.previewOnChange": true,
@@ -14,5 +17,13 @@
     "source.fixAll.tslint": "always",
     // For Stylelint
     "source.fixAll.stylelint": "always"
-  }
+  },
+  "eslint.enable": true,
+  "eslint.run": "onSave",
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
 }

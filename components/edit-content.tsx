@@ -10,10 +10,10 @@ import { EditStringAPICall } from '@/types/global-types';
 import TiptapEditor from './editor';
 
 interface EditContentProps {
+  containerClassName?: HTMLAttributes<HTMLDivElement>['className'];
+  editorClassName?: HTMLAttributes<HTMLDivElement>['className'];
   initialContent: string;
   onUpdateContent: EditStringAPICall;
-  editorClassName?: HTMLAttributes<HTMLDivElement>['className'];
-  containerClassName?: HTMLAttributes<HTMLDivElement>['className'];
 }
 
 const EditContent = ({
@@ -31,8 +31,8 @@ const EditContent = ({
       >
         <div dangerouslySetInnerHTML={{ __html: content }} />
         <EditIcon
-          onClick={() => setEditing(true)}
           className='size-5 cursor-pointer text-secondary-foreground dark:text-secondary/60'
+          onClick={() => setEditing(true)}
         />
       </div>
     );

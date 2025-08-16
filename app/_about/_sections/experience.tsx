@@ -48,10 +48,10 @@ export const IndividualExperience = ({
         <div className='flex md:flex-row flex-col justify-between md:space-x-2 space-x-0'>
           {/* Company Name */}
           <EventLink
+            className='p-0 text-base text-muted-foreground font-bold text-pretty text-start flex-1 justify-start underline'
             eventName={`Clicked on ${companyName} link from experience section`}
             href={companyLink}
             target='_blank'
-            className='p-0 text-base text-muted-foreground font-bold text-pretty text-start flex-1 justify-start underline'
           >
             {jobTitle}, {companyName}
           </EventLink>

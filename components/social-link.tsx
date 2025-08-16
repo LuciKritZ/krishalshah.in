@@ -8,14 +8,14 @@ type SocialLinkProps = (typeof siteConfig.socialLinks)[0];
 
 const SocialLink = ({ link, icon, title }: SocialLinkProps) => (
   <EventLink
+    className='block w-[16px] h-[16px] lg:w-[20px] lg:h-[20px]'
     eventName='Clicked on Social Link'
     eventProps={{
       'Social Link': title,
     }}
     href={link}
-    target='_blank'
     referrerPolicy='no-referrer'
-    className='block w-[16px] h-[16px] lg:w-[20px] lg:h-[20px]'
+    target='_blank'
   >
     <span className='sr-only'>{title}</span>
     {icon}

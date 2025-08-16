@@ -73,7 +73,7 @@ export const getPostBySlug = async (slug: string): Promise<Post | null> => {
     const fileContents = readFileSync(filePath, { encoding: 'utf-8' });
     const { data, content } = matter(fileContents);
 
-    return { metadata: { ...data, slug }, content };
+    return { content, metadata: { ...data, slug } };
   } catch (error) {
     return null;
   }

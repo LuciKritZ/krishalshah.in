@@ -34,9 +34,9 @@ const NotFound = () => (
 
                 <div className='mt-10 flex space-x-3 sm:border-1 sm:border-transparent'>
                   <EventLink
-                    href='/'
                     className='inline-flex items-center gap-3 text-muted-foreground'
                     eventName='Go back home - Page Not Found'
+                    href='/'
                   >
                     <ArrowLeftIcon className='h-5 w-5' />
                     <span>Go back home</span>

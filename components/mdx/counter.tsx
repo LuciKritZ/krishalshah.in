@@ -12,11 +12,11 @@ const Counter = () => {
   const decrement = () => setCount(prev => prev - 1);
   return (
     <div className='flex items-center gap-3'>
-      <Button size='icon' onClick={decrement}>
+      <Button onClick={decrement} size='icon'>
         <MinusIcon />
       </Button>
       <p>Current vote: ${count}</p>
-      <Button size='icon' onClick={increment}>
+      <Button onClick={increment} size='icon'>
         <PlusIcon />
       </Button>
     </div>

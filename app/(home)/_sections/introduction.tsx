@@ -15,12 +15,12 @@ const Introduction = () => (
 
     <div className='relative'>
       <Image
-        className='flex-1 md:rounded-lg grayscale rounded-full'
-        src='/images/me.jpg'
         alt={siteConfig.author}
-        width={192}
+        className='flex-1 md:rounded-lg grayscale rounded-full'
         height={192}
         priority
+        src='/images/me.jpg'
+        width={192}
       />
     </div>
   </section>

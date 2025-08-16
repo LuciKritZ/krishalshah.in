@@ -21,12 +21,12 @@ const ContactForm = () => {
     formState: { errors, isSubmitting },
     watch,
   } = useForm<ContactFormInput>({
-    resolver: zodResolver(ContactFormSchema),
     defaultValues: {
-      name: '',
       email: '',
       message: '',
+      name: '',
     },
+    resolver: zodResolver(ContactFormSchema),
   });
 
   const name = watch('name');
@@ -49,18 +49,18 @@ const ContactForm = () => {
     <section className='relative isolate'>
       <div className='relative'>
         <form
-          onSubmit={handleSubmit(processForm)}
           className='mt-16 lg:flex-auto'
           noValidate
+          onSubmit={handleSubmit(processForm)}
         >
           <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
             {/* Name field */}
             <div>
               <Input
-                id='name'
-                type='text'
-                placeholder='Name'
                 autoComplete='given-name'
+                id='name'
+                placeholder='Name'
+                type='text'
                 {...register('name')}
               />
 
@@ -70,10 +70,10 @@ const ContactForm = () => {
             {/* Email field */}
             <div>
               <Input
-                type='email'
-                id='email'
                 autoComplete='email'
+                id='email'
                 placeholder='Email'
+                type='email'
                 {...register('email')}
               />
 
@@ -83,8 +83,8 @@ const ContactForm = () => {
             {/* Message field */}
             <div className='sm:col-span-2'>
               <Textarea
-                rows={4}
                 placeholder='Message'
+                rows={4}
                 {...register('message')}
               />
               <FormErrorMessage message={errors?.message?.message} />
@@ -93,24 +93,24 @@ const ContactForm = () => {
 
           <div className='mt-6'>
             <EventButton
+              className='w-full disabled:opacity-50'
+              disabled={isSubmitting}
               eventName='Clicked on Contact us button - Contact Form'
               eventProperties={{
-                name,
                 email,
                 message,
+                name,
               }}
               type='submit'
-              disabled={isSubmitting}
-              className='w-full disabled:opacity-50'
             >
               {isSubmitting ? 'Sending...' : 'Contact us'}
             </EventButton>
             <p className='mt-4 text-xs text-muted-foreground'>
               By submitting this form, I agree to the&nbsp;
               <EventLink
+                className='font-bold'
                 eventName='Clicked on privacy policy from Contact Form'
                 href='/privacy'
-                className='font-bold'
               >
                 privacy&nbsp;policy.
               </EventLink>

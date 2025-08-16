@@ -31,28 +31,28 @@ export async function generateMetadata({
   ogSearchParams.set('title', post.metadata.title);
 
   return {
-    title: post.metadata.title,
-    description: post.metadata.summary,
     authors: { name: siteConfig.author, url: siteConfig.url },
+    description: post.metadata.summary,
     openGraph: {
-      title: post.metadata.title,
       description: post.metadata.summary,
-      type: 'article',
-      url: post.metadata.slug,
       images: [
         {
+          alt: post.metadata.title,
+          height: 630,
           url: `/api/og?${ogSearchParams.toString()}`,
           width: 1200,
-          height: 630,
-          alt: post.metadata.title,
         },
       ],
+      title: post.metadata.title,
+      type: 'article',
+      url: post.metadata.slug,
     },
+    title: post.metadata.title,
     twitter: {
       card: 'summary_large_image',
-      title: post.metadata.title,
       description: post.metadata.summary,
       images: [`/api/og?${ogSearchParams.toString()}`],
+      title: post.metadata.title,
     },
   };
 }
@@ -84,11 +84,11 @@ const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
         {image && (
           <div className='relative mb-6 h-96 w-full overflow-hidden rounded-lg border-border border-2 dark:border-none'>
             <Image
-              src={image}
               alt={title ?? ''}
               className='object-contain'
               fill
               priority
+              src={image}
             />
           </div>
         )}

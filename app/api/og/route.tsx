@@ -43,16 +43,16 @@ export const GET = async (req: NextRequest) => {
         </div>
       ),
       {
-        width: 1200,
-        height: 630,
         fonts: [
           {
-            name: 'Fira Code Regular',
             data: firaCode,
+            name: 'Fira Code Regular',
             style: 'normal',
             weight: 700,
           },
         ],
+        height: 630,
+        width: 1200,
       }
     );
   } catch (error) {

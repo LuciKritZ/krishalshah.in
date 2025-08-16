@@ -15,10 +15,10 @@ const Footer = () => (
         <p className='text-center text-md leading-5 text-muted-foreground text-sm'>
           Made with ♥️ by{' '}
           <EventLink
-            href={siteConfig.links.github}
-            target='_blank'
             className='tracking-tighter underline decoration-wavy hover:decoration-primary-foreground transition-colors duration-100 ease-linear'
             eventName='GitHub link clicked from footer'
+            href={siteConfig.links.github}
+            target='_blank'
           >
             Krishal Shah
           </EventLink>

@@ -10,9 +10,9 @@ import {
 interface QueryPaginationProps {
   className?: string;
   createPaginationLink: (pageNumber: string | number) => string;
-  totalPages: number;
-  isLoading?: boolean;
   currentPage: number;
+  isLoading?: boolean;
+  totalPages: number;
 }
 
 const QueryPagination = ({
@@ -42,13 +42,13 @@ const QueryPagination = ({
           .fill('')
           .map((_, index) => (
             <PaginationItem
-              key={`page-button-${index + 1}`}
               className='hidden sm:inline-block'
+              key={`page-button-${index + 1}`}
             >
               <PaginationLink
-                isActive={currentPage === index + 1}
-                href={createPaginationLink(index + 1)}
                 className='hover:bg-border/50 hover:text-inherit transition-colors duration-200 ease-linear'
+                href={createPaginationLink(index + 1)}
+                isActive={currentPage === index + 1}
                 shallow={true}
               >
                 {index + 1}
