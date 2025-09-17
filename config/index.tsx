@@ -178,4 +178,10 @@ export const ADMIN_NAVIGATION_OPTIONS = [
   },
 ];
 
+export const SOCIAL_LINKS = {
+  ...siteConfig.links,
+  resume:
+    'https://docs.google.com/document/d/1L9vqJXg33BBBuceWqZSsKmsw-56PMOFQKDgCBfLqmz0',
+};
+
 export type SiteConfig = typeof siteConfig;
