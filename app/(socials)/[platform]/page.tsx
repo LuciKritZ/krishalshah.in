@@ -4,21 +4,21 @@ import { useEffect } from 'react';
 
 import { notFound, useParams } from 'next/navigation';
 
-import { SiteConfig, siteConfig } from '@/config';
+import { siteConfig, SOCIAL_LINKS } from '@/config';
 import { trackEvent } from '@/lib/analytics';
 
 export default function SocialRedirect() {
   const params = useParams();
   const platform = params?.platform?.toString().toLowerCase();
 
-  const allPlatforms = Object.keys(siteConfig.links);
+  const allPlatforms = Object.keys(SOCIAL_LINKS);
 
   const isValidPlatform = allPlatforms.includes(platform);
 
   useEffect(() => {
     if (!isValidPlatform || !platform) return;
 
-    const redirectUrl = siteConfig.links[platform as keyof SiteConfig['links']];
+    const redirectUrl = SOCIAL_LINKS[platform as keyof typeof SOCIAL_LINKS];
 
     trackEvent('Social Link Clicked', {
       platform,
