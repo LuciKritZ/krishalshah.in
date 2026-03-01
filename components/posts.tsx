@@ -47,7 +47,7 @@ const Posts = ({ posts, className = '' }: PostsProps) => {
           const additionalTags = tags.length - renderedTags.length;
           return (
             <li
-              className='p-4 border-border border-[1px] group/post-card hover:bg-border/50 rounded-sm overflow-hidden transition-colors ease-linear duration-200'
+              className='p-4 border-border border group/post-card hover:bg-border/50 rounded-sm overflow-hidden transition-colors ease-linear duration-200'
               key={slug}
             >
               <div

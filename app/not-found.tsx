@@ -32,7 +32,7 @@ const NotFound = () => (
                   <p className='leading-7'>（っ＾▿＾）</p>
                 </div>
 
-                <div className='mt-10 flex space-x-3 sm:border-1 sm:border-transparent'>
+                <div className='mt-10 flex space-x-3 sm:border sm:border-transparent'>
                   <EventLink
                     className='inline-flex items-center gap-3 text-muted-foreground'
                     eventName='Go back home - Page Not Found'

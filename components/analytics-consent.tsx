@@ -48,7 +48,7 @@ export default function AnalyticsBanner() {
 
   return (
     <div className='fixed inset-x-4 bottom-4 z-50 max-w-3xl mx-auto px-0 sm:px-4'>
-      <Card className='rounded-lg border-2 border-primary/20 shadow-lg backdrop-blur supports-[backdrop-filter]:bg-background/60 bg-background/75'>
+      <Card className='rounded-lg border-2 border-primary/20 shadow-lg backdrop-blur-sm supports-backdrop-filter:bg-background/60 bg-background/75'>
         <CardContent className='p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4'>
           <div className='text-sm text-muted-foreground'>
             Hey, Krishal here! I use privacy-friendly analytics to improve this
@@ -56,7 +56,7 @@ export default function AnalyticsBanner() {
           </div>
           <div className='flex gap-2 items-center justify-end shrink-0'>
             <Button
-              className='text-xs sm:text-sm border-[1px] border-primary-foreground'
+              className='text-xs sm:text-sm border border-primary-foreground'
               onClick={handleDecline}
               size='sm'
               variant='ghost'
