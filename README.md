@@ -15,7 +15,8 @@ connecting with other developers and teams.
 
 ## Installation
 
-**Node:** This project uses the version in [`.nvmrc`](.nvmrc). If you use [nvm](https://github.com/nvm-sh/nvm), run `nvm use` before any npm commands.
+**Node:** This project uses the version in [`.nvmrc`](.nvmrc). If you use
+[nvm](https://github.com/nvm-sh/nvm), run `nvm use` before any npm commands.
 
 ```bash
 git clone https://github.com/LuciKritZ/krishalshah.in.git
