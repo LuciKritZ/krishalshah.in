@@ -15,16 +15,14 @@ connecting with other developers and teams.
 
 ## Installation
 
+**Node:** This project uses the version in [`.nvmrc`](.nvmrc). If you use [nvm](https://github.com/nvm-sh/nvm), run `nvm use` before any npm commands.
+
 ```bash
-
 git clone https://github.com/LuciKritZ/krishalshah.in.git
-
 cd krishalshah.in
-
+nvm use    # if using nvm
 npm install
-
 npm run dev
-
 ```
 
 ### Running locally

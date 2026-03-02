@@ -47,7 +47,7 @@ const NewsLetterForm = () => {
   };
 
   return (
-    <Card className='rounded-lg border-[1px]'>
+    <Card className='rounded-lg border'>
       <CardContent className='flex flex-col gap-8 pt-6 md:flex-row md:justify-between'>
         <div>
           <h2 className='md:text-2xl text-xl font-bold'>

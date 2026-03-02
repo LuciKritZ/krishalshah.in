@@ -43,7 +43,7 @@ export const IndividualExperience = ({
   jobTitle,
 }: ExperienceSchema) => {
   return (
-    <Card className='rounded-lg border-[1px]'>
+    <Card className='rounded-lg border'>
       <CardHeader>
         <div className='flex md:flex-row flex-col justify-between md:space-x-2 space-x-0'>
           {/* Company Name */}

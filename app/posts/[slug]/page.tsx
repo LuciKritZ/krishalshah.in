@@ -12,15 +12,14 @@ import { getPostBySlug, getPosts } from '@/lib/server/posts';
 import { calculateReadTime } from '@/lib/utils';
 
 type IndividualPostProps = {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 };
 
 export async function generateMetadata({
   params,
 }: IndividualPostProps): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug);
+  const { slug } = await params;
+  const post = await getPostBySlug(slug);
 
   if (!post || !post.metadata.title) {
     return {};
@@ -64,7 +63,8 @@ export async function generateStaticParams() {
   return slugs;
 }
 
-const IndividualPost = async ({ params: { slug } }: IndividualPostProps) => {
+const IndividualPost = async ({ params }: IndividualPostProps) => {
+  const { slug } = await params;
   const post = await getPostBySlug(slug);
 
   if (!post) {

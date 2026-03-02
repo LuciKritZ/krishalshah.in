@@ -13,7 +13,7 @@ export default function SocialRedirect() {
 
   const allPlatforms = Object.keys(SOCIAL_LINKS);
 
-  const isValidPlatform = allPlatforms.includes(platform);
+  const isValidPlatform = platform != null && allPlatforms.includes(platform);
 
   useEffect(() => {
     if (!isValidPlatform || !platform) return;
