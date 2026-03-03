@@ -1,3 +1,5 @@
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@300;500;700&display=swap';
+@import 'https://fonts.cdnfonts.com/css/rage-italic';
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 @plugin 'tailwindcss-animate';
@@ -54,6 +56,19 @@
 
   --color-secondary: hsl(var(--secondary));
   --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-rage: 'Rage Italic', cursive;
+
+  --color-obsidian: #050505;
+  --color-tectonic: #00d1ff;
+  --color-slab: #0a0a0a;
+  --color-fracture: rgb(0 209 255 / 10%);
+}
+
+.font-rage {
+  font-family: 'Rage Italic', cursive !important;
 }
 
 /*
@@ -158,7 +173,7 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased selection:bg-tectonic selection:text-obsidian;
   }
 
   .-h-screen-navbar {
@@ -219,5 +234,85 @@
 
   .header-bg {
     @apply backdrop-blur-sm supports-backdrop-filter:bg-background/60 bg-background/75;
+  }
+}
+
+@layer components {
+  .tectonic-border {
+    @apply border border-white/5 relative overflow-hidden transition-colors duration-300;
+  }
+
+  .tectonic-glow {
+    @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
+
+    background: radial-gradient(
+      500px circle at var(--x, 50%) var(--y, 50%),
+      rgb(0 209 255 / 6%) 0%,
+      transparent 70%
+    );
+  }
+
+  .tectonic-border:hover .tectonic-glow {
+    @apply opacity-100;
+  }
+
+  .slab-shadow {
+    box-shadow: 0 20px 50px rgb(0 0 0 / 50%);
+  }
+
+  .tectonic-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px var(--color-tectonic);
+  }
+
+  .mask-linear-fade {
+    mask-image: linear-gradient(to right, black 85%, transparent 100%);
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  .page-container {
+    @apply pt-32 pb-16 px-4 md:pt-32 md:pb-20 md:px-6 mx-auto max-w-7xl;
+  }
+
+  .section-header {
+    @apply mb-12 md:mb-16;
+  }
+
+  .display-title {
+    @apply font-display text-5xl md:text-6xl lg:text-8xl font-bold tracking-tighter mb-4 md:mb-6 leading-[0.9];
+  }
+
+  .body-text {
+    @apply text-white/60 text-base md:text-lg max-w-xl leading-relaxed;
+  }
+
+  .micro-text {
+    @apply text-[10px] md:text-xs uppercase tracking-widest font-bold;
+  }
+
+  .animate-marquee {
+    animation: marquee 40s linear infinite;
+  }
+
+  .pause-on-hover:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0%);
+  }
+
+  100% {
+    transform: translateX(-50%);
   }
 }
