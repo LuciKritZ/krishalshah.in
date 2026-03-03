@@ -20,6 +20,7 @@
       "prettier --write"
     ],
     "*.{css,scss}": [
+      "stylelint --fix",
       "prettier --write"
     ],
     "*.{json,md,mdx,yml,yaml}": [
@@ -80,7 +81,10 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.1.5",
     "postcss": "^8",
+    "postcss-html": "^1.8.1",
     "prettier": "^3.6.2",
+    "stylelint": "^17.4.0",
+    "stylelint-config-standard-scss": "^17.0.0",
     "tailwindcss": "^4.2.1",
     "typescript": "^5"
   }

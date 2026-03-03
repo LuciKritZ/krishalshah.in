@@ -1,4 +1,5 @@
 {
+  "css.customData": [".vscode/tailwind.css-data.json"],
   // https://stackoverflow.com/questions/66614875/how-can-i-enable-tailwind-intellisense-outside-of-classname
   "tailwindCSS.experimental.classRegex": [
     ["(ClassName.*=\\s*\\{(?:[^{}]*|\\{[^{}]*\\})*\\})", "[\"'`]([^\"'`]*)[\"'`]"],
