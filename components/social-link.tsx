@@ -1,14 +1,17 @@
 'use client';
 
 import { siteConfig } from '@/config';
+import { cn } from '@/lib/utils';
 
 import EventLink from './event-link';
 
-type SocialLinkProps = (typeof siteConfig.socialLinks)[0];
+type SocialLinkProps = (typeof siteConfig.socialLinks)[0] & {
+  className?: string;
+};
 
-const SocialLink = ({ link, icon, title }: SocialLinkProps) => (
+const SocialLink = ({ link, icon, title, className }: SocialLinkProps) => (
   <EventLink
-    className='block w-[16px] h-[16px] lg:w-[20px] lg:h-[20px]'
+    className={cn('block size-4 lg:size-5', className)}
     eventName='Clicked on Social Link'
     eventProps={{
       'Social Link': title,
