@@ -1,5 +1,5 @@
+import SurfaceCard from '@/components/surface-card';
 import TagList from '@/components/tag-list';
-import TectonicSlab from '@/components/tectonic-slab';
 import { cn } from '@/lib/utils';
 
 export interface BlogCardProps {
@@ -21,14 +21,14 @@ const BlogCard = ({
   children,
   className,
 }: BlogCardProps) => (
-  <TectonicSlab className={cn('min-h-[200px]', className)}>
+  <SurfaceCard className={cn('min-h-[200px]', className)}>
     <div className='flex flex-1 flex-col'>
-      {date && <p className='micro-text mb-2 text-white/40'>{date}</p>}
-      <h3 className='line-clamp-2 font-display text-lg font-bold tracking-tight text-white/90 transition-colors group-hover:text-white md:text-xl'>
+      {date && <p className='micro-text mb-2 text-content-tertiary'>{date}</p>}
+      <h3 className='line-clamp-2 font-display text-lg font-bold tracking-tight text-content-primary/90 transition-colors group-hover:text-content-primary md:text-xl'>
         {title}
       </h3>
       {summary && (
-        <p className='mt-2 line-clamp-2 text-sm leading-relaxed text-white/60 transition-colors group-hover:text-white/80'>
+        <p className='mt-2 line-clamp-2 text-sm leading-relaxed text-content-secondary transition-colors group-hover:text-content-primary/80'>
           {summary}
         </p>
       )}
@@ -39,7 +39,7 @@ const BlogCard = ({
       )}
       {children}
     </div>
-  </TectonicSlab>
+  </SurfaceCard>
 );
 
 export default BlogCard;

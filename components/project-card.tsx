@@ -1,7 +1,7 @@
 import { ArrowUpRight, Github, GitFork, Star } from 'lucide-react';
 
+import SurfaceCard from '@/components/surface-card';
 import TagList from '@/components/tag-list';
-import TectonicSlab from '@/components/tectonic-slab';
 import { cn } from '@/lib/utils';
 
 export interface ProjectCardProps {
@@ -26,16 +26,16 @@ const ProjectCard = ({
   const hasHomepage = Boolean(homepage && homepage.length > 0);
 
   return (
-    <TectonicSlab className='min-h-[260px] md:min-h-[320px]'>
+    <SurfaceCard className='min-h-[260px] md:min-h-[320px]'>
       <div className='flex flex-1 flex-col'>
         <div className='mb-3 flex items-start justify-between md:mb-4'>
-          <h3 className='line-clamp-2 font-display text-lg font-bold tracking-tight text-white/90 transition-colors group-hover:text-white md:text-2xl'>
+          <h3 className='line-clamp-2 font-display text-lg font-bold tracking-tight text-content-primary/90 transition-colors group-hover:text-content-primary md:text-2xl'>
             {title}
           </h3>
           <div className='flex gap-2'>
             <a
               aria-label='View Source'
-              className='rounded-full border border-white/5 bg-white/5 p-2 text-white/40 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white'
+              className='rounded-full border border-white/5 bg-white/5 p-2 text-content-tertiary transition-all hover:border-white/20 hover:bg-white/10 hover:text-content-primary'
               href={link}
               rel='noopener noreferrer'
               target='_blank'
@@ -45,7 +45,7 @@ const ProjectCard = ({
             {hasHomepage && (
               <a
                 aria-label='View Deployment'
-                className='rounded-full border border-tectonic/20 bg-tectonic/5 p-2 text-tectonic/60 transition-all hover:border-tectonic/40 hover:bg-tectonic/10 hover:text-tectonic'
+                className='rounded-full border border-brand/20 bg-brand/5 p-2 text-brand/60 transition-all hover:border-brand/40 hover:bg-brand/10 hover:text-brand'
                 href={homepage}
                 rel='noopener noreferrer'
                 target='_blank'
@@ -56,7 +56,7 @@ const ProjectCard = ({
           </div>
         </div>
 
-        <p className='mb-6 line-clamp-4 text-xs leading-relaxed text-white/60 transition-colors group-hover:text-white/80 md:text-sm'>
+        <p className='mb-6 line-clamp-4 text-xs leading-relaxed text-content-secondary transition-colors group-hover:text-content-primary/80 md:text-sm'>
           {description}
         </p>
 
@@ -65,9 +65,9 @@ const ProjectCard = ({
             (forks !== undefined && forks > 0)) && (
             <div className='flex items-center gap-4'>
               {stars !== undefined && stars > 0 && (
-                <div className='flex items-center gap-1.5 rounded-sm border border-white/5 bg-white/5 px-2 py-1 text-[10px] font-bold text-white/40'>
+                <div className='flex items-center gap-1.5 rounded-sm border border-white/5 bg-white/5 px-2 py-1 text-[10px] font-bold text-content-tertiary'>
                   <Star
-                    className='text-tectonic'
+                    className='text-brand'
                     fill='currentColor'
                     fillOpacity={0.2}
                     size={10}
@@ -76,8 +76,8 @@ const ProjectCard = ({
                 </div>
               )}
               {forks !== undefined && forks > 0 && (
-                <div className='flex items-center gap-1.5 rounded-sm border border-white/5 bg-white/5 px-2 py-1 text-[10px] font-bold text-white/40'>
-                  <GitFork className='text-tectonic' size={10} />
+                <div className='flex items-center gap-1.5 rounded-sm border border-white/5 bg-white/5 px-2 py-1 text-[10px] font-bold text-content-tertiary'>
+                  <GitFork className='text-brand' size={10} />
                   <span>{forks}</span>
                 </div>
               )}
@@ -89,7 +89,7 @@ const ProjectCard = ({
           </div>
         </div>
       </div>
-    </TectonicSlab>
+    </SurfaceCard>
   );
 };
 

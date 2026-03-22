@@ -25,11 +25,11 @@ const SocialRail = ({ className }: SocialRailProps) => (
         >
           <SocialLink
             {...props}
-            className='relative z-10 flex items-center rounded-sm border border-white/5 bg-obsidian p-2.5 transition-all duration-500 group-hover:border-tectonic/40 [&>span]:sr-only [&_svg]:size-4 [&_svg]:text-white/20 [&_svg]:transition-colors [&_svg]:duration-500 group-hover:[&_svg]:text-white lg:[&_svg]:size-5'
+            className='relative z-10 flex items-center rounded-sm border border-white/5 bg-surface p-2.5 transition-all duration-500 group-hover:border-brand/40 [&>span]:sr-only [&_svg]:size-4 [&_svg]:text-content-primary/20 [&_svg]:transition-colors [&_svg]:duration-500 group-hover:[&_svg]:text-content-primary lg:[&_svg]:size-5'
           />
           <div className='pointer-events-none absolute left-full ml-4 flex items-center'>
-            <div className='h-px w-0 bg-tectonic/30 transition-all duration-500 ease-out group-hover:w-8' />
-            <span className='ml-0 whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.6em] text-white/0 transition-all duration-500 group-hover:ml-4 group-hover:text-tectonic'>
+            <div className='h-px w-0 bg-brand/30 transition-all duration-500 ease-out group-hover:w-8' />
+            <span className='ml-0 whitespace-nowrap text-[9px] font-bold uppercase tracking-[0.6em] text-content-primary/0 transition-all duration-500 group-hover:ml-4 group-hover:text-brand'>
               {props.title}
             </span>
           </div>

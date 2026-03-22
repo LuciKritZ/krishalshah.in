@@ -4,6 +4,28 @@
 @plugin '@tailwindcss/typography';
 @plugin 'tailwindcss-animate';
 
+:root {
+  /* Light Mode (Default) */
+  --bg-primary: #fff;
+  --bg-secondary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #9ca3af;
+  --border-color: rgb(0 0 0 / 10%);
+  --accent-color: #07c;
+}
+
+.dark {
+  /* Dark Mode */
+  --bg-primary: #050505;
+  --bg-secondary: #0a0a0a;
+  --text-primary: #fff;
+  --text-secondary: rgb(255 255 255 / 60%);
+  --text-tertiary: rgb(255 255 255 / 40%);
+  --border-color: rgb(255 255 255 / 10%);
+  --accent-color: #00d1ff;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @utility container {
@@ -61,10 +83,16 @@
   --font-display: 'Space Grotesk', sans-serif;
   --font-rage: 'Rage Italic', cursive;
 
-  --color-obsidian: #050505;
-  --color-tectonic: #00d1ff;
-  --color-slab: #0a0a0a;
-  --color-fracture: rgb(0 209 255 / 10%);
+  /*
+   * App surface + copy palette (driven by :root / .dark above).
+   * Use these in UI instead of legacy obsidian/slab/tectonic utility names.
+   */
+  --color-surface: var(--bg-primary);
+  --color-surface-secondary: var(--bg-secondary);
+  --color-brand: var(--accent-color);
+  --color-content-primary: var(--text-primary);
+  --color-content-secondary: var(--text-secondary);
+  --color-content-tertiary: var(--text-tertiary);
 }
 
 .font-rage {
@@ -101,38 +129,38 @@
     --card-foreground: 0 0% 0%;
     --border: 358 15% 92%;
     --input: 358 15% 92%;
-    --primary: 358 5% 83%;
-    --primary-foreground: 358 5% 23%;
-    --secondary: 118 5% 83%;
-    --secondary-foreground: 118 5% 23%;
-    --accent: 238 5% 83%;
-    --accent-foreground: 238 5% 23%;
-    --destructive: 21 89% 21%;
-    --destructive-foreground: 21 89% 81%;
-    --ring: 358 5% 83%;
+    --primary: 358 5% 23%;
+    --primary-foreground: 358 5% 98%;
+    --secondary: 118 5% 40%;
+    --secondary-foreground: 118 5% 96%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --ring: 190 100% 50%;
     --radius: 0.5rem;
   }
 
   .dark {
-    --background: 358 39% 0%;
-    --foreground: 358 39% 99%;
-    --muted: 118 35% 13%;
-    --muted-foreground: 118 12% 67%;
-    --popover: 358 39% 0%;
-    --popover-foreground: 358 39% 99%;
-    --card: 0 0% 1%;
-    --card-foreground: 0 0% 100%;
-    --border: 358 15% 14%;
-    --input: 358 15% 14%;
-    --primary: 358 5% 83%;
-    --primary-foreground: 358 5% 23%;
-    --secondary: 118 5% 83%;
-    --secondary-foreground: 118 5% 23%;
-    --accent: 238 5% 83%;
-    --accent-foreground: 238 5% 23%;
-    --destructive: 21 89% 60%;
+    --background: 0 0% 2%;
+    --foreground: 0 0% 98%;
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 70%;
+    --popover: 0 0% 2%;
+    --popover-foreground: 0 0% 98%;
+    --card: 0 0% 3%;
+    --card-foreground: 0 0% 98%;
+    --border: 0 0% 14%;
+    --input: 0 0% 14%;
+    --primary: 0 0% 92%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 60%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 190 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 0%;
-    --ring: 358 5% 83%;
+    --ring: 190 100% 50%;
   }
 
   :root {
@@ -173,7 +201,7 @@
   }
 
   body {
-    @apply bg-background text-foreground font-sans antialiased selection:bg-tectonic selection:text-obsidian;
+    @apply bg-surface text-content-primary font-sans antialiased selection:bg-brand selection:text-white;
   }
 
   .-h-screen-navbar {
@@ -238,31 +266,31 @@
 }
 
 @layer components {
-  .tectonic-border {
-    @apply border border-white/5 relative overflow-hidden transition-colors duration-300;
+  .surface-card {
+    @apply relative overflow-hidden border border-white/5 transition-colors duration-300;
   }
 
-  .tectonic-glow {
-    @apply absolute inset-0 opacity-0 transition-opacity duration-500 pointer-events-none;
+  .surface-card-glow {
+    @apply pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500;
 
     background: radial-gradient(
       500px circle at var(--x, 50%) var(--y, 50%),
-      rgb(0 209 255 / 6%) 0%,
+      color-mix(in srgb, var(--accent-color) 6%, transparent) 0%,
       transparent 70%
     );
   }
 
-  .tectonic-border:hover .tectonic-glow {
+  .surface-card:hover .surface-card-glow {
     @apply opacity-100;
   }
 
-  .slab-shadow {
+  .surface-elevated-shadow {
     box-shadow: 0 20px 50px rgb(0 0 0 / 50%);
   }
 
-  .tectonic-outline {
+  .text-stroke-brand {
     color: transparent;
-    -webkit-text-stroke: 1px var(--color-tectonic);
+    -webkit-text-stroke: 1px var(--accent-color);
   }
 
   .mask-linear-fade {
@@ -291,7 +319,7 @@
   }
 
   .body-text {
-    @apply text-white/60 text-base md:text-lg max-w-xl leading-relaxed;
+    @apply text-content-secondary text-base md:text-lg max-w-xl leading-relaxed;
   }
 
   .micro-text {

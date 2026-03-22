@@ -31,7 +31,7 @@ const NavLink = ({
   const isActive = item.type === 'link' && pathname === item.href;
 
   const baseClass = cn(
-    'text-[10px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-tectonic',
+    'text-[10px] font-bold uppercase tracking-[0.3em] transition-colors hover:text-brand',
     isActive && activeClassName,
     className
   );
