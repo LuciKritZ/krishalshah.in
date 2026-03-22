@@ -3,26 +3,38 @@ import SocialLink from '@/components/social-link';
 import { siteConfig } from '@/config';
 
 const Footer = () => (
-  <footer className='py-8'>
-    <div className='container max-w-3xl flex items-center justify-between h-auto flex-col md:flex-row'>
-      <div className='flex space-x-6 justify-center'>
+  <footer className='mt-auto border-t border-border px-6 py-12'>
+    <div className='mx-auto flex max-w-7xl flex-col items-center justify-between gap-8 md:flex-row'>
+      <div className='flex flex-wrap justify-center gap-6'>
         {siteConfig.socialLinks.map(socialLinkProps => (
           <SocialLink key={socialLinkProps._id} {...socialLinkProps} />
         ))}
       </div>
 
-      <div className='mt-4 md:mt-0 md:order-1 flex items-center'>
-        <p className='text-center text-md leading-5 text-muted-foreground text-sm'>
-          Made with ♥️ by{' '}
+      <div className='flex flex-col items-center gap-2 text-center md:items-end md:text-right'>
+        <div className='text-[10px] font-bold uppercase tracking-widest text-content-tertiary md:text-xs'>
           <EventLink
-            className='tracking-tighter underline decoration-wavy hover:decoration-primary-foreground transition-colors duration-100 ease-linear'
-            eventName='GitHub link clicked from footer'
+            className='transition-colors hover:text-content-primary'
+            eventName='Clicked on Copyright link from footer'
             href={siteConfig.links.github}
             target='_blank'
           >
-            Krishal Shah
+            © {new Date().getFullYear()} {siteConfig.fullName.toUpperCase()}
           </EventLink>
-        </p>
+        </div>
+        <div className='text-[10px] font-bold uppercase leading-relaxed tracking-widest text-content-tertiary md:text-xs'>
+          CRAFTED IN DARK MODE WITH{' '}
+          <span className='text-yellow-400 drop-shadow-[0_0_12px_rgba(250,204,21,0.8)]'>
+            BRIGHT IDEAS
+          </span>{' '}
+          AND{' '}
+          <span className='group/commit inline-flex cursor-default items-center whitespace-nowrap underline decoration-border underline-offset-4 text-content-primary transition-all duration-300 hover:text-emerald-400 hover:decoration-emerald-400/50 hover:drop-shadow-[0_0_12px_rgba(52,211,153,0.4)]'>
+            CLEAN COMMITS
+            <span className='ml-0 max-w-0 overflow-hidden opacity-0 transition-all duration-300 group-hover/commit:ml-1 group-hover/commit:max-w-[20px] group-hover/commit:opacity-100'>
+              ✨
+            </span>
+          </span>
+        </div>
       </div>
     </div>
   </footer>

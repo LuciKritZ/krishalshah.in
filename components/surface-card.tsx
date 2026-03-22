@@ -4,12 +4,12 @@ import { useRef, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 
-interface TectonicSlabProps {
+interface SurfaceCardProps {
   children: React.ReactNode;
   className?: string;
 }
 
-const TectonicSlab = ({ children, className }: TectonicSlabProps) => {
+const SurfaceCard = ({ children, className }: SurfaceCardProps) => {
   const [mousePos, setMousePos] = useState({ x: 50, y: 50 });
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +24,7 @@ const TectonicSlab = ({ children, className }: TectonicSlabProps) => {
   return (
     <div
       className={cn(
-        'tectonic-border bg-slab p-5 md:p-8 rounded-sm slab-shadow group flex flex-col h-full relative',
+        'surface-card group relative flex h-full flex-col rounded-sm bg-surface-secondary p-5 surface-elevated-shadow md:p-8',
         className
       )}
       onMouseMove={handleMouseMove}
@@ -32,11 +32,11 @@ const TectonicSlab = ({ children, className }: TectonicSlabProps) => {
     >
       <div
         aria-hidden
-        className='absolute top-0 right-0 w-32 h-32 bg-tectonic/5 blur-[100px] rounded-full -mr-16 -mt-16 group-hover:bg-tectonic/8 transition-all duration-700 pointer-events-none'
+        className='pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-brand/5 blur-[100px] transition-all duration-700 group-hover:bg-brand/8'
       />
       <div
         aria-hidden
-        className='tectonic-glow'
+        className='surface-card-glow'
         style={
           {
             '--x': `${mousePos.x}%`,
@@ -47,13 +47,13 @@ const TectonicSlab = ({ children, className }: TectonicSlabProps) => {
           }
         }
       />
-      <div className='relative z-10 flex flex-col h-full'>{children}</div>
+      <div className='relative z-10 flex h-full flex-col'>{children}</div>
       <div
         aria-hidden
-        className='absolute bottom-0 left-0 w-full h-px bg-linear-to-r from-transparent via-tectonic/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700'
+        className='absolute bottom-0 left-0 h-px w-full bg-linear-to-r from-transparent via-brand/20 to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100'
       />
     </div>
   );
 };
 
-export default TectonicSlab;
+export default SurfaceCard;

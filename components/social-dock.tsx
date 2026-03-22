@@ -20,7 +20,7 @@ const SocialDock = ({ className }: SocialDockProps) => (
       <SocialLink
         key={props._id}
         {...props}
-        className='block p-3 text-white/40 transition-colors hover:text-tectonic [&>span]:sr-only [&_svg]:size-[18px]'
+        className='block p-3 text-content-tertiary transition-colors hover:text-brand [&>span]:sr-only [&_svg]:size-[18px]'
       />
     ))}
   </div>
