@@ -1,5 +1,10 @@
 import { Metadata } from 'next';
 
+import BodyText from '@/components/atoms/body-text';
+import DisplayTitle from '@/components/atoms/display-title';
+import PageContainer from '@/components/atoms/page-container';
+import Section, { SectionHeader } from '@/components/atoms/section';
+
 import ContactForm from './_components/contact-form';
 
 export const metadata: Metadata = {
@@ -9,13 +14,21 @@ export const metadata: Metadata = {
 
 const Contact = async () => {
   return (
-    <section className='pb-24 pt-40'>
-      <div className='container max-w-3xl'>
-        <h2 className='title'>Let&apos;s talk about your project!</h2>
+    <PageContainer className='max-w-3xl'>
+      <Section>
+        <SectionHeader>
+          <DisplayTitle as='h1'>
+            LET&apos;S <span className='text-content-tertiary'>TALK</span>
+          </DisplayTitle>
+          <BodyText>
+            Have a project in mind? Want to collaborate on something cool? Or
+            just want to say hi? Drop me a message below.
+          </BodyText>
+        </SectionHeader>
 
         <ContactForm />
-      </div>
-    </section>
+      </Section>
+    </PageContainer>
   );
 };
 

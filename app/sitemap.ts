@@ -6,21 +6,21 @@ const currentDate = new Date().toISOString().split('T')[0];
 export default async function sitemap() {
   const { posts: allPosts } = await getPosts();
 
-  let posts = allPosts.map(post => ({
+  const posts = allPosts.map(post => ({
     lastModified: post.publishedAt
       ? new Date(post.publishedAt).toISOString().split('T')[0]
       : currentDate,
     url: `${siteConfig.url}/posts/${post.slug}`,
   }));
 
-  let allTags = await getTags();
+  const allTags = await getTags();
 
-  let tags = Object.keys(allTags).map(tag => ({
+  const tags = Object.keys(allTags).map(tag => ({
     lastModified: currentDate,
     url: `${siteConfig.url}/posts?selectedTags=${tag}`,
   }));
 
-  let routes = NAVIGATION_OPTIONS.map(route => ({
+  const routes = NAVIGATION_OPTIONS.map(route => ({
     lastModified: currentDate,
     url: `${siteConfig.url}${route.href}`,
   }));

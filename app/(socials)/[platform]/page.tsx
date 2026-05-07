@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import { notFound, useParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { siteConfig, SOCIAL_LINKS } from '@/config';
 import { trackEvent } from '@/lib/analytics';

@@ -1,7 +1,7 @@
 import { Mongoose } from 'mongoose';
 
 export declare global {
-  declare module globalThis {
+  declare namespace globalThis {
     var _mongoose: {
       connection: Mongoose | null;
       promise: null | Promise<Mongoose>;

@@ -1,19 +1,19 @@
 'use server';
 
 import { readdirSync, readFileSync } from 'fs';
-import path from 'path';
-
 import matter from 'gray-matter';
+import path from 'path';
 
 import {
   GetPostsRequest,
   GetPostsResponse,
   GetTagsRequest,
   Post,
+  PostMetadata,
   Tags,
 } from '@/types/global-types';
 
-import { getPostMetadata } from '../posts-client';
+import { getPostMetadata, postMetadataSchema } from '../posts-client';
 
 const POSTS_PER_PAGE = 5;
 
@@ -40,29 +40,28 @@ export const getPosts = async (
     );
   }
 
-  if (req?.selectedTags) {
-    const tags = req.selectedTags
-      .map(str => str.trim())
-      .sort()
-      .join(',');
-
-    posts = posts.filter(post => post.tags?.sort().join(',').includes(tags));
+  if (req?.selectedTags && req.selectedTags.length > 0) {
+    posts = posts.filter(post =>
+      req.selectedTags?.every(tag => post.tags?.includes(tag))
+    );
   }
 
-  const totalPosts = [...posts];
+  const totalCount = posts.length;
+  const limit = req?.limit ?? POSTS_PER_PAGE;
+  const page = req?.page ?? 1;
+  const totalPages = Math.ceil(totalCount / limit);
 
-  if (req?.limit) {
-    const page = req?.page ?? 1;
-    posts = posts.slice(POSTS_PER_PAGE * (page - 1), POSTS_PER_PAGE * page);
-  }
+  // Apply pagination
+  posts = posts.slice(limit * (page - 1), limit * page);
 
   return {
     posts: [...posts],
-    totalPages: Math.ceil(totalPosts.length / POSTS_PER_PAGE),
+    totalCount,
+    totalPages,
   };
 };
 
-export const getPostBySlug = async (slug: string): Promise<Post | null> => {
+export const getPostBySlug = async (slug: string): Promise<null | Post> => {
   try {
     const filePath = path.join(ROOT_CONTENT_DIRECTORY, `${slug}.mdx`);
 
@@ -71,10 +70,11 @@ export const getPostBySlug = async (slug: string): Promise<Post | null> => {
     }
 
     const fileContents = readFileSync(filePath, { encoding: 'utf-8' });
-    const { data, content } = matter(fileContents);
+    const { content, data } = matter(fileContents);
+    const validatedData = postMetadataSchema.parse(data);
 
-    return { content, metadata: { ...data, slug } };
-  } catch (error) {
+    return { content, metadata: { ...validatedData, slug } as PostMetadata };
+  } catch {
     return null;
   }
 };

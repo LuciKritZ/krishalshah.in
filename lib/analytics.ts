@@ -1,4 +1,4 @@
-/* eslint-disable import/no-named-as-default-member */
+// Vercel Analytics wrapper
 // Why suppress these warnings? Because there are errors for mixPanel methods.
 import mixPanel from 'mixpanel-browser';
 
@@ -55,7 +55,6 @@ export const initAnalytics = () => {
   if (typeof window === 'undefined') return;
 
   if (!MIXPANEL_TOKEN) {
-    // eslint-disable-next-line no-console
     console.warn('Mixpanel token is missing! Check your .env file.');
     return;
   }
@@ -80,7 +79,6 @@ export const trackEvent = (
   properties: Record<string, string> = {}
 ) => {
   if (!MIXPANEL_TOKEN) {
-    // eslint-disable-next-line no-console
     console.warn('Mixpanel token is missing! Check your .env file.');
     return;
   }

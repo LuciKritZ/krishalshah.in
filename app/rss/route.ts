@@ -2,7 +2,7 @@ import { siteConfig } from '@/config';
 import { getPosts } from '@/lib/server/posts';
 
 export async function GET() {
-  let { posts } = await getPosts();
+  const { posts } = await getPosts();
 
   const itemsXml = posts
     .sort((a, b) => {
@@ -24,7 +24,7 @@ export async function GET() {
         }</pubDate>
       </item>`
     )
-    .join('/n');
+    .join('\n');
 
   const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
     <rss version="2.0">

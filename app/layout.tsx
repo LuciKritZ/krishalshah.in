@@ -1,15 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 
-import AnalyticsConsentModal from '@/components/analytics-consent';
+import ToggleTheme from '@/components/atoms/toggle-theme';
 import ResetAnalytics from '@/components/dev-only/reset-analytics';
-import SiteHeader from '@/components/site-header';
-import ToggleTheme from '@/components/toggle-theme';
+import AnalyticsConsentModal from '@/components/molecules/analytics-consent';
+import SiteHeader from '@/components/organisms/site-header';
 import { siteConfig } from '@/config';
 import { cn } from '@/lib/utils';
 import Providers from '@/providers';
 
 import Footer from './(home)/_components/footer';
-
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -72,7 +71,7 @@ export default function RootLayout({
         )}
       >
         <Providers>
-          <SiteHeader isAdmin showThemeToggle themeToggle={<ToggleTheme />} />
+          <SiteHeader showThemeToggle themeToggle={<ToggleTheme />} />
           <main className='grow'>{children}</main>
           <Footer />
           <AnalyticsConsentModal />

@@ -1,14 +1,16 @@
 'use server';
 
+import fs from 'fs';
+import path from 'path';
 import { Resend } from 'resend';
 
-import { ContactUsEmailTemplate } from '@/components/emails/contact-form-email';
+import { ContactUsEmailTemplate } from '@/components/atoms/emails/contact-form-email';
 import { addEmailForNewsletterSubscription } from '@/database/actions/subscribe';
 
 import {
   type ContactFormInput,
-  type NewsLetterFormInput,
   ContactFormSchema,
+  type NewsLetterFormInput,
   NewsLetterFormSchema,
 } from '../schemas';
 
@@ -20,12 +22,57 @@ export const sendEmail = async (data: ContactFormInput) => {
   const result = ContactFormSchema.safeParse(data);
 
   if (result.error) {
-    return { error: result.error.format() };
+    return { error: result.error.issues[0].message, success: false };
   }
 
   try {
-    const { name, email, message } = result.data;
+    const { email, message, name } = result.data;
+
+    const githubIcon = fs
+      .readFileSync(
+        path.join(process.cwd(), 'public', 'images', 'email', 'github.png')
+      )
+      .toString('base64');
+    const linkedinIcon = fs
+      .readFileSync(
+        path.join(process.cwd(), 'public', 'images', 'email', 'linked-in.png')
+      )
+      .toString('base64');
+    const twitterIcon = fs
+      .readFileSync(
+        path.join(process.cwd(), 'public', 'images', 'email', 'twitter.png')
+      )
+      .toString('base64');
+    const logoImage = fs
+      .readFileSync(
+        path.join(process.cwd(), 'public', 'images', 'email', 'logo.png')
+      )
+      .toString('base64');
+
     const { data, error } = await resend.emails.send({
+      attachments: [
+        {
+          content: githubIcon,
+          contentId: 'github-icon',
+          filename: 'github.png',
+        },
+        {
+          content: linkedinIcon,
+          contentId: 'linkedin-icon',
+          filename: 'linked-in.png',
+        },
+        {
+          content: twitterIcon,
+          contentId: 'twitter-icon',
+          filename: 'twitter.png',
+        },
+        {
+          content: logoImage,
+          contentId: 'logo-image',
+          filename: 'logo.png',
+        },
+      ],
+
       cc: ['hi@krishalshah.in'],
       from: 'hi@krishalshah.in',
       react: ContactUsEmailTemplate({ email, message, name }),
@@ -34,19 +81,26 @@ export const sendEmail = async (data: ContactFormInput) => {
       to: [email],
     });
 
-    if (!data || error) {
-      throw new Error('Failed to send email.');
+    if (error) {
+      throw new Error(`Resend Error: ${error.message}`);
+    }
+
+    if (!data) {
+      throw new Error('No data returned from Resend.');
     }
 
     return { success: true };
-  } catch (error) {}
+  } catch (error: unknown) {
+    const err = error as Error;
+    throw new Error(err.message || 'An unexpected error occurred.');
+  }
 };
 
 export const subscribe = async (data: NewsLetterFormInput) => {
   const formatData = NewsLetterFormSchema.safeParse(data);
 
   if (formatData.error) {
-    return { error: formatData.error.format() };
+    return { error: formatData.error.issues[0].message, success: false };
   }
 
   const result = await addEmailForNewsletterSubscription(data);
