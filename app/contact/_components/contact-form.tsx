@@ -4,21 +4,20 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import EventButton from '@/components/event-button';
-import EventLink from '@/components/event-link';
+import EventButton from '@/components/atoms/event-button';
+import EventLink from '@/components/atoms/event-link';
+import FormErrorMessage from '@/components/atoms/form-error-message';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { ContactFormInput, ContactFormSchema } from '@/lib/schemas';
 import { sendEmail } from '@/lib/server/resend';
 
-import FormErrorMessage from '../../../components/form-error-message';
-
 const ContactForm = () => {
   const {
-    register,
-    handleSubmit,
-    reset,
     formState: { errors, isSubmitting },
+    handleSubmit,
+    register,
+    reset,
     watch,
   } = useForm<ContactFormInput>({
     defaultValues: {
@@ -46,79 +45,81 @@ const ContactForm = () => {
   };
 
   return (
-    <section className='relative isolate'>
-      <div className='relative'>
-        <form
-          className='mt-16 lg:flex-auto'
-          noValidate
-          onSubmit={handleSubmit(processForm)}
-        >
-          <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-            {/* Name field */}
-            <div>
-              <Input
-                autoComplete='given-name'
-                id='name'
-                placeholder='Name'
-                type='text'
-                {...register('name')}
-              />
+    <div className='relative'>
+      <form
+        className='lg:flex-auto'
+        method='POST'
+        noValidate
+        onSubmit={handleSubmit(processForm)}
+      >
+        <div className='grid grid-cols-1 gap-ui-lg sm:grid-cols-2'>
+          {/* Name field */}
+          <div>
+            <Input
+              autoComplete='given-name'
+              className='h-12 rounded-sm border-border bg-surface/50 transition-all focus:border-brand/50'
+              id='name'
+              placeholder='Name'
+              type='text'
+              {...register('name')}
+            />
 
-              <FormErrorMessage message={errors?.name?.message} />
-            </div>
-
-            {/* Email field */}
-            <div>
-              <Input
-                autoComplete='email'
-                id='email'
-                placeholder='Email'
-                type='email'
-                {...register('email')}
-              />
-
-              <FormErrorMessage message={errors?.email?.message} />
-            </div>
-
-            {/* Message field */}
-            <div className='sm:col-span-2'>
-              <Textarea
-                placeholder='Message'
-                rows={4}
-                {...register('message')}
-              />
-              <FormErrorMessage message={errors?.message?.message} />
-            </div>
+            <FormErrorMessage message={errors?.name?.message} />
           </div>
 
-          <div className='mt-6'>
-            <EventButton
-              className='w-full disabled:opacity-50'
-              disabled={isSubmitting}
-              eventName='Clicked on Contact us button - Contact Form'
-              eventProperties={{
-                email,
-                message,
-                name,
-              }}
-              type='submit'
+          {/* Email field */}
+          <div>
+            <Input
+              autoComplete='email'
+              className='h-12 rounded-sm border-border bg-surface/50 transition-all focus:border-brand/50'
+              id='email'
+              placeholder='Email'
+              type='email'
+              {...register('email')}
+            />
+
+            <FormErrorMessage message={errors?.email?.message} />
+          </div>
+
+          {/* Message field */}
+          <div className='sm:col-span-2'>
+            <Textarea
+              className='min-h-[150px] rounded-sm border-border bg-surface/50 transition-all focus:border-brand/50'
+              placeholder='Message'
+              rows={4}
+              {...register('message')}
+            />
+            <FormErrorMessage message={errors?.message?.message} />
+          </div>
+        </div>
+
+        <div className='mt-8'>
+          <EventButton
+            className='w-full py-6 disabled:opacity-50'
+            disabled={isSubmitting}
+            eventName='Clicked on Contact us button - Contact Form'
+            eventProperties={{
+              email,
+              message,
+              name,
+            }}
+            type='submit'
+          >
+            {isSubmitting ? 'Sending...' : 'Contact us'}
+          </EventButton>
+          <p className='mt-4 text-xs text-content-tertiary'>
+            By submitting this form, I agree to the&nbsp;
+            <EventLink
+              className='font-bold text-brand transition-colors hover:text-content-primary'
+              eventName='Clicked on privacy policy from Contact Form'
+              href='/privacy'
             >
-              {isSubmitting ? 'Sending...' : 'Contact us'}
-            </EventButton>
-            <p className='mt-4 text-xs text-muted-foreground'>
-              By submitting this form, I agree to the&nbsp;
-              <EventLink
-                className='font-bold'
-                eventName='Clicked on privacy policy from Contact Form'
-                href='/privacy'
-              >
-                privacy&nbsp;policy.
-              </EventLink>
-            </p>
-          </div>
-        </form>
-      </div>
-    </section>
+              privacy&nbsp;policy.
+            </EventLink>
+          </p>
+        </div>
+      </form>
+    </div>
   );
 };
 

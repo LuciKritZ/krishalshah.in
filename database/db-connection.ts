@@ -14,14 +14,12 @@ if (!cached) {
 
 export async function dbConnection() {
   if (cached.connection) {
-    // eslint-disable-next-line no-console
     console.log('=====> Using existing Mongoose connection <=====');
     return cached.connection;
   }
 
   try {
     if (!cached.promise) {
-      // eslint-disable-next-line no-console
       console.log('<===== Creating new Mongoose connection');
       const options = {
         bufferCommands: false,
@@ -33,11 +31,9 @@ export async function dbConnection() {
     }
 
     cached.connection = await cached.promise;
-    // eslint-disable-next-line no-console
     console.log('... connected =====>');
     return cached.connection;
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error(
       `Error while connecting to the database: ${error}`,
       '======>'

@@ -1,8 +1,5 @@
-import { ReactNode, Suspense } from 'react';
-
 import { Metadata } from 'next';
-
-import PostsProvider from '@/providers/posts-provider';
+import { ReactNode, Suspense } from 'react';
 
 export const metadata: Metadata = {
   description: 'Read my mind out with my posts.',
@@ -14,11 +11,7 @@ const PostsLayout = ({
 }: Readonly<{
   children: ReactNode;
 }>) => {
-  return (
-    <Suspense>
-      <PostsProvider>{children}</PostsProvider>
-    </Suspense>
-  );
+  return <Suspense>{children}</Suspense>;
 };
 
 export default PostsLayout;
