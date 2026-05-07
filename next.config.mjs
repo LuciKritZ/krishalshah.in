@@ -2,13 +2,13 @@
 const nextConfig = {
   /* config options here */
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       {
-        protocol: 'https',
         hostname: 'cdn.sanity.io',
+        protocol: 'https',
       },
     ],
-    dangerouslyAllowSVG: true,
   },
 };
 

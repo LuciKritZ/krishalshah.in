@@ -1,15 +1,14 @@
 import type { Metadata, Viewport } from 'next';
 
-import AnalyticsConsentModal from '@/components/analytics-consent';
+import ToggleTheme from '@/components/atoms/toggle-theme';
 import ResetAnalytics from '@/components/dev-only/reset-analytics';
+import AnalyticsConsentModal from '@/components/molecules/analytics-consent';
+import SiteHeader from '@/components/organisms/site-header';
 import { siteConfig } from '@/config';
-import { sourceCodePro } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import Providers from '@/providers';
 
 import Footer from './(home)/_components/footer';
-import Header from './(home)/_components/header';
-
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -68,12 +67,11 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
-          'flex min-h-screen flex-col antialiased',
-          sourceCodePro.className
+          'flex min-h-screen flex-col overflow-x-hidden antialiased'
         )}
       >
         <Providers>
-          <Header />
+          <SiteHeader showThemeToggle themeToggle={<ToggleTheme />} />
           <main className='grow'>{children}</main>
           <Footer />
           <AnalyticsConsentModal />

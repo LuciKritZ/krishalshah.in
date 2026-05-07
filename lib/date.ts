@@ -16,7 +16,7 @@ export const getStartAndEndDate = (
   startDate: Date,
   endDate: Date | undefined
 ) => {
-  let duration = formatDateForExperience(startDate);
+  const duration = formatDateForExperience(startDate);
   if (isCurrent || !endDate) {
     return `${duration} - Present`;
   }

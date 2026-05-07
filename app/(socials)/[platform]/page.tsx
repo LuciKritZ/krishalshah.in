@@ -1,8 +1,7 @@
 'use client';
 
-import { useEffect } from 'react';
-
 import { notFound, useParams } from 'next/navigation';
+import { useEffect } from 'react';
 
 import { siteConfig, SOCIAL_LINKS } from '@/config';
 import { trackEvent } from '@/lib/analytics';
@@ -13,7 +12,7 @@ export default function SocialRedirect() {
 
   const allPlatforms = Object.keys(SOCIAL_LINKS);
 
-  const isValidPlatform = allPlatforms.includes(platform);
+  const isValidPlatform = platform != null && allPlatforms.includes(platform);
 
   useEffect(() => {
     if (!isValidPlatform || !platform) return;

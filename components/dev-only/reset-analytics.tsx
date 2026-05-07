@@ -1,14 +1,13 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-
 import { RotateCcw } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import { getAnalyticsConsent, resetAnalytics } from '@/lib/analytics';
 import { cn } from '@/lib/utils';
 
 const ResetAnalytics = () => {
-  const [analyticsConsent, setAnalyticsConsent] = useState<undefined | string>(
+  const [analyticsConsent, setAnalyticsConsent] = useState<string | undefined>(
     ''
   );
 
