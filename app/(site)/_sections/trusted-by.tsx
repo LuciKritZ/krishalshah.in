@@ -1,12 +1,27 @@
 import Section from '@/components/atoms/section';
 import Marquee from '@/components/molecules/marquee';
-import { EXPERIENCES } from '@/config';
+import { dbConnection } from '@/database/db-connection';
+import Experience from '@/database/models/experience';
+import { ExperienceType } from '@/types/experience';
 
-const TrustedBy = () => {
+const TrustedBy = async () => {
+  let experiences: ExperienceType[] = [];
+
+  try {
+    await dbConnection();
+    const data = await Experience.find({}).lean();
+    experiences = data.map(exp => ({
+      ...exp,
+      _id: exp._id.toString(),
+    })) as ExperienceType[];
+  } catch (error) {
+    console.error('Failed to fetch from DB:', error);
+  }
+
   // Get unique companies with their links
   const companies = Array.from(
     new Map(
-      EXPERIENCES.map(exp => [
+      experiences.map(exp => [
         exp.companyShortName || exp.companyName,
         exp.companyLink,
       ])

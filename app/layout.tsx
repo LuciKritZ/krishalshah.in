@@ -1,15 +1,35 @@
 import type { Metadata, Viewport } from 'next';
 
-import ToggleTheme from '@/components/atoms/toggle-theme';
+import { Inter, Space_Grotesk } from 'next/font/google';
+import localFont from 'next/font/local';
+
 import ResetAnalytics from '@/components/dev-only/reset-analytics';
 import AnalyticsConsentModal from '@/components/molecules/analytics-consent';
-import SiteHeader from '@/components/organisms/site-header';
 import { siteConfig } from '@/config';
 import { cn } from '@/lib/utils';
 import Providers from '@/providers';
 
-import Footer from './(home)/_components/footer';
 import './globals.css';
+
+const inter = Inter({
+  display: 'block',
+  subsets: ['latin'],
+  variable: '--font-sans-var',
+  weight: ['300', '400', '600', '800'],
+});
+
+const spaceGrotesk = Space_Grotesk({
+  display: 'block',
+  subsets: ['latin'],
+  variable: '--font-display-var',
+  weight: ['300', '500', '700'],
+});
+
+const rageItalic = localFont({
+  display: 'block',
+  src: './fonts/RAGE.woff',
+  variable: '--font-rage-var',
+});
 
 export const metadata: Metadata = {
   authors: [
@@ -67,13 +87,14 @@ export default function RootLayout({
     <html lang='en' suppressHydrationWarning>
       <body
         className={cn(
+          inter.variable,
+          spaceGrotesk.variable,
+          rageItalic.variable,
           'flex min-h-screen flex-col overflow-x-hidden antialiased'
         )}
       >
         <Providers>
-          <SiteHeader showThemeToggle themeToggle={<ToggleTheme />} />
-          <main className='grow'>{children}</main>
-          <Footer />
+          {children}
           <AnalyticsConsentModal />
 
           {/* This will be shown in development mode only */}
