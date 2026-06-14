@@ -4,17 +4,10 @@ import { sanitize } from 'isomorphic-dompurify';
 import { Calendar, ChevronRight, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 
-interface ExperienceCardProps {
-  companyLink: string;
-  companyName: string;
-  description: string;
-  endDate?: Date | string;
+import { ExperienceType } from '@/types/experience';
+
+interface ExperienceCardProps extends ExperienceType {
   index: number;
-  isCurrent: boolean;
-  isRemote: boolean;
-  jobTitle: string;
-  skills?: string[];
-  startDate: Date | string;
 }
 
 const ExperienceCard = ({
