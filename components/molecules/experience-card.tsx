@@ -1,19 +1,13 @@
 'use client';
 
+import { sanitize } from 'isomorphic-dompurify';
 import { Calendar, ChevronRight, MapPin } from 'lucide-react';
 import { motion } from 'motion/react';
 
-interface ExperienceCardProps {
-  companyLink: string;
-  companyName: string;
-  description: string;
-  endDate?: Date;
+import { ExperienceType } from '@/types/experience';
+
+interface ExperienceCardProps extends ExperienceType {
   index: number;
-  isCurrent: boolean;
-  isRemote: boolean;
-  jobTitle: string;
-  skills?: string[];
-  startDate: Date;
 }
 
 const ExperienceCard = ({
@@ -28,8 +22,8 @@ const ExperienceCard = ({
   skills,
   startDate,
 }: ExperienceCardProps) => {
-  const formatDate = (date: Date) => {
-    return date
+  const formatDate = (date: Date | string) => {
+    return new Date(date)
       .toLocaleDateString('en-US', {
         month: 'short',
         year: 'numeric',
@@ -88,15 +82,22 @@ const ExperienceCard = ({
         </div>
 
         <div className='space-y-ui-sm'>
-          {description.split('\n').map((point, i) => (
+          {description.trim().startsWith('<') ? (
             <div
-              className='flex gap-ui-sm text-sm leading-relaxed text-content-secondary'
-              key={i}
-            >
-              <ChevronRight className='mt-1 shrink-0 text-brand' size={14} />
-              <p>{point.trim()}</p>
-            </div>
-          ))}
+              className='experience-description prose prose-sm dark:prose-invert max-w-none text-content-secondary prose-p:leading-relaxed prose-li:marker:text-brand prose-headings:text-content-primary prose-ul:pl-4 prose-li:my-1 prose-p:my-2'
+              dangerouslySetInnerHTML={{ __html: sanitize(description) }}
+            />
+          ) : (
+            description.split('\n').map((point, i) => (
+              <div
+                className='flex gap-ui-sm text-sm leading-relaxed text-content-secondary'
+                key={i}
+              >
+                <ChevronRight className='mt-1 shrink-0 text-brand' size={14} />
+                <p>{point.trim()}</p>
+              </div>
+            ))
+          )}
         </div>
 
         {skills && (

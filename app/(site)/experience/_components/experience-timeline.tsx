@@ -7,9 +7,13 @@ import BodyText from '@/components/atoms/body-text';
 import DisplayTitle from '@/components/atoms/display-title';
 import { SectionHeader } from '@/components/atoms/section';
 import ExperienceCard from '@/components/molecules/experience-card';
-import { EXPERIENCES } from '@/config';
+import { ExperienceType } from '@/types/experience';
 
-export default function ExperienceTimeline() {
+export default function ExperienceTimeline({
+  experiences,
+}: {
+  experiences: ExperienceType[];
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -44,7 +48,7 @@ export default function ExperienceTimeline() {
         />
 
         <div className='flex flex-col gap-0 md:space-y-ui-3xl'>
-          {EXPERIENCES.map((experience, index) => (
+          {experiences.map((experience, index) => (
             <ExperienceCard
               index={index}
               key={experience._id}

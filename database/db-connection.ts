@@ -1,42 +1,57 @@
 import mongoose from 'mongoose';
 
+if (typeof window !== 'undefined') {
+  throw new Error('dbConnection can only be used on the server.');
+}
+
 const MONGO_URI = process.env.MONGO_URI!;
 
 if (!MONGO_URI) {
   throw new Error('Please define the MONGO_URI environment variable');
 }
 
-let cached = global._mongoose;
+interface MongooseCache {
+  conn: null | typeof mongoose;
+  promise: null | Promise<typeof mongoose>;
+}
+
+declare global {
+  var mongoose: MongooseCache | undefined;
+}
+
+let cached = global.mongoose;
 
 if (!cached) {
-  cached = global._mongoose = { connection: null, promise: null };
+  cached = global.mongoose = { conn: null, promise: null };
+}
+
+export function clearModelIfLocal(modelName: string) {
+  if (process.env.NODE_ENV !== 'production' && mongoose.models[modelName]) {
+    delete mongoose.models[modelName];
+  }
 }
 
 export async function dbConnection() {
-  if (cached.connection) {
-    console.log('=====> Using existing Mongoose connection <=====');
-    return cached.connection;
+  if (cached!.conn) {
+    return cached!.conn;
+  }
+
+  if (!cached!.promise) {
+    const opts = {
+      bufferCommands: false,
+    };
+
+    cached!.promise = mongoose.connect(MONGO_URI, opts).then(m => {
+      return m;
+    });
   }
 
   try {
-    if (!cached.promise) {
-      console.log('<===== Creating new Mongoose connection');
-      const options = {
-        bufferCommands: false,
-      };
-
-      cached.promise = mongoose
-        .connect(MONGO_URI, options)
-        .then(mongoose => mongoose);
-    }
-
-    cached.connection = await cached.promise;
-    console.log('... connected =====>');
-    return cached.connection;
-  } catch (error) {
-    console.error(
-      `Error while connecting to the database: ${error}`,
-      '======>'
-    );
+    cached!.conn = await cached!.promise;
+  } catch (e) {
+    cached!.promise = null;
+    throw e;
   }
+
+  return cached!.conn;
 }

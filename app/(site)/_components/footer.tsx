@@ -1,3 +1,5 @@
+'use client';
+
 import Marquee from '@/components/molecules/marquee';
 import { NAVIGATION_OPTIONS, siteConfig } from '@/config';
 

@@ -22,7 +22,7 @@ interface ContactUsEmailTemplateProps {
   name: string;
 }
 
-const baseUrl = process.env.APP_URL || 'https://krishalshah.in';
+const baseUrl = process.env.APP_URL || 'https://krishal-shah.in';
 
 export const ContactUsEmailTemplate = ({
   email,
@@ -102,7 +102,7 @@ export const ContactUsEmailTemplate = ({
         <Text style={text}>
           If you did not enter your details on{' '}
           <Link href={baseUrl} style={link}>
-            krishalshah.in
+            krishal-shah.in
           </Link>
           , there&apos;s nothing to worry about, you can safely ignore it.
         </Text>
