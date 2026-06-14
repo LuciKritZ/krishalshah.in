@@ -30,7 +30,7 @@ export const addEmailForNewsletterSubscription = async (
     };
   } catch (error: unknown) {
     let errorMessage =
-      'Unknown error, please try again or reach out to hi@krishalshah.in';
+      'Unknown error, please try again or reach out to hi@krishal-shah.in';
     if (error instanceof Error) {
       errorMessage = error.message;
     } else if (typeof error === 'string') {
