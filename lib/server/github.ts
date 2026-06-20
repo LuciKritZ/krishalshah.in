@@ -7,13 +7,13 @@ import {
   Project,
 } from '@/types/global-types';
 
-const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-
 async function fetchGraphQL(
   query: string,
   variables: Record<string, unknown> = {}
 ) {
+  const GITHUB_USERNAME = process.env.GITHUB_USERNAME;
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+
   if (!GITHUB_USERNAME || !GITHUB_TOKEN) {
     throw new Error('GITHUB_USERNAME or GITHUB_TOKEN is missing');
   }
@@ -51,7 +51,7 @@ export const getGithubProjects = unstable_cache(
     searchQuery = '',
     languages: string[] = []
   ): Promise<{ projects: Project[]; totalCount: number }> => {
-    const login = GITHUB_USERNAME;
+    const login = process.env.GITHUB_USERNAME;
     // Build the search query string
     let queryStr = `user:${login} sort:updated-desc fork:false is:public`;
     if (searchQuery) {
@@ -152,7 +152,9 @@ export const getGithubLanguages = unstable_cache(
       }
     `;
 
-    const data = await fetchGraphQL(query, { login: GITHUB_USERNAME });
+    const data = await fetchGraphQL(query, {
+      login: process.env.GITHUB_USERNAME,
+    });
 
     if (!data || !data.user) return [];
 
@@ -200,7 +202,7 @@ export const getProjectBySlug = unstable_cache(
     `;
 
     const data = await fetchGraphQL(query, {
-      login: GITHUB_USERNAME,
+      login: process.env.GITHUB_USERNAME,
       name: slug,
     });
 

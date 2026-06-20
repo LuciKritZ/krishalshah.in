@@ -1,6 +1,6 @@
 {
-  "name": "krishalshah.in",
-  "version": "2.0.0",
+  "name": "krishal-shah.in",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
