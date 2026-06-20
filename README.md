@@ -1,10 +1,10 @@
 <p align="center">
-  <a href="https://github.com/LuciKritZ/krishalshah.in">
+  <a href="https://github.com/LuciKritZ/krishal-shah.in">
     &lt;Krishal /&gt;
   </a>
 </p>
 
-# krishalshah.in
+# krishal-shah.in
 
 This website is a showcase of who I am as a developer—my skills, experiences, and the projects I've
 worked on. It’s a place where you can learn about my journey as a Full Stack Software Engineer, dive
@@ -19,8 +19,8 @@ connecting with other developers and teams.
 [nvm](https://github.com/nvm-sh/nvm), run `nvm use` before any npm commands.
 
 ```bash
-git clone https://github.com/LuciKritZ/krishalshah.in.git
-cd krishalshah.in
+git clone https://github.com/LuciKritZ/krishal-shah.in.git
+cd krishal-shah.in
 nvm use    # if using nvm
 npm install
 npm run dev

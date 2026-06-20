@@ -73,8 +73,8 @@ export const sendEmail = async (data: ContactFormInput) => {
         },
       ],
 
-      cc: ['hi@krishalshah.in'],
-      from: 'hi@krishalshah.in',
+      cc: ['hi@krishal-shah.in'],
+      from: 'hi@krishal-shah.in',
       react: ContactUsEmailTemplate({ email, message, name }),
       subject: 'Thanks for reaching out to me!',
       text: `Name: ${name}\nEmail: ${email}\nMessage:${message}`,
