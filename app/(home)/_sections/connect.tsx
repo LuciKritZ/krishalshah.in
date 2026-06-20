@@ -109,7 +109,7 @@ const Connect = () => {
                     className='h-auto rounded-2xl border-none bg-surface/50 p-5 text-xl font-bold tracking-tight text-content-primary shadow-2xl ring-1 ring-border/50 backdrop-blur-3xl transition-all placeholder:text-content-tertiary/40 focus:ring-brand/50 focus-visible:ring-brand/50 lg:p-6 lg:text-2xl'
                     id='newsletter'
                     onChange={e => setEmail(e.target.value)}
-                    placeholder='hi@krishalshah.in'
+                    placeholder='hi@krishal-shah.in'
                     required
                     type='email'
                     value={email}

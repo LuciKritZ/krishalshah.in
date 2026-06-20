@@ -5,7 +5,7 @@ const links = {
   linkedin: 'https://linkedin.com/in/krishal-shah',
   phone: '+919104070699',
   twitter: 'https://x.com/lucikritz',
-  website: 'https://krishalshah.in',
+  website: 'https://krishal-shah.in',
 };
 
 export const EXPERIENCES = [
@@ -278,7 +278,7 @@ export const siteConfig = {
     },
   ],
   status: 'Available',
-  url: 'https://krishalshah.in',
+  url: 'https://krishal-shah.in',
 };
 
 export const NAVIGATION_OPTIONS: NavLinkItem[] = [
