@@ -33,3 +33,6 @@ jobs:
 
       - name: Build
         run: npm run build
+        env:
+          GITHUB_USERNAME: ${{ secrets.GH_USER_NAME }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
