@@ -222,7 +222,7 @@ export const siteConfig = {
   ],
   name: '<Krishal />',
   resumeDoc:
-    'https://docs.google.com/document/d/1L9vqJXg33BBBuceWqZSsKmsw-56PMOFQKDgCBfLqmz0',
+    'https://drive.google.com/file/d/1OOYQMDR1ZAHMhjuQs7UgXArSUxlIfvr_/view?usp=sharing',
   shortName: '<K />',
   socialLinks: [
     {
@@ -307,7 +307,7 @@ export const NAVIGATION_OPTIONS: NavLinkItem[] = [
 export const SOCIAL_LINKS = {
   ...siteConfig.links,
   resume:
-    'https://docs.google.com/document/d/1L9vqJXg33BBBuceWqZSsKmsw-56PMOFQKDgCBfLqmz0',
+    'https://drive.google.com/file/d/1OOYQMDR1ZAHMhjuQs7UgXArSUxlIfvr_/view?usp=sharing',
 };
 
 export type SiteConfig = typeof siteConfig;
